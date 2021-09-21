@@ -1,0 +1,22 @@
+version: "2.2"
+
+services:
+  db:
+    image: postgres:13.3-alpine
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./tmp/postgresql_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    command: postgres -c fsync=off
+  web:
+    build: .
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
