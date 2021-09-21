@@ -8,8 +8,8 @@ services:
     volumes:
       - ./tmp/postgresql_data:/var/lib/postgresql/data
     environment:
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
+      POSTGRES_USER: tradelogger
+      POSTGRES_PASSWORD: tradelogger
     command: postgres -c fsync=off
   web:
     build: .
