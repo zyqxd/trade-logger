@@ -16,6 +16,8 @@
 #  updated_at  :datetime         not null
 #
 class TradeEntry < ApplicationRecord
+  has_many :trades, inverse_of: :trade_entry, dependent: :destroy
+
   enum coin: {
     btcusdt: 'btcusdt',
     btcusd: 'btcusd',
