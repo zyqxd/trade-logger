@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_210_922_020_726) do
+ActiveRecord::Schema.define(version: 20_210_922_221_549) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20_210_922_020_726) do
     t.string 'name', null: false
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
+    t.index ['code'], name: 'index_timeframes_on_code', unique: true
   end
 
   create_table 'trade_entries', force: :cascade do |t|
