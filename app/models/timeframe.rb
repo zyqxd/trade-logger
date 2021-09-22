@@ -9,4 +9,8 @@
 #  updated_at :datetime         not null
 #
 class Timeframe < ApplicationRecord
+  has_many :analyses,
+           class_name: 'TimeframeAnalysis',
+           inverse_of: :timeframe,
+           dependent: :destroy
 end

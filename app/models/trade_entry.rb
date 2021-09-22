@@ -18,6 +18,11 @@
 class TradeEntry < ApplicationRecord
   has_many :trades, inverse_of: :trade_entry, dependent: :destroy
 
+  has_many :analyses,
+           class_name: 'TimeframeAnalysis',
+           inverse_of: :trade_entry,
+           dependent: :destroy
+
   enum coin: {
     btcusdt: 'btcusdt',
     btcusd: 'btcusd',
