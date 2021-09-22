@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -17,6 +19,8 @@ group :development, :test do
   gem 'byebug'
   # Annotate Rails classes with schema and routes info
   gem 'annotate'
+  # Ruby linter
+  gem 'rubocop', require: false
 end
 
 group :development do
@@ -24,4 +28,4 @@ group :development do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

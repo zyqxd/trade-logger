@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: trade_entries
@@ -25,11 +27,11 @@ class TradeEntry < ApplicationRecord
 
   enum coin: {
     btcusdt: 'btcusdt',
-    btcusd: 'btcusd',
+    btcusd: 'btcusd'
   }
 
   enum kind: {
     long: 'long',
-    short: 'short',
+    short: 'short'
   }
 end
