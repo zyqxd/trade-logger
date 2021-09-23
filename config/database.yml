@@ -1,15 +1,12 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  host: db
-  username: tradelogger
-  password: tradelogger
   pool: 5
 
 development:
   <<: *default
-  database: trade_logger_development
+  url: postgresql://user:tradelogger@127.0.0.1:5432/trade_logger_development
 
 test:
   <<: *default
-  database: trade_logger_test
+  url: postgresql://user:tradelogger@127.0.0.1:5432/trade_logger_test
