@@ -5,6 +5,7 @@
 # Table name: trade_entries
 #
 #  id          :bigint           not null, primary key
+#  amount      :decimal(8, 8)    default(0.0), not null
 #  cancelled   :boolean          default(FALSE), not null
 #  close_price :decimal(8, 2)
 #  close_time  :datetime
@@ -24,6 +25,10 @@ class TradeEntry < ApplicationRecord
            class_name: 'TimeframeAnalysis',
            inverse_of: :trade_entry,
            dependent: :destroy
+
+  # TODO(DZ) this should be status enum
+  scope :filled, -> { where(cancelled: false) }
+  scope :cancelled, -> { where(cancelled: true) }
 
   enum coin: {
     btcusdt: 'btcusdt',
