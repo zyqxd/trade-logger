@@ -38,6 +38,8 @@ Lint/LambdaWithoutLiteralBlock: # new in 1.8
 Layout/LineLength:
   Enabled: true
   Max: 80
+Lint/MissingSuper:
+  Enabled: false
 Lint/NoReturnInBeginEndBlocks: # new in 1.2
   Enabled: true
 Lint/NumberedParameterAssignment: # new in 1.9
@@ -56,18 +58,21 @@ Lint/UnexpectedBlockArity: # new in 1.5
   Enabled: true
 Lint/UnmodifiedReduceAccumulator: # new in 1.1
   Enabled: true
+Metrics/AbcSize:
+  Enabled: true
+  Max: 50
 Metrics/BlockLength:
   Enabled: true
   Max: 52
 Metrics/CyclomaticComplexity:
   Enabled: true
-  Max: 12
+  Max: 15
 Metrics/MethodLength:
   Enabled: true
-  Max: 25
+  Max: 50
 Metrics/PerceivedComplexity:
   Enabled: true
-  Max: 12
+  Max: 15
 Metrics/ParameterLists:
   Enabled: true
 Style/ArgumentsForwarding: # new in 1.1

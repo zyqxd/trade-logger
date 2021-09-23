@@ -30,7 +30,7 @@ class TradeEntry < ApplicationRecord
     opened: 'opened',
     filled: 'filled',
     closed: 'closed',
-    cancelled: 'cancelled',
+    cancelled: 'cancelled'
   }
 
   enum coin: {

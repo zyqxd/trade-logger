@@ -19,7 +19,7 @@ ActiveAdmin.register TradeEntry, as: 'TradeEntry' do
   end
 
   form do |f|
-    f.semantic_errors *f.object.errors.keys
+    f.semantic_errors(*f.object.errors.keys)
 
     f.inputs 'Trade Entry' do
       f.input :coin, as: :select, collection: TradeEntry.coins
