@@ -22,6 +22,17 @@ ActiveAdmin.register TradeEntry, as: 'TradeEntry' do
     actions
   end
 
+  sidebar :stats, only: %i[show] do
+    attributes_table_for resource do
+      row :status
+      row :pnl
+    end
+  end
+
+  show do
+    default_main_content
+  end
+
   form do |f|
     f.semantic_errors(*f.object.errors.keys)
 
