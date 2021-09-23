@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_23_000630) do
+ActiveRecord::Schema.define(version: 2021_09_23_001356) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,7 +44,6 @@ ActiveRecord::Schema.define(version: 2021_09_23_000630) do
   create_table "trade_entries", force: :cascade do |t|
     t.string "coin", default: "btcusdt", null: false
     t.string "kind", default: "long", null: false
-    t.boolean "cancelled", default: false, null: false
     t.datetime "open_time"
     t.datetime "close_time"
     t.decimal "open_price", precision: 8, scale: 2
@@ -53,7 +52,8 @@ ActiveRecord::Schema.define(version: 2021_09_23_000630) do
     t.boolean "post_close", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.decimal "amount", precision: 8, scale: 8, default: "0.0", null: false
+    t.decimal "amount", precision: 12, scale: 8, default: "0.0", null: false
+    t.string "status", default: "opened", null: false
   end
 
   create_table "trades", force: :cascade do |t|
@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(version: 2021_09_23_000630) do
     t.boolean "post_close", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.decimal "amount", precision: 8, scale: 8, default: "0.0", null: false
+    t.decimal "amount", precision: 12, scale: 8, default: "0.0", null: false
     t.index ["trade_entry_id"], name: "index_trades_on_trade_entry_id"
   end
 

@@ -5,7 +5,7 @@
 # Table name: trades
 #
 #  id             :bigint           not null, primary key
-#  amount         :decimal(8, 8)    default(0.0), not null
+#  amount         :decimal(12, 8)   default(0.0), not null
 #  close_price    :decimal(8, 2)
 #  close_time     :datetime
 #  open_price     :decimal(8, 2)

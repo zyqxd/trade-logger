@@ -6,7 +6,7 @@ class AddAmountToTrades < ActiveRecord::Migration[6.1]
       :decimal,
       null: false,
       default: 0,
-      precision: 8,
+      precision: 12,
       scale: 8,
     )
 
@@ -16,7 +16,7 @@ class AddAmountToTrades < ActiveRecord::Migration[6.1]
       :decimal,
       null: false,
       default: 0,
-      precision: 8,
+      precision: 12,
       scale: 8,
     )
   end
