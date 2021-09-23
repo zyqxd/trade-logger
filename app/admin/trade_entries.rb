@@ -1,12 +1,16 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register TradeEntry, as: 'TradeEntry' do
+  MiniForm::ActiveAdmin::UseForm.call self, Trades::Admin::TradeEntryForm
+
   menu label: 'Trade Entry', parent: 'Trade'
 
   filter :coin
   filter :kind
 
+  scope :opened
   scope :filled
+  scope :closed
   scope :cancelled
 
   index do
@@ -22,6 +26,7 @@ ActiveAdmin.register TradeEntry, as: 'TradeEntry' do
     f.semantic_errors(*f.object.errors.keys)
 
     f.inputs 'Trade Entry' do
+      f.input :status, as: :select, collection: TradeEntry.statuses
       f.input :coin, as: :select, collection: TradeEntry.coins
       f.input :kind, as: :select, collection: TradeEntry.kinds
 
