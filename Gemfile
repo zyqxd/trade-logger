@@ -23,6 +23,12 @@ group :development, :test do
   gem 'annotate'
   # Ruby linter
   gem 'rubocop', require: false
+  # Testing
+  gem 'rspec'
+  # Rspec for Rail
+  gem 'rspec-rails'
+  # Fixtures in Rails
+  gem 'factory_bot_rails'
 end
 
 group :development do
