@@ -1,7 +1,7 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  pool: 5
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
   <<: *default
@@ -10,3 +10,9 @@ development:
 test:
   <<: *default
   url: postgresql://user:tradelogger@127.0.0.1:5432/trade_logger_test
+
+production:
+  <<: *default
+  database: trade_logger_production
+  username: user
+  password: <%= ENV['TRADELOGGER_PASSWORD'] %>

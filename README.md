@@ -8,6 +8,15 @@ TODO
 - Rails 6.14
 - Postgresql 13.3
 
+## Requirements
+
+You need to setup an env file for heroku deployment
+
+```
+RACK_ENV=development
+PORT=3000
+```
+
 ## TODO
 
 0. Base
@@ -18,8 +27,7 @@ TODO
 - [x] Stopped?
 
 1. deployment
-- [ ] heroku
-- [ ] ci?
+- [x] heroku
 
 1. refactor: trades should be just additions to entry
    - additions or subtractions (load, reload)
@@ -56,3 +64,7 @@ TODO
 ## Nice to haves
 - [ ] paste into form feature
 - [ ] emotional score
+- [ ] ci? https://circleci.com/integrations/heroku
+- [ ] autoloader Zeitwerk causing NameError in heroku deployment
+- [ ] Actual heroku docker deployment 
+- [ ] AWS?

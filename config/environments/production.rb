@@ -101,4 +101,8 @@ Rails.application.configure do
   # config.active_record.database_selector = { delay: 2.seconds }
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
+
+  # NOTE(DZ): For heroku deployment, can't figure out an Zeitwerk::NameError in
+  # active admin. For now downgrade. See TODO in readme
+  config.autoloader = :classic
 end
