@@ -12,11 +12,12 @@ TODO
 
 0. Base
 
-- add margin setting
-- add maker/taker fee setting
-- paste into form feature
-- Stop loss?
-- emotional score
+- [x] add margin setting
+- [x] add maker/taker fee setting
+- [ ] add paper trade boolean
+- [ ] paste into form feature
+- [ ] Stop loss?
+- [ ] emotional score
 
 1. refactor: trades should be just additions to entry
 
@@ -41,3 +42,11 @@ TODO
   - 4h:trend = 1h:trend
   - 1h:bbwp > 50
 - populate % success while entering trade
+
+7. Users
+
+- user level settings
+  - margin
+  - maker taker fees
+- login
+- roles

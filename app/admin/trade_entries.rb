@@ -16,16 +16,21 @@ ActiveAdmin.register TradeEntry, as: 'TradeEntry' do
   index do
     id_column
     column :coin
+    column :status
     column :kind
     column :open_price
     column :close_price
+    column :profit
     actions
   end
 
   sidebar :stats, only: %i[show] do
     attributes_table_for resource do
       row :status
-      row :pnl
+      row :profit
+      row :true_profit
+      row :profit_percentage
+      row :true_profit_percentage
     end
   end
 
