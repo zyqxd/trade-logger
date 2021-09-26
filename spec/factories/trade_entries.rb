@@ -14,6 +14,7 @@
 #  margin           :decimal(8, 2)    default(1.0), not null
 #  open_price       :decimal(8, 2)
 #  open_time        :datetime
+#  paper            :boolean          default(FALSE), not null
 #  post_close       :boolean          default(FALSE), not null
 #  post_open        :boolean          default(FALSE), not null
 #  status           :string           default("opened"), not null

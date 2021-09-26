@@ -21,6 +21,7 @@ ActiveAdmin.register TradeEntry, as: 'TradeEntry' do
     column :open_price
     column :close_price
     column :profit
+    column :paper
     actions
   end
 
@@ -55,6 +56,7 @@ ActiveAdmin.register TradeEntry, as: 'TradeEntry' do
 
       f.input :close_time, as: :datetime_picker
       f.input :post_close, as: :boolean
+      f.input :paper, as: :boolean
     end
 
     f.actions

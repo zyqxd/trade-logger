@@ -13,6 +13,7 @@ module Trades
         kind
         open_price
         open_time
+        paper
         post_close
         post_open
         status
