@@ -19,63 +19,79 @@ PORT=3000
 
 ## TODO
 
-0. Base
+Base
 - [x] add margin setting
 - [x] add maker/taker fee setting
 - [x] add paper trade boolean
 - [x] best in place
 - [x] Stopped?
 
-1. deployment
+Deployment
 - [x] heroku
 
-2. refactor: trades should be just additions to entry
+Models part I - refactor: trades should be just additions to entry
 - [x] rebuild table trades into trade_logs
 - [x] admin pages
 - [x] audit trail
 - [x] inline edits
-- [ ] add timeframe analysis
-- [ ] normalize fields (profit, fees, margin etc)
-  - [ ] open|close prices should be average
-  - [ ] profit should take sums
+- [x] add timeframe analysis
 
-3. memos
+Memos
+- [ ] Markdown
+- [ ] Memo on status change or just open, during, close memos
+- [ ] Memo on analysis
 
-4. tags
-   - should paper & stopped flags be tags?
+1. models part II
+- better entry system
+  - tab entry
+  - table style forms
+  - refactor and remove some templating code if possible
+  - paste into form feature
+- timeframe analysis form
+  - validations on values
+  - update decimals to be 8,4
+  - refactor trend values
+    - bbwp sometimes just oscillating
+    - stoch trend is implied by diff of fast + slow
+    - rsi stays in zones, maybe okay with trends
+- normalize fields (profit, fees, margin etc)
+  - open|close prices should be average
+  - profit should take sums
 
-5. prompt/warning after something happens
-   - certain % gain/loss
-     - consequctive
-   - trades with red flags
-     - no stop loss
-     - before bed time
-     - market orders
+3. tags
+- should paper & stopped flags be tags?
 
-6. timeframe analysis as tag to other system structures
+4. prompt/warning after something happens
+- certain % gain/loss
+  - consequctive
+- trades with red flags
+  - no stop loss
+  - before bed time
+  - market orders
 
-7. search by timeframe
-   - persist profit and friends fields
-   - advance query system
-     - 4h:trend = 1h:trend
-     - 1h:bbwp > 50
-   - populate % success while entering trade
+5. timeframe analysis as tag to other system structures
 
-8. Users
-   - user level settings
-     - margin
-     - maker taker fees
-     - user level login
-   - roles
+6. search by timeframe
+- persist profit and friends fields
+- advance query system
+  - 4h:trend = 1h:trend
+  - 1h:bbwp > 50
+- populate % success while entering trade
+
+7. Users
+- user level settings
+  - margin
+  - maker taker fees
+  - user level login
+- roles
 
 ## Nice to haves
 - [x] login
-- [ ] paste into form feature
 - [ ] emotional score
 - [ ] ci? https://circleci.com/integrations/heroku
 - [ ] autoloader Zeitwerk causing NameError in heroku deployment
 - [ ] Actual heroku docker deployment 
-- [ ] AWS?
+- [ ] AWS? (cheaper)
 
 
 ## Deployment
