@@ -133,32 +133,30 @@ ActiveAdmin.register TradeEntry, as: 'Trade Entry' do
       f.input :paper, as: :boolean
     end
 
-    f.inputs 'Analyses' do
-      f.has_many :analyses, heading: false do |a|
-        a.input :timeframe,
-                as: :select,
-                collection: Timeframe.pluck(:code, :id)
+    f.has_many :analyses do |a|
+      a.input :timeframe,
+              as: :select,
+              collection: Timeframe.pluck(:code, :id)
 
-        a.input :kind, as: :select, collection: TimeframeAnalysis.kinds
-        a.input :trend, as: :select, collection: TimeframeAnalysis.trends
+      a.input :kind, as: :select, collection: TimeframeAnalysis.kinds
+      a.input :trend, as: :select, collection: TimeframeAnalysis.trends
 
-        a.input :bbwp
-        a.input :bbwp_trend,
-                as: :select,
-                collection: TimeframeAnalysis.bbwp_trends
+      a.input :bbwp
+      a.input :bbwp_trend,
+              as: :select,
+              collection: TimeframeAnalysis.bbwp_trends
 
-        a.input :rsi
-        a.input :rsi_exponential
-        a.input :rsi_trend,
-                as: :select,
-                collection: TimeframeAnalysis.rsi_trends
+      a.input :rsi
+      a.input :rsi_exponential
+      a.input :rsi_trend,
+              as: :select,
+              collection: TimeframeAnalysis.rsi_trends
 
-        a.input :stoch_fast
-        a.input :stoch_slow
-        a.input :stoch_trend,
-                as: :select,
-                collection: TimeframeAnalysis.stoch_trends
-      end
+      a.input :stoch_fast
+      a.input :stoch_slow
+      a.input :stoch_trend,
+              as: :select,
+              collection: TimeframeAnalysis.stoch_trends
     end
 
     f.actions
