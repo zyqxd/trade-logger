@@ -86,6 +86,12 @@ Style/DocumentDynamicEvalDefinition: # new in 1.1
   Enabled: true
 Style/EndlessMethod: # new in 1.8
   Enabled: true
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: comma
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: comma
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: comma
 Style/HashConversion: # new in 1.10
   Enabled: true
 Style/HashExcept: # new in 1.7

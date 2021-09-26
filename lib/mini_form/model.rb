@@ -160,13 +160,13 @@ module MiniForm
             *attributes,
             to: delegate,
             prefix: prefix,
-            allow_nil: allow_nil
+            allow_nil: allow_nil,
           )
           delegate(
             *attributes.map { |attr| "#{attr}=" },
             to: delegate,
             prefix: prefix,
-            allow_nil: allow_nil
+            allow_nil: allow_nil,
           )
         end
       end

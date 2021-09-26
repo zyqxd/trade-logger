@@ -25,7 +25,7 @@ ActiveAdmin.register TradeLog, as: 'Trade Log' do
         as: :select,
         url: [:admin, resource],
         collection: TradeLog.statuses,
-        reload: true
+        reload: true,
       )
     end
     column :amount

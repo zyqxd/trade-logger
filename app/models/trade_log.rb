@@ -29,12 +29,12 @@ class TradeLog < ApplicationRecord
   enum status: {
     opened: 'opened',
     closed: 'closed',
-    cancelled: 'cancelled'
+    cancelled: 'cancelled',
   }
 
   enum kind: {
     long: 'long',
-    short: 'short'
+    short: 'short',
   }
 
   validates :amount, numericality: { greater_than_or_equal_to: 0 }

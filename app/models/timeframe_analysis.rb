@@ -36,7 +36,7 @@ class TimeframeAnalysis < ApplicationRecord
   enum trend: {
     up: 'up',
     down: 'down',
-    consolidation: 'consolidation'
+    consolidation: 'consolidation',
   }, _suffix: :trend
 
   enum rsi_trend: { up: 'up', down: 'down' }, _suffix: :rsi

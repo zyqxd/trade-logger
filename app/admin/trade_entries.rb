@@ -23,7 +23,7 @@ ActiveAdmin.register TradeEntry, as: 'Trade Entry' do
         as: :select,
         url: [:admin, resource],
         collection: TradeEntry.statuses,
-        reload: true
+        reload: true,
       )
     end
     column :stopped do |resource|
@@ -46,7 +46,7 @@ ActiveAdmin.register TradeEntry, as: 'Trade Entry' do
           as: :select,
           url: [:admin, resource],
           collection: TradeEntry.statuses,
-          reload: true
+          reload: true,
         )
       end
       row :profit
@@ -69,7 +69,7 @@ ActiveAdmin.register TradeEntry, as: 'Trade Entry' do
             as: :select,
             url: [:admin, resource],
             collection: TradeLog.statuses,
-            reload: true
+            reload: true,
           )
         end
         column :kind
