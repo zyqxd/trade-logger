@@ -60,6 +60,9 @@ ActiveAdmin.register TradeEntry, as: 'Trade Entry' do
     default_main_content
 
     panel 'Logs' do
+      div do
+        link_to 'New', new_admin_trade_log_path
+      end
       table_for resource.logs.order(close_time: :desc, updated_at: :desc) do
         column :id
         column :status do |resource|
