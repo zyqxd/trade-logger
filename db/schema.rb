@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_26_185042) do
+ActiveRecord::Schema.define(version: 2021_09_26_232429) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,13 +44,14 @@ ActiveRecord::Schema.define(version: 2021_09_26_185042) do
     t.string "rsi_trend"
     t.decimal "rsi", precision: 8, scale: 2
     t.decimal "rsi_exponential", precision: 8, scale: 2
-    t.string "stoch_rsi_trend"
+    t.string "stoch_trend"
     t.decimal "stoch_fast", precision: 8, scale: 2
     t.decimal "stoch_slow", precision: 8, scale: 2
     t.string "bbwp_trend"
     t.decimal "bbwp", precision: 8, scale: 2
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "kind", default: "open", null: false
     t.index ["timeframe_id"], name: "index_timeframe_analyses_on_timeframe_id"
     t.index ["trade_entry_id"], name: "index_timeframe_analyses_on_trade_entry_id"
   end

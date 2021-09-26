@@ -91,6 +91,18 @@ ActiveAdmin.register TradeEntry, as: 'Trade Entry' do
       end
     end
 
+    panel 'Analyses' do
+      table_for resource.analyses.includes(:timeframe).order(created_at: :desc) do
+        column :id
+        column :timeframe
+        column :kind
+        column :trend
+        column :actions do
+          link_to 'View', admin_timeframe_analysis_path(resource)
+        end
+      end
+    end
+
     render 'admin/audits'
   end
 
@@ -112,6 +124,34 @@ ActiveAdmin.register TradeEntry, as: 'Trade Entry' do
       f.input :close_time, as: :datetime_picker
       f.input :post_close, as: :boolean
       f.input :paper, as: :boolean
+    end
+
+    f.inputs 'Analyses' do
+      f.has_many :analyses, heading: false do |a|
+        a.input :timeframe,
+                as: :select,
+                collection: Timeframe.pluck(:code, :id)
+
+        a.input :kind, as: :select, collection: TimeframeAnalysis.kinds
+        a.input :trend, as: :select, collection: TimeframeAnalysis.trends
+
+        a.input :bbwp
+        a.input :bbwp_trend,
+                as: :select,
+                collection: TimeframeAnalysis.bbwp_trends
+
+        a.input :rsi
+        a.input :rsi_exponential
+        a.input :rsi_trend,
+                as: :select,
+                collection: TimeframeAnalysis.rsi_trends
+
+        a.input :stoch_fast
+        a.input :stoch_slow
+        a.input :stoch_trend,
+                as: :select,
+                collection: TimeframeAnalysis.stoch_rsi_trends
+      end
     end
 
     f.actions

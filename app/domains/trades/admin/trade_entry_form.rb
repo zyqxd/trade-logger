@@ -5,20 +5,40 @@ module Trades
     class TradeEntryForm < MiniForm::ActiveAdmin::BaseForm
       include ActionView::Helpers::NumberHelper
 
-      model :trade_entry, save: true, attributes: %i[
-        amount
-        close_price
-        close_time
-        coin
-        kind
-        open_price
-        open_time
-        paper
-        post_close
-        post_open
-        status
-        stopped
-      ]
+      model(
+        :trade_entry,
+        save: true,
+        attributes: %i[
+          amount
+          close_price
+          close_time
+          coin
+          kind
+          open_price
+          open_time
+          paper
+          post_close
+          post_open
+          status
+          stopped
+        ],
+        nested_attributes: {
+          analyses: %i[
+            id
+            bbwp
+            bbwp_trend
+            kind
+            rsi
+            rsi_exponential
+            rsi_trend
+            stoch_fast
+            stoch_rsi_trend
+            stoch_rsi_slow
+            trend
+            timeframe_id
+          ],
+        }
+      )
 
       main_model :trade_entry, TradeEntry
 

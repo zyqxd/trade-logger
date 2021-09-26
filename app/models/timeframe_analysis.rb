@@ -7,12 +7,13 @@
 #  id              :bigint           not null, primary key
 #  bbwp            :decimal(8, 2)
 #  bbwp_trend      :string
+#  kind            :string           default("open"), not null
 #  rsi             :decimal(8, 2)
 #  rsi_exponential :decimal(8, 2)
 #  rsi_trend       :string
 #  stoch_fast      :decimal(8, 2)
-#  stoch_rsi_trend :string
 #  stoch_slow      :decimal(8, 2)
+#  stoch_trend     :string
 #  trend           :string
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
@@ -33,6 +34,13 @@ class TimeframeAnalysis < ApplicationRecord
   belongs_to :trade_entry, inverse_of: :analyses
   belongs_to :timeframe, inverse_of: :analyses
 
+  enum kind: {
+    open: 'open',
+    fill: 'fill',
+    close: 'close',
+    cancel: 'cancel',
+  }, _prefix: :on
+
   enum trend: {
     up: 'up',
     down: 'down',
@@ -40,6 +48,6 @@ class TimeframeAnalysis < ApplicationRecord
   }, _suffix: :trend
 
   enum rsi_trend: { up: 'up', down: 'down' }, _suffix: :rsi
-  enum stock_rsi_trend: { up: 'up', down: 'down' }, _suffix: :stock_rsi
-  enum bbwp: { up: 'up', down: 'down' }, _suffix: :bbwp
+  enum stoch_trend: { up: 'up', down: 'down' }, _suffix: :stoch
+  enum bbwp_trend: { up: 'up', down: 'down' }, _suffix: :bbwp
 end
