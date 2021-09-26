@@ -1,6 +1,12 @@
 # frozen_string_literal: true
+audits =
+  resource
+  .own_and_associated_audits
+  .includes(:user)
+  .reorder(created_at: :desc)
+  .first(10)
 
-if resource.own_and_associated_audits.blank?
+if audits.blank?
   div class: 'panel' do
     h3 'Audit History'
     div class: 'panel_contents' do
@@ -9,13 +15,7 @@ if resource.own_and_associated_audits.blank?
   end
 else
   panel 'Audit History' do
-    table_for(
-      resource
-      .own_and_associated_audits
-      .includes(:user)
-      .reorder(created_at: :desc)
-      .first(10),
-    ) do
+    table_for audits do
       column 'Modified at' do |a|
         a.created_at.to_s :long
       end
