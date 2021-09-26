@@ -5,8 +5,6 @@ ActiveAdmin.register TradeLog, as: 'Trade Log' do
 
   menu label: 'Log', parent: 'Trade'
 
-  actions :all, except: :show
-
   filter :entry_id
   filter :kind, as: :select, collection: TradeLog.kinds
 
