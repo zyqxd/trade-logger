@@ -59,7 +59,7 @@ ActiveAdmin.register TradeEntry, as: 'Trade Entry' do
   show do
     default_main_content
 
-    panel 'Log' do
+    panel 'Logs' do
       table_for resource.logs.order(close_time: :desc, updated_at: :desc) do
         column :id
         column :status do |resource|
@@ -92,6 +92,10 @@ ActiveAdmin.register TradeEntry, as: 'Trade Entry' do
     end
 
     panel 'Analyses' do
+      div do
+        link_to 'New', new_admin_timeframe_analysis_path
+      end
+
       table_for resource.analyses.includes(:timeframe).order(created_at: :desc) do
         column :id
         column :timeframe
@@ -150,7 +154,7 @@ ActiveAdmin.register TradeEntry, as: 'Trade Entry' do
         a.input :stoch_slow
         a.input :stoch_trend,
                 as: :select,
-                collection: TimeframeAnalysis.stoch_rsi_trends
+                collection: TimeframeAnalysis.stoch_trends
       end
     end
 
