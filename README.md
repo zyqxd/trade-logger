@@ -14,10 +14,8 @@ TODO
 - [x] add margin setting
 - [x] add maker/taker fee setting
 - [x] add paper trade boolean
-- [ ] paste into form feature
-- [ ] best in place
-- [ ] Stop loss?
-- [ ] emotional score
+- [x] best in place
+- [ ] Stopped?
 
 1. deployment
    - heroku
@@ -29,6 +27,7 @@ TODO
    - maybe they're events
 
 3. tags
+   - should paper & stopped flags be tags?
 
 4. memos
 
@@ -54,3 +53,7 @@ TODO
      - maker taker fees
    - login
    - roles
+
+## Nice to haves
+- [ ] paste into form feature
+- [ ] emotional score

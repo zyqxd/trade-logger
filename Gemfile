@@ -15,6 +15,8 @@ gem 'puma', '~> 5.0'
 gem 'sass-rails', '>= 6'
 # Create backends for website administration
 gem 'activeadmin'
+# In place editing in active admin
+gem "best_in_place", git: "https://github.com/mmotherwell/best_in_place"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

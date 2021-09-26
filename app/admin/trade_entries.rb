@@ -16,7 +16,16 @@ ActiveAdmin.register TradeEntry, as: 'TradeEntry' do
   index do
     id_column
     column :coin
-    column :status
+    column :status do |resource|
+      bip_tag(
+        resource,
+        :status,
+        as: :select,
+        url: [:admin, resource],
+        collection: TradeEntry.statuses,
+        reload: true,
+      )
+    end
     column :kind
     column :open_price
     column :close_price
