@@ -76,3 +76,23 @@ PORT=3000
 - [ ] autoloader Zeitwerk causing NameError in heroku deployment
 - [ ] Actual heroku docker deployment 
 - [ ] AWS?
+
+
+## Deployment
+
+You'll need heroku cli and our production.key. Set it with
+
+```
+heroku config:set RAILS_MASTER_KEY=<value in production.key>
+```
+
+Deployment
+
+```
+heroku login
+heroku git:remote -a logit-69
+heroku stack:set heroku-20
+
+git push heroku master
+heroku run rake db:migrate
+```
