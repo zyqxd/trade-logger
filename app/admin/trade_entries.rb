@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-ActiveAdmin.register TradeEntry, as: 'TradeEntry' do
+ActiveAdmin.register TradeEntry, as: 'Trade Entry' do
   MiniForm::ActiveAdmin::UseForm.call self, Trades::Admin::TradeEntryForm
 
-  menu label: 'Trade Entry', parent: 'Trade'
+  menu label: 'Entry', parent: 'Trade'
 
   filter :coin
-  filter :kind
+  filter :kind, as: :select, collection: TradeEntry.kinds
 
   scope :opened
   scope :filled
@@ -23,7 +23,7 @@ ActiveAdmin.register TradeEntry, as: 'TradeEntry' do
         as: :select,
         url: [:admin, resource],
         collection: TradeEntry.statuses,
-        reload: true,
+        reload: true
       )
     end
     column :stopped do |resource|
@@ -39,7 +39,16 @@ ActiveAdmin.register TradeEntry, as: 'TradeEntry' do
 
   sidebar :stats, only: %i[show] do
     attributes_table_for resource do
-      row :status
+      row :status do
+        bip_tag(
+          resource,
+          :status,
+          as: :select,
+          url: [:admin, resource],
+          collection: TradeEntry.statuses,
+          reload: true
+        )
+      end
       row :profit
       row :true_profit
       row :profit_percentage
@@ -49,6 +58,25 @@ ActiveAdmin.register TradeEntry, as: 'TradeEntry' do
 
   show do
     default_main_content
+
+    panel 'Log' do
+      table_for resource.logs.order(close_time: :desc, updated_at: :desc) do
+        column :id
+        column :status do |resource|
+          bip_tag(
+            resource,
+            :status,
+            as: :select,
+            url: [:admin, resource],
+            collection: TradeLog.statuses,
+            reload: true
+          )
+        end
+        column :kind
+        column :price
+        column :amount
+      end
+    end
   end
 
   form do |f|

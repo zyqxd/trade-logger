@@ -18,9 +18,12 @@
 
 .bip {
   cursor: pointer;
+  padding: 3px 5px;
+  box-shadow: 0 1px 2px 0 black;
+  text-transform: uppercase;
+  font-weight: 600;
 
   &.status_tag {
-    box-shadow: 0 1px 2px 0 black;
     color: white;
     text-decoration: none;
   }

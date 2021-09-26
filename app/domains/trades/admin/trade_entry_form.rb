@@ -22,6 +22,8 @@ module Trades
 
       main_model :trade_entry, TradeEntry
 
+      delegate :logs, to: :trade_entry
+
       def self.name
         'Trade Entry'
       end

@@ -24,7 +24,11 @@
 #  updated_at       :datetime         not null
 #
 class TradeEntry < ApplicationRecord
-  has_many :trades, inverse_of: :trade_entry, dependent: :destroy
+  has_many :logs,
+           class_name: 'TradeLog',
+           inverse_of: :entry,
+           foreign_key: :entry_id,
+           dependent: :destroy
 
   has_many :analyses,
            class_name: 'TimeframeAnalysis',
@@ -48,7 +52,7 @@ class TradeEntry < ApplicationRecord
     short: 'short'
   }
 
-  validates :amount, numericality: { greater_than: 0 }
+  validates :amount, numericality: { greater_than_or_equal_to: 0 }
   validates :margin, numericality: { greater_than_or_equals_to: 1 }
   validates :maker_percentage, numericality: { in: -1..1 }
   validates :taker_percentage, numericality: { in: -1..1 }
