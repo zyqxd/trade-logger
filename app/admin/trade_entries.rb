@@ -72,11 +72,26 @@ ActiveAdmin.register TradeEntry, as: 'Trade Entry' do
             reload: true,
           )
         end
-        column :kind
-        column :price
-        column :amount
+        column :kind do |resource|
+          bip_tag(
+            resource,
+            :kind,
+            as: :select,
+            url: [:admin, resource],
+            collection: TradeLog.kinds,
+            reload: true,
+          )
+        end
+        column :price do |resource|
+          bip_tag resource, :price, url: [:admin, resource], reload: true
+        end
+        column :amount do |resource|
+          bip_tag resource, :amount, url: [:admin, resource], reload: true
+        end
       end
     end
+
+    render 'admin/audits'
   end
 
   form do |f|

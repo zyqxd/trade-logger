@@ -32,8 +32,8 @@ PORT=3000
 2. refactor: trades should be just additions to entry
 - [x] rebuild table trades into trade_logs
 - [x] admin pages
-- [ ] audit trail
-- [ ] inline edits
+- [x] audit trail
+- [x] inline edits
 - [ ] add timeframe analysis
 - [ ] normalize fields (profit, fees, margin etc)
   - [ ] open|close prices should be average
