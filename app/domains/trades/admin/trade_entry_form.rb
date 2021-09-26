@@ -32,8 +32,8 @@ module Trades
             rsi_exponential
             rsi_trend
             stoch_fast
-            stoch_rsi_trend
-            stoch_rsi_slow
+            stoch_trend
+            stoch_slow
             trend
             timeframe_id
           ],
