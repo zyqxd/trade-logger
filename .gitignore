@@ -22,8 +22,8 @@
 /public/assets
 .byebug_history
 
-# Ignore master key for decrypting credentials and more.
-/config/master.key
-
 # Env vars for deployment
 .env
+
+# Secret Key for production only
+/config/credentials/production.key

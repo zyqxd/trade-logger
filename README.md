@@ -65,10 +65,11 @@ PORT=3000
    - user level settings
      - margin
      - maker taker fees
-   - login
+     - user level login
    - roles
 
 ## Nice to haves
+- [x] login
 - [ ] paste into form feature
 - [ ] emotional score
 - [ ] ci? https://circleci.com/integrations/heroku
