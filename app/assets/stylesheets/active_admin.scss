@@ -15,3 +15,13 @@
 // For example, to change the default status-tag color:
 //
 //   .status_tag { background: #6090DB; }
+
+.bip {
+  cursor: pointer;
+
+  &.status_tag {
+    box-shadow: 0 1px 2px 0 black;
+    color: white;
+    text-decoration: none;
+  }
+}

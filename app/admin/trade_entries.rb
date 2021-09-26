@@ -26,6 +26,9 @@ ActiveAdmin.register TradeEntry, as: 'TradeEntry' do
         reload: true,
       )
     end
+    column :stopped do |resource|
+      bip_status_tag resource, :stopped, url: [:admin, resource], reload: true
+    end
     column :kind
     column :open_price
     column :close_price

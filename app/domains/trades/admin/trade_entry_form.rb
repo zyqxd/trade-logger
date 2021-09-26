@@ -17,6 +17,7 @@ module Trades
         post_close
         post_open
         status
+        stopped
       ]
 
       main_model :trade_entry, TradeEntry

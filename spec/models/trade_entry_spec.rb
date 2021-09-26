@@ -18,6 +18,7 @@
 #  post_close       :boolean          default(FALSE), not null
 #  post_open        :boolean          default(FALSE), not null
 #  status           :string           default("opened"), not null
+#  stopped          :boolean          default(FALSE), not null
 #  taker_percentage :decimal(6, 5)    default(0.0), not null
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
