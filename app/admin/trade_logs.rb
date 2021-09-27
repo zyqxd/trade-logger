@@ -31,6 +31,26 @@ ActiveAdmin.register TradeLog, as: 'Trade Log' do
     actions
   end
 
+  show do
+    default_main_content
+
+    panel 'Analyses' do
+      div do
+        link_to 'New', new_admin_trade_log_analysis_path
+      end
+
+      table_for resource.analyses.includes(:timeframe).order(created_at: :desc) do
+        column :id
+        column :timeframe
+        column :kind
+        column :trend
+        column :actions do
+          link_to 'View', admin_timeframe_analysis_path(resource)
+        end
+      end
+    end
+  end
+
   form do |f|
     f.semantic_errors(*f.object.errors.keys)
 
@@ -49,8 +69,8 @@ ActiveAdmin.register TradeLog, as: 'Trade Log' do
               as: :select,
               collection: Timeframe.pluck(:code, :id)
 
-      a.input :kind, as: :select, collection: TimeframeAnalysis.kinds
-      a.input :trend, as: :select, collection: TimeframeAnalysis.trends
+      a.input :kind, as: :select, collection: TradeLogAnalysis.kinds
+      a.input :trend, as: :select, collection: TradeLogAnalysis.trends
 
       a.input :bbwp
       a.input :bbwp_exponential
