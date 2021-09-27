@@ -7,7 +7,7 @@ ActiveAdmin.register TradeLogAnalysis, as: 'TradeLog Analysis' do
     f.semantic_errors(*f.object.errors.keys)
 
     f.inputs 'Trade Log' do
-      f.input :trade_entry
+      f.input :trade_log
       f.input :timeframe,
               as: :select,
               collection: Timeframe.pluck(:code, :id)
