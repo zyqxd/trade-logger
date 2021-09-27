@@ -46,10 +46,6 @@ module Trades
       def initialize(trade_log = nil)
         @trade_log = trade_log.presence || TradeLog.new
       end
-
-      def price
-        number_to_currency trade_log.price
-      end
     end
   end
 end
