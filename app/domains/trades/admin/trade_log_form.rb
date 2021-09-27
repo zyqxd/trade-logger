@@ -5,16 +5,39 @@ module Trades
     class TradeLogForm < MiniForm::ActiveAdmin::BaseForm
       include ActionView::Helpers::NumberHelper
 
-      model :trade_log, save: true, attributes: %i[
-        entry_id
-        amount
-        kind
-        price
-        post
-        status
-      ]
+      model(
+        :trade_log,
+        save: true,
+        attributes: %i[
+          entry_id
+          amount
+          kind
+          price
+          post
+          status
+        ],
+        nested_attributes: {
+          analyses: %i[
+            id
+            bbwp
+            bbwp_exponential
+            bbwp_trend
+            kind
+            rsi
+            rsi_exponential
+            rsi_trend
+            stoch_fast
+            stoch_slow
+            stoch_trend
+            trend
+            timeframe_id
+          ],
+        },
+      )
 
       main_model :trade_log, TradeLog
+
+      delegate :analyses, to: :trade_log
 
       def self.name
         'Trade Log'

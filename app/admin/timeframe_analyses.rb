@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register TimeframeAnalysis, as: 'Timeframe Analysis' do
-  permit_params *TimeframeAnalysis.column_names
+  permit_params(*TimeframeAnalysis.column_names)
 
   form do |f|
     f.semantic_errors(*f.object.errors.keys)

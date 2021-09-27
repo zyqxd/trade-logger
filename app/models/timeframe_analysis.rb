@@ -30,6 +30,7 @@
 #  fk_rails_...  (timeframe_id => timeframes.id)
 #  fk_rails_...  (trade_entry_id => trade_entries.id)
 #
+# TODO(DZ): drop
 class TimeframeAnalysis < ApplicationRecord
   belongs_to :trade_entry, inverse_of: :analyses
   belongs_to :timeframe, inverse_of: :analyses

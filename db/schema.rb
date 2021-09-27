@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_26_232429) do
+ActiveRecord::Schema.define(version: 2021_09_27_032058) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,6 +84,25 @@ ActiveRecord::Schema.define(version: 2021_09_26_232429) do
     t.boolean "stopped", default: false, null: false
   end
 
+  create_table "trade_log_analyses", force: :cascade do |t|
+    t.bigint "trade_log_id", null: false
+    t.bigint "timeframe_id", null: false
+    t.string "trend"
+    t.string "rsi_trend"
+    t.decimal "rsi", precision: 8, scale: 4
+    t.decimal "rsi_exponential", precision: 8, scale: 4
+    t.string "stoch_trend"
+    t.decimal "stoch_fast", precision: 8, scale: 4
+    t.decimal "stoch_slow", precision: 8, scale: 4
+    t.string "bbwp_trend"
+    t.decimal "bbwp", precision: 8, scale: 2
+    t.decimal "bbwp_exponential", precision: 8, scale: 4
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["timeframe_id"], name: "index_trade_log_analyses_on_timeframe_id"
+    t.index ["trade_log_id"], name: "index_trade_log_analyses_on_trade_log_id"
+  end
+
   create_table "trade_logs", force: :cascade do |t|
     t.bigint "entry_id"
     t.string "status", default: "opened", null: false
@@ -99,5 +118,7 @@ ActiveRecord::Schema.define(version: 2021_09_26_232429) do
 
   add_foreign_key "timeframe_analyses", "timeframes"
   add_foreign_key "timeframe_analyses", "trade_entries"
+  add_foreign_key "trade_log_analyses", "timeframes"
+  add_foreign_key "trade_log_analyses", "trade_logs"
   add_foreign_key "trade_logs", "trade_entries", column: "entry_id"
 end

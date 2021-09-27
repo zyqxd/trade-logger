@@ -24,12 +24,18 @@
 #  fk_rails_...  (entry_id => trade_entries.id)
 #
 class TradeLog < ApplicationRecord
-  audited associated_with: :entry, except: %i(created_at updated_at)
+  audited associated_with: :entry, except: %i[created_at updated_at]
 
   belongs_to :entry, class_name: 'TradeEntry', inverse_of: :logs
 
+  has_many :analyses,
+           class_name: 'TradeLogAnalysis',
+           inverse_of: :trade_log,
+           dependent: :destroy
+
   enum status: {
     opened: 'opened',
+    filled: 'filled',
     closed: 'closed',
     cancelled: 'cancelled',
   }

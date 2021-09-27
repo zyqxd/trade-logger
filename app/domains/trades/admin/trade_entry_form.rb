@@ -32,12 +32,12 @@ module Trades
             rsi_exponential
             rsi_trend
             stoch_fast
-            stoch_trend
             stoch_slow
+            stoch_trend
             trend
             timeframe_id
           ],
-        }
+        },
       )
 
       main_model :trade_entry, TradeEntry

@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 module Credentials
-  extend self
+  module_function
 
   def fetch(*keys, default: nil)
     env = Rails.env.to_sym
@@ -7,6 +9,6 @@ module Credentials
 
     value.presence ||
       default.presence ||
-      raise("#{ keys } is missing for #{ env }")
+      raise("#{keys} is missing for #{env}")
   end
 end

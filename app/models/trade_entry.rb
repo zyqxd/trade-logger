@@ -24,7 +24,7 @@
 #  updated_at       :datetime         not null
 #
 class TradeEntry < ApplicationRecord
-  audited except: %i(created_at updated_at)
+  audited except: %i[created_at updated_at]
   has_associated_audits
 
   has_many :logs,

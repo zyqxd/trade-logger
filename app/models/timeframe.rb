@@ -19,4 +19,9 @@ class Timeframe < ApplicationRecord
            class_name: 'TimeframeAnalysis',
            inverse_of: :timeframe,
            dependent: :destroy
+
+  has_many :trade_log_analyses,
+           class_name: 'TradeLogAnalyses',
+           inverse_of: :timeframe,
+           dependent: :destroy
 end

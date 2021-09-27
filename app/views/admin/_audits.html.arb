@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 audits =
   resource
   .own_and_associated_audits
@@ -23,7 +24,7 @@ else
         if a.user.present?
           # NOTE(DZ): Audited gem allows string as user
           if a.user.is_a?(User)
-            link_to "(#{ a.user_id }) #{ a.user.name }", admin_user_path(a.user)
+            link_to "(#{a.user_id}) #{a.user.name}", admin_user_path(a.user)
           else
             a.user
           end
@@ -35,19 +36,19 @@ else
         if a.associated_type.blank?
           'N/A'
         else
-          "#{ a.auditable_type } #{ a.auditable_id }"
+          "#{a.auditable_type} #{a.auditable_id}"
         end
       end
       column 'Changes' do |a|
-        if a.action != 'update'
-          a.action
-        else
+        if a.action == 'update'
           simple_format(
             a.audited_changes.map do |key, value|
-              "<strong>#{ key }</strong>: "\
-              "#{ value.first } => #{ value.last.nil? ? 'nil' : value.last }"
+              "<strong>#{key}</strong>: "\
+                "#{value.first} => #{value.last.nil? ? 'nil' : value.last}"
             end.join("\n"),
           )
+        else
+          a.action
         end
       end
       column 'Reason' do |a|
