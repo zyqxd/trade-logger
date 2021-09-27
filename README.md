@@ -37,9 +37,7 @@ Models part I - refactor: trades should be just additions to entry
 - [x] add timeframe analysis
 
 Memos
-- [ ] Markdown
-- [ ] Memo on status change or just open, during, close memos
-- [ ] Memo on analysis
+- [x] Memo on status change or just open, during, close memos
 
 1. models part II
 - better entry system
@@ -58,10 +56,10 @@ Memos
   - open|close prices should be average
   - profit should take sums
 
-3. tags
+2. tags
 - should paper & stopped flags be tags?
 
-4. prompt/warning after something happens
+3. prompt/warning after something happens
 - certain % gain/loss
   - consequctive
 - trades with red flags
@@ -69,16 +67,16 @@ Memos
   - before bed time
   - market orders
 
-5. timeframe analysis as tag to other system structures
+4. timeframe analysis as tag to other system structures
 
-6. search by timeframe
+5. search by timeframe
 - persist profit and friends fields
 - advance query system
   - 4h:trend = 1h:trend
   - 1h:bbwp > 50
 - populate % success while entering trade
 
-7. Users
+6. Users
 - user level settings
   - margin
   - maker taker fees
@@ -88,6 +86,7 @@ Memos
 ## Nice to haves
 - [x] login
 - [ ] emotional score
+- [ ] Markdown
 - [ ] ci? https://circleci.com/integrations/heroku
 - [ ] autoloader Zeitwerk causing NameError in heroku deployment
 - [ ] Actual heroku docker deployment 

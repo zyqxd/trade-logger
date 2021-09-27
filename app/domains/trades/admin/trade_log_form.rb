@@ -31,13 +31,20 @@ module Trades
             stoch_trend
             trend
             timeframe_id
+            _destroy
+          ],
+          memos: %i[
+            id
+            title
+            description
+            _destroy
           ],
         },
       )
 
       main_model :trade_log, TradeLog
 
-      delegate :analyses, to: :trade_log
+      delegate :analyses, :memos, to: :trade_log
 
       def self.name
         'Trade Log'

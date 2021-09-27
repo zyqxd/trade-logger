@@ -33,6 +33,8 @@ class TradeLog < ApplicationRecord
            inverse_of: :trade_log,
            dependent: :destroy
 
+  has_many :memos, as: :memoable, dependent: :destroy
+
   enum status: {
     opened: 'opened',
     filled: 'filled',

@@ -49,6 +49,13 @@ ActiveAdmin.register TradeLog, as: 'Trade Log' do
         end
       end
     end
+
+    panel 'Memos' do
+      table_for resource.memos.order(created_at: :desc) do
+        column :title
+        column :description
+      end
+    end
   end
 
   form do |f|
@@ -89,6 +96,11 @@ ActiveAdmin.register TradeLog, as: 'Trade Log' do
       a.input :stoch_trend,
               as: :select,
               collection: TimeframeAnalysis.stoch_trends
+    end
+
+    f.has_many :memos do |m|
+      m.input :title
+      m.input :description, as: :text, input_html: { rows: 5 }
     end
 
     f.actions
