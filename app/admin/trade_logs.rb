@@ -53,6 +53,7 @@ ActiveAdmin.register TradeLog, as: 'Trade Log' do
       a.input :trend, as: :select, collection: TimeframeAnalysis.trends
 
       a.input :bbwp
+      a.input :bbwp_exponential
       a.input :bbwp_trend,
               as: :select,
               collection: TimeframeAnalysis.bbwp_trends
