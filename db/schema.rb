@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_27_041300) do
+ActiveRecord::Schema.define(version: 2021_09_27_044355) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -109,6 +109,7 @@ ActiveRecord::Schema.define(version: 2021_09_27_041300) do
     t.decimal "bbwp_exponential", precision: 8, scale: 4
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "kind", default: "open", null: false
     t.index ["timeframe_id"], name: "index_trade_log_analyses_on_timeframe_id"
     t.index ["trade_log_id"], name: "index_trade_log_analyses_on_trade_log_id"
   end

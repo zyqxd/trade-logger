@@ -91,7 +91,7 @@ Memos
 - [ ] autoloader Zeitwerk causing NameError in heroku deployment
 - [ ] Actual heroku docker deployment 
 - [ ] AWS? (cheaper)
-
+- [ ] Upgrade to Ruby 3.0.2
 
 ## Deployment
 

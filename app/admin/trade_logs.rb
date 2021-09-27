@@ -39,7 +39,9 @@ ActiveAdmin.register TradeLog, as: 'Trade Log' do
         link_to 'New', new_admin_trade_log_analysis_path
       end
 
-      table_for resource.analyses.includes(:timeframe).order(created_at: :desc) do
+      table_for(
+        resource.analyses.includes(:timeframe).order(created_at: :desc),
+      ) do
         column :id
         column :timeframe
         column :kind

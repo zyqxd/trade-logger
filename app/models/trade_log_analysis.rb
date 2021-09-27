@@ -8,6 +8,7 @@
 #  bbwp             :decimal(8, 2)
 #  bbwp_exponential :decimal(8, 4)
 #  bbwp_trend       :string
+#  kind             :string           default("open"), not null
 #  rsi              :decimal(8, 4)
 #  rsi_exponential  :decimal(8, 4)
 #  rsi_trend        :string

@@ -99,7 +99,9 @@ ActiveAdmin.register TradeEntry, as: 'Trade Entry' do
         link_to 'New', new_admin_timeframe_analysis_path
       end
 
-      table_for resource.analyses.includes(:timeframe).order(created_at: :desc) do
+      table_for(
+        resource.analyses.includes(:timeframe).order(created_at: :desc),
+      ) do
         column :id
         column :timeframe
         column :kind
