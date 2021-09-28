@@ -1,0 +1,37 @@
+# frozen_string_literal: true
+
+logs = resource.logs.order(close_time: :desc, updated_at: :desc)
+logs = logs.send(scope)
+
+table_for logs do
+  column :id
+  column :status do |log|
+    bip_tag(
+      log,
+      :status,
+      as: :select,
+      url: [:admin, log],
+      collection: TradeLog.statuses,
+      reload: true,
+    )
+  end
+  column :kind do |log|
+    bip_tag(
+      log,
+      :kind,
+      as: :select,
+      url: [:admin, log],
+      collection: TradeLog.kinds,
+      reload: true,
+    )
+  end
+  column :price do |log|
+    bip_tag log, :price, url: [:admin, log], reload: true
+  end
+  column :amount do |log|
+    bip_tag log, :amount, url: [:admin, log], reload: true
+  end
+  column :actions do |log|
+    link_to 'View', admin_trade_log_path(log)
+  end
+end

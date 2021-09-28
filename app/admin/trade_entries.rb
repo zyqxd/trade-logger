@@ -63,33 +63,22 @@ ActiveAdmin.register TradeEntry, as: 'Trade Entry' do
       div do
         link_to 'New', new_admin_trade_log_path
       end
-      table_for resource.logs.order(close_time: :desc, updated_at: :desc) do
-        column :id
-        column :status do |resource|
-          bip_tag(
-            resource,
-            :status,
-            as: :select,
-            url: [:admin, resource],
-            collection: TradeLog.statuses,
-            reload: true,
-          )
+
+      tabs do
+        tab 'Opened', active: true do
+          render 'admin/trade_entries/log', scope: :opened
         end
-        column :kind do |resource|
-          bip_tag(
-            resource,
-            :kind,
-            as: :select,
-            url: [:admin, resource],
-            collection: TradeLog.kinds,
-            reload: true,
-          )
+
+        tab 'Filled' do
+          render 'admin/trade_entries/log', scope: :filled
         end
-        column :price do |resource|
-          bip_tag resource, :price, url: [:admin, resource], reload: true
+
+        tab 'Cancelled' do
+          render 'admin/trade_entries/log', scope: :cancelled
         end
-        column :amount do |resource|
-          bip_tag resource, :amount, url: [:admin, resource], reload: true
+
+        tab 'Closed' do
+          render 'admin/trade_entries/log', scope: :closed
         end
       end
     end
@@ -106,8 +95,8 @@ ActiveAdmin.register TradeEntry, as: 'Trade Entry' do
         column :timeframe
         column :kind
         column :trend
-        column :actions do
-          link_to 'View', admin_timeframe_analysis_path(resource)
+        column :actions do |analysis|
+          link_to 'View', admin_timeframe_analysis_path(analysis)
         end
       end
     end

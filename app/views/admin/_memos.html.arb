@@ -6,7 +6,7 @@ panel 'Memos' do
       'New',
       new_admin_memo_path(
         memoable_type: resource.to_model.class.name,
-        memoable_id: resource.id
+        memoable_id: resource.id,
       ),
     )
   end

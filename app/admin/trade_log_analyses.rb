@@ -5,6 +5,14 @@ ActiveAdmin.register TradeLogAnalysis, as: 'TradeLog Analysis' do
 
   permit_params(*TradeLogAnalysis.column_names)
 
+  controller do
+    def new
+      @resource = TradeLogAnalysis.new
+      @resource.trade_log_id = params[:trade_log_id]
+      @resource.timeframe_id = params[:timeframe_id]
+    end
+  end
+
   form do |f|
     f.semantic_errors(*f.object.errors.keys)
 

@@ -35,19 +35,11 @@ ActiveAdmin.register TradeLog, as: 'Trade Log' do
     default_main_content
 
     panel 'Analyses' do
-      div do
-        link_to 'New', new_admin_trade_log_analysis_path
-      end
-
-      table_for(
-        resource.analyses.includes(:timeframe).order(created_at: :desc),
-      ) do
-        column :id
-        column :timeframe
-        column :kind
-        column :trend
-        column :actions do
-          link_to 'View', admin_timeframe_analysis_path(resource)
+      tabs do
+        Timeframe.all.each do |tf|
+          tab tf.code do
+            render 'admin/trade_logs/analyses', timeframe: tf
+          end
         end
       end
     end
