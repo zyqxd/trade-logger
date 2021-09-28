@@ -17,17 +17,10 @@ ActiveAdmin.register TradeEntry, as: 'Trade Entry' do
     id_column
     column :coin
     column :status do |resource|
-      bip_tag(
-        resource,
-        :status,
-        as: :select,
-        url: [:admin, resource],
-        collection: TradeEntry.statuses,
-        reload: true,
-      )
+      bip_status resource, reload: true
     end
     column :stopped do |resource|
-      bip_status_tag resource, :stopped, url: [:admin, resource], reload: true
+      bip_boolean resource, :stopped, url: [:admin, resource], reload: true
     end
     column :kind
     column :open_price
@@ -40,14 +33,7 @@ ActiveAdmin.register TradeEntry, as: 'Trade Entry' do
   sidebar :stats, only: %i[show] do
     attributes_table_for resource do
       row :status do
-        bip_tag(
-          resource,
-          :status,
-          as: :select,
-          url: [:admin, resource],
-          collection: TradeEntry.statuses,
-          reload: true,
-        )
+        bip_status resource, reload: true
       end
       row :profit
       row :true_profit

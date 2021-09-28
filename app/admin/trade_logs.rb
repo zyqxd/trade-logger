@@ -9,6 +9,7 @@ ActiveAdmin.register TradeLog, as: 'Trade Log' do
   filter :kind, as: :select, collection: TradeLog.kinds
 
   scope :opened
+  scope :filled
   scope :closed
   scope :cancelled
 
@@ -17,14 +18,7 @@ ActiveAdmin.register TradeLog, as: 'Trade Log' do
     column :entry
     column :kind
     column :status do |resource|
-      bip_tag(
-        resource,
-        :status,
-        as: :select,
-        url: [:admin, resource],
-        collection: TradeLog.statuses,
-        reload: true,
-      )
+      bip_status resource, reload: true
     end
     column :amount
     column :price

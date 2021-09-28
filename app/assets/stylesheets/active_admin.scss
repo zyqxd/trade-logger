@@ -27,4 +27,34 @@
     color: white;
     text-decoration: none;
   }
+
+  &.opened {
+    color: white;
+    background-color: darkslateblue;
+  }
+
+  &.filled {
+    color: white;
+    background-color: darkturquoise;
+  }
+
+  &.cancelled {
+    color: white;
+    background-color: dimgray;
+  }
+
+  &.closed {
+    color: white;
+    background-color: darksalmon;
+  }
+
+  &.long {
+    color: white;
+    background-color: darkseagreen;
+  }
+
+  &.short {
+    color: white;
+    background-color: darkred;
+  }
 }

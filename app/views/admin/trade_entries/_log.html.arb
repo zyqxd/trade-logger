@@ -6,24 +6,10 @@ logs = logs.send(scope)
 table_for logs do
   column :id
   column :status do |log|
-    bip_tag(
-      log,
-      :status,
-      as: :select,
-      url: [:admin, log],
-      collection: TradeLog.statuses,
-      reload: true,
-    )
+    bip_status log, reload: true
   end
   column :kind do |log|
-    bip_tag(
-      log,
-      :kind,
-      as: :select,
-      url: [:admin, log],
-      collection: TradeLog.kinds,
-      reload: true,
-    )
+    bip_status log, field: :kind, reload: true
   end
   column :price do |log|
     bip_tag log, :price, url: [:admin, log], reload: true

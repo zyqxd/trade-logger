@@ -25,7 +25,7 @@ PORT=3000
       2. [x] organize type of analyses in log panel
       3. [ ] visual indicator for cancelled/opened/filled/closed
       4. [ ] paste entry system
-      5. [ ] refactor and remove some templating code if possible
+      5. [x] refactor and remove some templating code if possible
       6. [ ] more concise form structures (esp has manys)
    2. models
       1. [x] memos on trade entry
@@ -58,8 +58,10 @@ PORT=3000
 - populate % success while entering trade
 
 5. Another Overall round
+   1. UI
+   2. Models
    
-6. timeframe analysis as tag to other system structures
+6. Analyses could take schema from global setting, so that future changes doesn't lead to db migration
 
 7. Users
 - user level settings
