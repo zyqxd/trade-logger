@@ -44,7 +44,11 @@ module Trades
 
       main_model :trade_log, TradeLog
 
-      delegate :analyses, :memos, to: :trade_log
+      delegate(
+        :own_and_associated_audits,
+        *TradeEntry.reflect_on_all_associations.map(&:name),
+        to: :trade_log,
+      )
 
       def self.name
         'Trade Log'

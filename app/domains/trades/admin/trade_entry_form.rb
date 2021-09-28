@@ -42,7 +42,11 @@ module Trades
 
       main_model :trade_entry, TradeEntry
 
-      delegate :logs, :own_and_associated_audits, to: :trade_entry
+      delegate(
+        :own_and_associated_audits,
+        *TradeEntry.reflect_on_all_associations.map(&:name),
+        to: :trade_entry,
+      )
 
       def self.name
         'Trade Entry'

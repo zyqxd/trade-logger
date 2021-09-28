@@ -2,7 +2,7 @@
 
 # # frozen_string_literal: true
 
-module ActiveAdmin
+module Admin
   module BestInPlaceHelper
     def bip_tag(resource, field, reload:, **kargs)
       # NOTE(DZ): reload data attribute is used in javascripts/admin.js:10

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register TradeLogAnalysis, as: 'TradeLog Analysis' do
+  menu false
+
   permit_params(*TradeLogAnalysis.column_names)
 
   form do |f|

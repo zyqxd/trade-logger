@@ -18,6 +18,6 @@
 #
 class Memo < ApplicationRecord
   belongs_to_polymorphic :memoable,
-                         allowed_classes: [TradeLog],
+                         allowed_classes: [TradeEntry, TradeLog],
                          inverse_of: :memos
 end

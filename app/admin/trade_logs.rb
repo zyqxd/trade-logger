@@ -52,12 +52,7 @@ ActiveAdmin.register TradeLog, as: 'Trade Log' do
       end
     end
 
-    panel 'Memos' do
-      table_for resource.memos.order(created_at: :desc) do
-        column :title
-        column :description
-      end
-    end
+    render 'admin/memos'
   end
 
   form do |f|

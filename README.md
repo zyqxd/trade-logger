@@ -39,24 +39,29 @@ Models part I - refactor: trades should be just additions to entry
 Memos
 - [x] Memo on status change or just open, during, close memos
 
-1. models part II
-- better entry system
-  - tab entry
-  - table style forms
-  - refactor and remove some templating code if possible
-  - paste into form feature
-- timeframe analysis form
-  - validations on values
-  - update decimals to be 8,4
-  - refactor trend values
-    - bbwp sometimes just oscillating
-    - stoch trend is implied by diff of fast + slow
-    - rsi stays in zones, maybe okay with trends
-- normalize fields (profit, fees, margin etc)
-  - open|close prices should be average
-  - profit should take sums
 
-2. tags
+1. overall part II
+   1. UI
+      1. show memos of logs in entry
+      2. show analysis of logs in entry
+      3. visual indicator for cancelled/opened/filled/closed
+      4. organize type of logs in log panel
+      5. paste entry system
+      6. refactor and remove some templating code if possible
+      7. more concise form structures (esp has manys)
+   2. models
+      1. memos on trade entry
+      2. remove timeframe analysis
+      3. cop
+      4. normalize fields
+         1. implement counter cache system
+         2. profits should be counter cache and should persist
+         3. amount should be counter cache and should persist
+         4. fees should be on trade entry setting?
+         5. margin should be on trade entry
+         6. open|close on trade entry should be weighted average
+
+1. tags
 - should paper & stopped flags be tags?
 
 3. prompt/warning after something happens

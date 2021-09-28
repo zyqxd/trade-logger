@@ -112,6 +112,8 @@ ActiveAdmin.register TradeEntry, as: 'Trade Entry' do
       end
     end
 
+    render 'admin/memos'
+
     render 'admin/audits'
   end
 

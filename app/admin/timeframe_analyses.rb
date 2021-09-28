@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register TimeframeAnalysis, as: 'Timeframe Analysis' do
+  menu false
+
   permit_params(*TimeframeAnalysis.column_names)
 
   form do |f|

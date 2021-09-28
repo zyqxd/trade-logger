@@ -1,0 +1,21 @@
+# frozen_string_literal: true
+
+panel 'Memos' do
+  div do
+    link_to(
+      'New',
+      new_admin_memo_path(
+        memoable_type: resource.to_model.class.name,
+        memoable_id: resource.id
+      ),
+    )
+  end
+
+  table_for resource.memos.order(created_at: :desc) do
+    column :title
+    column :description
+    column :actions do |memo|
+      link_to 'Edit', edit_admin_memo_path(memo)
+    end
+  end
+end
