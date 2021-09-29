@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_27_044355) do
+ActiveRecord::Schema.define(version: 2021_09_29_005649) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,12 +77,8 @@ ActiveRecord::Schema.define(version: 2021_09_27_044355) do
   create_table "trade_entries", force: :cascade do |t|
     t.string "coin", default: "btcusdt", null: false
     t.string "kind", default: "long", null: false
-    t.datetime "open_time"
-    t.datetime "close_time"
     t.decimal "open_price", precision: 8, scale: 2
     t.decimal "close_price", precision: 8, scale: 2
-    t.boolean "post_open", default: false, null: false
-    t.boolean "post_close", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.decimal "amount", precision: 12, scale: 8, default: "1.0", null: false
@@ -91,7 +87,6 @@ ActiveRecord::Schema.define(version: 2021_09_27_044355) do
     t.decimal "maker_percentage", precision: 6, scale: 5, default: "0.0", null: false
     t.decimal "taker_percentage", precision: 6, scale: 5, default: "0.0", null: false
     t.boolean "paper", default: false, null: false
-    t.boolean "stopped", default: false, null: false
   end
 
   create_table "trade_log_analyses", force: :cascade do |t|

@@ -47,7 +47,7 @@ ActiveAdmin.register TradeEntry, as: 'Trade Entry' do
 
     panel 'Logs' do
       div do
-        link_to 'New', new_admin_trade_log_path
+        link_to 'New', new_admin_trade_log_path(entry_id: resource.id)
       end
 
       tabs do
@@ -99,16 +99,6 @@ ActiveAdmin.register TradeEntry, as: 'Trade Entry' do
       f.input :status, as: :select, collection: TradeEntry.statuses
       f.input :coin, as: :select, collection: TradeEntry.coins
       f.input :kind, as: :select, collection: TradeEntry.kinds
-
-      f.input :open_price, as: :number
-      f.input :close_price, as: :number
-      f.input :amount, as: :number
-
-      f.input :open_time, as: :datetime_picker
-      f.input :post_open, as: :boolean
-
-      f.input :close_time, as: :datetime_picker
-      f.input :post_close, as: :boolean
       f.input :paper, as: :boolean
     end
 

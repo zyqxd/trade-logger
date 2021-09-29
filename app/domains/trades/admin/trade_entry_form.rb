@@ -9,18 +9,10 @@ module Trades
         :trade_entry,
         save: true,
         attributes: %i[
-          amount
-          close_price
-          close_time
           coin
           kind
-          open_price
-          open_time
           paper
-          post_close
-          post_open
           status
-          stopped
         ],
         nested_attributes: {
           analyses: %i[
