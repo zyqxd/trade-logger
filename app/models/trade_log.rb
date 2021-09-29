@@ -7,6 +7,7 @@
 #  id         :bigint           not null, primary key
 #  amount     :decimal(12, 8)   not null
 #  close_time :datetime
+#  fee        :decimal(8, 2)    default(0.0), not null
 #  kind       :string           default("long"), not null
 #  post       :boolean          default(FALSE), not null
 #  price      :decimal(12, 2)   not null
@@ -26,6 +27,8 @@
 class TradeLog < ApplicationRecord
   audited associated_with: :entry, except: %i[created_at updated_at]
 
+  extension RefreshExplicitCounterCache, :entry, :aggregate_with_callbacks
+
   belongs_to :entry, class_name: 'TradeEntry', inverse_of: :logs
 
   has_many :analyses,
@@ -34,6 +37,8 @@ class TradeLog < ApplicationRecord
            dependent: :destroy
 
   has_many :memos, as: :memoable, dependent: :destroy
+
+  scope :active, -> { where.not(status: 'cancelled') }
 
   enum status: {
     opened: 'opened',
@@ -49,6 +54,8 @@ class TradeLog < ApplicationRecord
   validates :amount, numericality: { greater_than_or_equal_to: 0 }
   validates :price, numericality: { greater_than_or_equal_to: 0 }
 
+  before_save :calculate_and_persist_fee
+
   class << self
     def weighted_avg
       select(
@@ -58,5 +65,13 @@ class TradeLog < ApplicationRecord
         ).as('product'),
       ).to_a.sum { |v| v['product'] } / sum(:amount)
     end
+  end
+
+  private
+
+  BYBIT_TAKER_FEE = 0.00075
+  BYBIT_MAKER_FEE = -0.00025
+  def calculate_and_persist_fee
+    self.fee = price * amount * (post ? BYBIT_MAKER_FEE : BYBIT_TAKER_FEE)
   end
 end

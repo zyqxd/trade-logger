@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_29_005649) do
+ActiveRecord::Schema.define(version: 2021_09_29_210831) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,6 +87,10 @@ ActiveRecord::Schema.define(version: 2021_09_29_005649) do
     t.decimal "maker_percentage", precision: 6, scale: 5, default: "0.0", null: false
     t.decimal "taker_percentage", precision: 6, scale: 5, default: "0.0", null: false
     t.boolean "paper", default: false, null: false
+    t.decimal "profit", precision: 8, scale: 2
+    t.decimal "profit_percentage", precision: 12, scale: 8
+    t.decimal "true_profit", precision: 8, scale: 2
+    t.decimal "true_profit_percentage", precision: 12, scale: 8
   end
 
   create_table "trade_log_analyses", force: :cascade do |t|
@@ -119,6 +123,7 @@ ActiveRecord::Schema.define(version: 2021_09_29_005649) do
     t.datetime "close_time"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.decimal "fee", precision: 8, scale: 2, default: "0.0", null: false
     t.index ["entry_id"], name: "index_trade_logs_on_entry_id"
   end
 

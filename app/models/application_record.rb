@@ -4,6 +4,10 @@ class ApplicationRecord < ActiveRecord::Base
   self.abstract_class = true
 
   class << self
+    def extension(extension_module, *args)
+      extension_module.define(self, *args)
+    end
+
     def belongs_to_polymorphic(name, allowed_classes:, **options)
       belongs_to name, polymorphic: true, **options
 

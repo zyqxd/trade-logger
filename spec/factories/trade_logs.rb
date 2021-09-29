@@ -7,6 +7,7 @@
 #  id         :bigint           not null, primary key
 #  amount     :decimal(12, 8)   not null
 #  close_time :datetime
+#  fee        :decimal(8, 2)    default(0.0), not null
 #  kind       :string           default("long"), not null
 #  post       :boolean          default(FALSE), not null
 #  price      :decimal(12, 2)   not null
@@ -26,7 +27,7 @@
 FactoryBot.define do
   factory :trade_log do
     association :entry, factory: :trade_entry
-    amount { 10 }
+    amount { 1 }
     price { 10_000 }
     post { true }
     kind { :long }

@@ -4,19 +4,23 @@
 #
 # Table name: trade_entries
 #
-#  id               :bigint           not null, primary key
-#  amount           :decimal(12, 8)   default(1.0), not null
-#  close_price      :decimal(8, 2)
-#  coin             :string           default("btcusdt"), not null
-#  kind             :string           default("long"), not null
-#  maker_percentage :decimal(6, 5)    default(0.0), not null
-#  margin           :decimal(8, 2)    default(1.0), not null
-#  open_price       :decimal(8, 2)
-#  paper            :boolean          default(FALSE), not null
-#  status           :string           default("opened"), not null
-#  taker_percentage :decimal(6, 5)    default(0.0), not null
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
+#  id                     :bigint           not null, primary key
+#  amount                 :decimal(12, 8)   default(1.0), not null
+#  close_price            :decimal(8, 2)
+#  coin                   :string           default("btcusdt"), not null
+#  kind                   :string           default("long"), not null
+#  maker_percentage       :decimal(6, 5)    default(0.0), not null
+#  margin                 :decimal(8, 2)    default(1.0), not null
+#  open_price             :decimal(8, 2)
+#  paper                  :boolean          default(FALSE), not null
+#  profit                 :decimal(8, 2)
+#  profit_percentage      :decimal(12, 8)
+#  status                 :string           default("opened"), not null
+#  taker_percentage       :decimal(6, 5)    default(0.0), not null
+#  true_profit            :decimal(8, 2)
+#  true_profit_percentage :decimal(12, 8)
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
 #
 class TradeEntry < ApplicationRecord
   audited except: %i[created_at updated_at]
@@ -27,6 +31,12 @@ class TradeEntry < ApplicationRecord
            inverse_of: :entry,
            foreign_key: :entry_id,
            dependent: :destroy
+
+  has_many :active_logs,
+           -> { active },
+           class_name: 'TradeLog',
+           inverse_of: :entry,
+           foreign_key: :entry_id
 
   has_many :analyses,
            class_name: 'TimeframeAnalysis',
@@ -52,10 +62,11 @@ class TradeEntry < ApplicationRecord
     short: 'short',
   }
 
-  validates :amount, numericality: { greater_than_or_equal_to: 0 }
   validates :margin, numericality: { greater_than_or_equals_to: 1 }
   validates :maker_percentage, numericality: { in: -1..1 }
   validates :taker_percentage, numericality: { in: -1..1 }
+
+  before_save :calculate_and_persist_profit_values
 
   def position
     return nil if open_price.blank?
@@ -63,39 +74,26 @@ class TradeEntry < ApplicationRecord
     open_price * amount * 1.0 / margin
   end
 
-  def profit
-    return nil if close_price.blank? || open_price.blank?
+  def refresh_aggregate_with_callbacks
+    scope = long? ? active_logs.long : active_logs.short
+    inverse_scope = long? ? active_logs.short : active_logs.long
 
-    (close_price - open_price) * amount
+    update(
+      amount: scope.sum(:amount),
+      open_price: scope.weighted_avg,
+      close_price: inverse_scope.weighted_avg,
+      updated_at: Time.current,
+    )
   end
 
-  def profit_percentage
-    return nil if profit.blank? || position.blank?
+  private
 
-    profit * 1.0 / position
-  end
+  def calculate_and_persist_profit_values
+    return nil if close_price.blank? || position.blank?
 
-  def open_fee
-    return 0 if open_price.blank?
-
-    open_price * (post_open ? taker_percentage : maker_percentage)
-  end
-
-  def close_fee
-    return 0 if close_price.blank?
-
-    close_price * (post_close ? taker_percentage : maker_percentage)
-  end
-
-  def true_profit
-    return nil if profit.blank?
-
-    profit - open_fee - close_fee
-  end
-
-  def true_profit_percentage
-    return nil if true_profit.blank?
-
-    true_profit * 1.0 / position
+    self.profit = (close_price - open_price) * amount
+    self.profit_percentage = profit * 1.0 / position
+    self.true_profit = profit - active_logs.sum(:fee)
+    self.true_profit_percentage = true_profit * 1.0 / position
   end
 end

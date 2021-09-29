@@ -7,6 +7,7 @@
 #  id         :bigint           not null, primary key
 #  amount     :decimal(12, 8)   not null
 #  close_time :datetime
+#  fee        :decimal(8, 2)    default(0.0), not null
 #  kind       :string           default("long"), not null
 #  post       :boolean          default(FALSE), not null
 #  price      :decimal(12, 2)   not null
@@ -40,6 +41,20 @@ describe TradeLog do
       create :trade_log, :cancelled, price: 10_000, amount: 10
 
       expect(described_class.closed.weighted_avg).to eq 700
+    end
+  end
+
+  describe 'before_save :calculate_and_persist_fee' do
+    it 'returns product of price and amount with maker fee if post' do
+      trade_log = create :trade_log, price: 1_000, amount: 1, post: true
+
+      expect(trade_log.fee).to eq 1000 * TradeLog::BYBIT_MAKER_FEE
+    end
+
+    it 'returns product of price and amount with taker fee if not post' do
+      trade_log = create :trade_log, price: 1_000, amount: 1, post: false
+
+      expect(trade_log.fee).to eq 1000 * TradeLog::BYBIT_TAKER_FEE
     end
   end
 end

@@ -4,23 +4,91 @@
 #
 # Table name: trade_entries
 #
-#  id               :bigint           not null, primary key
-#  amount           :decimal(12, 8)   default(1.0), not null
-#  close_price      :decimal(8, 2)
-#  coin             :string           default("btcusdt"), not null
-#  kind             :string           default("long"), not null
-#  maker_percentage :decimal(6, 5)    default(0.0), not null
-#  margin           :decimal(8, 2)    default(1.0), not null
-#  open_price       :decimal(8, 2)
-#  paper            :boolean          default(FALSE), not null
-#  status           :string           default("opened"), not null
-#  taker_percentage :decimal(6, 5)    default(0.0), not null
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
+#  id                     :bigint           not null, primary key
+#  amount                 :decimal(12, 8)   default(1.0), not null
+#  close_price            :decimal(8, 2)
+#  coin                   :string           default("btcusdt"), not null
+#  kind                   :string           default("long"), not null
+#  maker_percentage       :decimal(6, 5)    default(0.0), not null
+#  margin                 :decimal(8, 2)    default(1.0), not null
+#  open_price             :decimal(8, 2)
+#  paper                  :boolean          default(FALSE), not null
+#  profit                 :decimal(8, 2)
+#  profit_percentage      :decimal(12, 8)
+#  status                 :string           default("opened"), not null
+#  taker_percentage       :decimal(6, 5)    default(0.0), not null
+#  true_profit            :decimal(8, 2)
+#  true_profit_percentage :decimal(12, 8)
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
 #
 require 'rails_helper'
 
 describe TradeEntry do
+  describe 'before_save :calculate_and_persist_profit_values' do
+    context 'without logs' do
+      let(:trade_entry) { create :trade_entry }
+
+      it 'returns nil for profit' do
+        expect(trade_entry.profit).to be_nil
+      end
+
+      it 'returns nil for profit_percentage' do
+        expect(trade_entry.profit_percentage).to be_nil
+      end
+
+      it 'returns nil for true_profit' do
+        expect(trade_entry.true_profit).to be_nil
+      end
+
+      it 'returns nil for true_profit_percentage' do
+        expect(trade_entry.true_profit_percentage).to be_nil
+      end
+    end
+
+    context 'with logs for a long winner' do
+      let!(:trade_entry) { create :complete_trade_entry, :long, winner: true }
+
+      it 'profit is the difference of longs and shorts times amount' do
+        expect(trade_entry.profit).to eq 2000
+      end
+
+      it 'returns profit_percentage correctly' do
+        expect(trade_entry.profit_percentage).to eq 4
+      end
+
+      it 'returns true_profit correctly' do
+        expect(trade_entry.true_profit).to eq 2001.02
+      end
+
+      it 'returns profit_percentage correctly' do
+        expect(trade_entry.true_profit_percentage).to eq 4.00204
+      end
+    end
+
+    context 'with logs for a short loser' do
+      let!(:trade_entry) { create :complete_trade_entry, :short, winner: false }
+
+      it 'profit is the difference of longs and shorts times amount' do
+        expect(trade_entry.profit).to eq(-2000)
+      end
+
+      it 'returns profit_percentage correctly' do
+        expect(trade_entry.profit_percentage).to be_within(0.00001).of(-1.33333)
+      end
+
+      it 'returns true_profit correctly' do
+        expect(trade_entry.true_profit).to be_within(0.01).of(-1998.98)
+      end
+
+      it 'returns profit_percentage correctly' do
+        expect(trade_entry.true_profit_percentage).to(
+          be_within(0.00001).of(-1.33265),
+        )
+      end
+    end
+  end
+
   describe '#position' do
     it 'is nil if open_price is nil' do
       trade_entry = create :trade_entry, open_price: nil, amount: 1
@@ -32,137 +100,6 @@ describe TradeEntry do
       trade_entry = create :trade_entry, open_price: 1_000, amount: 1, margin: 5
 
       expect(trade_entry.position).to eq 200
-    end
-  end
-
-  describe '#profit' do
-    it 'is nil if open_price is nil' do
-      trade_entry = create :trade_entry, open_price: nil
-
-      expect(trade_entry.profit).to be_nil
-    end
-
-    it 'is nil if close_price is nil' do
-      trade_entry = create :trade_entry, close_price: nil
-
-      expect(trade_entry.profit).to be_nil
-    end
-
-    it 'is the difference of open_price and close_price' do
-      trade_entry = create :trade_entry, open_price: 1_000, close_price: 2_000
-
-      expect(trade_entry.profit).to eq 1_000
-    end
-  end
-
-  describe '#profit_percentage' do
-    it 'returns nil if profit is blank' do
-      allow_any_instance_of(TradeEntry).to receive(:profit).and_return(nil)
-      trade_entry = create :trade_entry
-
-      expect(trade_entry.profit_percentage).to be_nil
-    end
-
-    it 'returns nil if position is blank' do
-      allow_any_instance_of(TradeEntry).to receive(:position).and_return(nil)
-      trade_entry = create :trade_entry
-
-      expect(trade_entry.profit_percentage).to be_nil
-    end
-
-    it 'returns the quotient of profit and position' do
-      allow_any_instance_of(TradeEntry).to receive(:profit).and_return(1_000)
-      allow_any_instance_of(TradeEntry).to receive(:position).and_return(100)
-      trade_entry = create :trade_entry
-
-      expect(trade_entry.profit_percentage).to eq 10
-    end
-  end
-
-  describe '#open_fee' do
-    it 'returns 0 if open_price is blank' do
-      trade_entry = create :trade_entry, open_price: nil
-
-      expect(trade_entry.open_fee).to be_zero
-    end
-
-    it 'returns product of open_price and taker_percentage if post_open' do
-      trade_entry = create :trade_entry,
-                           open_price: 1_000,
-                           taker_percentage: 0.1,
-                           post_open: true
-
-      expect(trade_entry.open_fee).to eq 100
-    end
-
-    it 'returns product of open_price and maker_percentage if !post_open' do
-      trade_entry = create :trade_entry,
-                           open_price: 1_000,
-                           maker_percentage: 0.1,
-                           post_open: false
-
-      expect(trade_entry.open_fee).to eq 100
-    end
-  end
-
-  describe '#close_fee' do
-    it 'returns 0 if close_price is blank' do
-      trade_entry = create :trade_entry, close_price: nil
-
-      expect(trade_entry.close_fee).to be_zero
-    end
-
-    it 'returns product of close_price and taker_percentage if post_close' do
-      trade_entry = create :trade_entry,
-                           close_price: 1_000,
-                           taker_percentage: 0.1,
-                           post_close: true
-
-      expect(trade_entry.close_fee).to eq 100
-    end
-
-    it 'returns product of close_price and maker_percentage if !post_close' do
-      trade_entry = create :trade_entry,
-                           close_price: 1_000,
-                           maker_percentage: 0.1,
-                           post_close: false
-
-      expect(trade_entry.close_fee).to eq 100
-    end
-  end
-
-  describe '#true_profit' do
-    it 'returns nil if profit is nil' do
-      allow_any_instance_of(TradeEntry).to receive(:profit).and_return(nil)
-      trade_entry = create :trade_entry
-
-      expect(trade_entry.true_profit).to be_nil
-    end
-
-    it 'returns the difference of profit and open_fees + close_fees' do
-      allow_any_instance_of(TradeEntry).to receive(:profit).and_return(1_000)
-      allow_any_instance_of(TradeEntry).to receive(:open_fee).and_return(100)
-      allow_any_instance_of(TradeEntry).to receive(:close_fee).and_return(100)
-      trade_entry = create :trade_entry
-
-      expect(trade_entry.true_profit).to eq 800
-    end
-  end
-
-  describe '#true_profit_percentage' do
-    it 'returns nil if true_profit is nil' do
-      allow_any_instance_of(TradeEntry).to receive(:true_profit).and_return(nil)
-      trade_entry = create :trade_entry
-
-      expect(trade_entry.true_profit_percentage).to be_nil
-    end
-
-    it 'returns the quotient of true_profit and position' do
-      allow_any_instance_of(TradeEntry).to receive(:true_profit).and_return(100)
-      allow_any_instance_of(TradeEntry).to receive(:position).and_return(200)
-      trade_entry = create :trade_entry
-
-      expect(trade_entry.true_profit_percentage).to eq 0.5
     end
   end
 end
