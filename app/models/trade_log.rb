@@ -37,7 +37,6 @@ class TradeLog < ApplicationRecord
 
   enum status: {
     opened: 'opened',
-    filled: 'filled',
     closed: 'closed',
     cancelled: 'cancelled',
   }
@@ -49,4 +48,15 @@ class TradeLog < ApplicationRecord
 
   validates :amount, numericality: { greater_than_or_equal_to: 0 }
   validates :price, numericality: { greater_than_or_equal_to: 0 }
+
+  class << self
+    def weighted_avg
+      select(
+        Arel::Nodes::Multiplication.new(
+          arel_table[:price],
+          arel_table[:amount],
+        ).as('product'),
+      ).to_a.sum { |v| v['product'] } / sum(:amount)
+    end
+  end
 end

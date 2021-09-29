@@ -21,18 +21,15 @@
 FactoryBot.define do
   factory :trade_entry do
     amount { 1 }
+    # NOTE(DZ): These should be sum from logs
     open_price { 10_000 }
     close_price { 15_000 }
     kind { :long }
     status { :closed }
     coin { :btcusdt }
     margin { 5 }
-    open_time { 4.hours.ago }
-    close_time { Time.current }
     maker_percentage { -0.00025 }
     taker_percentage { 0.00075 }
-    post_open { true }
-    post_close { true }
 
     trait :long do
       # Default

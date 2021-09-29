@@ -58,6 +58,10 @@ module MiniForm
       self.class.attribute_names.map { |name| [name, public_send(name)] }.to_h
     end
 
+    def attribute_names
+      self.class.attribute_names
+    end
+
     def update(attributes = {})
       self.attributes = attributes unless attributes.empty?
 

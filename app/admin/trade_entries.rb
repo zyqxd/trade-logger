@@ -55,16 +55,12 @@ ActiveAdmin.register TradeEntry, as: 'Trade Entry' do
           render 'admin/trade_entries/log', scope: :opened
         end
 
-        tab 'Filled' do
-          render 'admin/trade_entries/log', scope: :filled
+        tab 'Closed' do
+          render 'admin/trade_entries/log', scope: :closed
         end
 
         tab 'Cancelled' do
           render 'admin/trade_entries/log', scope: :cancelled
-        end
-
-        tab 'Closed' do
-          render 'admin/trade_entries/log', scope: :closed
         end
       end
     end

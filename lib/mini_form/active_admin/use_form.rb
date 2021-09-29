@@ -18,7 +18,7 @@ module MiniForm
 
             def new
               @resource = the_form_class.new
-              @resource.attributes = params.permit(*@resource.attributes.keys)
+              @resource.attributes = params.permit(*@resource.attribute_names)
             end
 
             def create
