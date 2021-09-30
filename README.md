@@ -27,6 +27,27 @@ PORT=3000
       4. [x] refactor and remove some templating code if possible
       5. [ ] more concise form structures (esp has manys)
          1. [ ] add confirmation to form submit since its long
+         2. [ ] add tp/open amount limits (25% | 50% | 75% | 100%)
+         3. [ ] auto generate on close on open for logs
+         4. [ ] index pages
+            1. [ ] trade entry default to open and filled trades
+            2. [ ] trade logs default to open trades
+         5. [ ] trade logs
+            1. [ ] add post button in trade logs panel
+            2. [ ] sort by type then price in trade logs panel
+         6. [ ] trade entries
+            1. [ ] consolidate all memos
+            2. [ ] consolidate all analyses
+         7. [ ] side bar 
+            1. [ ] figure out why you have 2x sidebar
+            2. [ ] clean up stats we show
+               1. [ ] show opened amount
+               2. [ ] show closed amount
+               3. [ ] show position size
+               4. [ ] show cancelled amount
+               5. [ ] show if current position has outstand positions
+                  1. [ ] maybe something we persist
+            3. [ ] maybe make position fixed on screen
    2. models
       1. [x] memos on trade entry
       2. [x] normalize fields
@@ -43,13 +64,20 @@ PORT=3000
       4. [ ] Add to trade log analysis
          1. [ ] add moving averages (maybe jsonb)
          2. [ ] add pattern selection
-      5. [ ] Add Stop loss point
-      6. [ ] Add RR calculation
+      6. [ ] add counters to trade log analyses
       7. [ ] migrate analysis `filled` to `closed`
+      8. [ ] trade log
+         1. [ ] has one memo per 
+         2. [ ] add counter cache for memos
+         3. [ ] add counter cache for analyses
+         4. [ ] lock price after close
+         5. [ ] lock amount after close
 
 2. tags
 - should paper & stopped flags be tags?
 - should patterns be tags?
+- tags can have descriptions for strategies, used for searching later
+  - example 1h 4h trading ranges with custom tag
 
 3. prompt/warning after something happens
 - certain % gain/loss
@@ -72,12 +100,14 @@ PORT=3000
       2. Fix NaN displayed in index
       3. Redirect to parent object after filling form (if directed from parent)
       4. paste entry system
+      5. add counters and show `memos` from tradelog panel actions in trade entries
    2. Models
       1. Could clean up some `delegate` logic in form objects
       2. Could clean up some audit trail for important columns
       3. Could add guard against changing calculated columns
       4. Auto generate status on trade entry
       5. remove timeframe analysis
+      6. consider performance of callbacks
    3. Feature spec on all key admin pages
       1. show
       2. new
@@ -94,6 +124,7 @@ PORT=3000
 
 ## Nice to haves
 - [x] login
+- [x] database sync
 - [ ] emotional score
 - [ ] Markdown
 - [ ] ci? https://circleci.com/integrations/heroku
