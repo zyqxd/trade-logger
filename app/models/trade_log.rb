@@ -25,7 +25,7 @@
 #  fk_rails_...  (entry_id => trade_entries.id)
 #
 class TradeLog < ApplicationRecord
-  audited associated_with: :entry, except: %i[created_at updated_at]
+  audited associated_with: :entry, except: %i[fee created_at updated_at]
 
   extension RefreshExplicitCounterCache, :entry, :aggregate_with_callbacks
 

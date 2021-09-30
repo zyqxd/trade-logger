@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_29_210831) do
+ActiveRecord::Schema.define(version: 2021_09_30_000045) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,8 +84,6 @@ ActiveRecord::Schema.define(version: 2021_09_29_210831) do
     t.decimal "amount", precision: 12, scale: 8, default: "1.0", null: false
     t.string "status", default: "opened", null: false
     t.decimal "margin", precision: 8, scale: 2, default: "1.0", null: false
-    t.decimal "maker_percentage", precision: 6, scale: 5, default: "0.0", null: false
-    t.decimal "taker_percentage", precision: 6, scale: 5, default: "0.0", null: false
     t.boolean "paper", default: false, null: false
     t.decimal "profit", precision: 8, scale: 2
     t.decimal "profit_percentage", precision: 12, scale: 8

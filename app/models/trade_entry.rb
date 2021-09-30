@@ -9,21 +9,29 @@
 #  close_price            :decimal(8, 2)
 #  coin                   :string           default("btcusdt"), not null
 #  kind                   :string           default("long"), not null
-#  maker_percentage       :decimal(6, 5)    default(0.0), not null
 #  margin                 :decimal(8, 2)    default(1.0), not null
 #  open_price             :decimal(8, 2)
 #  paper                  :boolean          default(FALSE), not null
 #  profit                 :decimal(8, 2)
 #  profit_percentage      :decimal(12, 8)
 #  status                 :string           default("opened"), not null
-#  taker_percentage       :decimal(6, 5)    default(0.0), not null
 #  true_profit            :decimal(8, 2)
 #  true_profit_percentage :decimal(12, 8)
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #
 class TradeEntry < ApplicationRecord
-  audited except: %i[created_at updated_at]
+  audited except: %i[
+    created_at
+    updated_at
+    amount
+    open_price
+    close_price
+    profit
+    profit_percentage
+    true_profit
+    true_profit_percentage
+  ]
   has_associated_audits
 
   has_many :logs,
@@ -34,6 +42,12 @@ class TradeEntry < ApplicationRecord
 
   has_many :active_logs,
            -> { active },
+           class_name: 'TradeLog',
+           inverse_of: :entry,
+           foreign_key: :entry_id
+
+  has_many :closed_logs,
+           -> { closed },
            class_name: 'TradeLog',
            inverse_of: :entry,
            foreign_key: :entry_id
@@ -63,8 +77,6 @@ class TradeEntry < ApplicationRecord
   }
 
   validates :margin, numericality: { greater_than_or_equals_to: 1 }
-  validates :maker_percentage, numericality: { in: -1..1 }
-  validates :taker_percentage, numericality: { in: -1..1 }
 
   before_save :calculate_and_persist_profit_values
 
@@ -75,8 +87,8 @@ class TradeEntry < ApplicationRecord
   end
 
   def refresh_aggregate_with_callbacks
-    scope = long? ? active_logs.long : active_logs.short
-    inverse_scope = long? ? active_logs.short : active_logs.long
+    scope = long? ? closed_logs.long : closed_logs.short
+    inverse_scope = long? ? closed_logs.short : closed_logs.long
 
     update(
       amount: scope.sum(:amount),
@@ -92,8 +104,8 @@ class TradeEntry < ApplicationRecord
     return nil if close_price.blank? || position.blank?
 
     self.profit = (close_price - open_price) * amount
-    self.profit_percentage = profit * 1.0 / position
-    self.true_profit = profit - active_logs.sum(:fee)
-    self.true_profit_percentage = true_profit * 1.0 / position
+    self.profit_percentage = profit * 100.0 / position
+    self.true_profit = profit - closed_logs.sum(:fee)
+    self.true_profit_percentage = true_profit * 100.0 / position
   end
 end

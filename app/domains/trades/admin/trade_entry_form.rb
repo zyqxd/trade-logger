@@ -12,9 +12,17 @@ module Trades
           coin
           kind
           paper
+          margin
           status
         ],
         nested_attributes: {
+          logs: %i[
+            id
+            kind
+            price
+            amount
+            post
+          ],
           analyses: %i[
             id
             bbwp
@@ -37,6 +45,9 @@ module Trades
       delegate(
         :own_and_associated_audits,
         *TradeEntry.reflect_on_all_associations.map(&:name),
+        :amount,
+        :created_at,
+        :updated_at,
         to: :trade_entry,
       )
 
@@ -49,10 +60,14 @@ module Trades
       end
 
       def open_price
+        return 'N/A' if trade_entry.close_price.blank?
+
         number_to_currency trade_entry.open_price
       end
 
       def close_price
+        return 'N/A' if trade_entry.close_price.blank?
+
         number_to_currency trade_entry.close_price
       end
 

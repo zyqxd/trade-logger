@@ -19,13 +19,11 @@ ActiveAdmin.register TradeEntry, as: 'Trade Entry' do
     column :status do |resource|
       bip_status resource, reload: true
     end
-    column :stopped do |resource|
-      bip_boolean resource, :stopped, url: [:admin, resource], reload: true
-    end
     column :kind
     column :open_price
     column :close_price
     column :profit
+    column :profit_percentage
     column :paper
     actions
   end
@@ -51,7 +49,11 @@ ActiveAdmin.register TradeEntry, as: 'Trade Entry' do
       end
 
       tabs do
-        tab 'Opened', active: true do
+        tab 'All', active: true do
+          render 'admin/trade_entries/log', scope: :all
+        end
+
+        tab 'Opened' do
           render 'admin/trade_entries/log', scope: :opened
         end
 
@@ -95,7 +97,19 @@ ActiveAdmin.register TradeEntry, as: 'Trade Entry' do
       f.input :status, as: :select, collection: TradeEntry.statuses
       f.input :coin, as: :select, collection: TradeEntry.coins
       f.input :kind, as: :select, collection: TradeEntry.kinds
+      f.input :margin
       f.input :paper, as: :boolean
+    end
+
+    f.has_many :logs do |l|
+      l.input :kind,
+              as: :select,
+              collection: TradeLog.kinds,
+              selected: l.object.kind.presence || f.object.kind
+
+      l.input :price, as: :number
+      l.input :amount, as: :number
+      l.input :post, as: :boolean
     end
 
     f.has_many :analyses do |a|

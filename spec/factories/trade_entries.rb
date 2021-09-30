@@ -9,14 +9,12 @@
 #  close_price            :decimal(8, 2)
 #  coin                   :string           default("btcusdt"), not null
 #  kind                   :string           default("long"), not null
-#  maker_percentage       :decimal(6, 5)    default(0.0), not null
 #  margin                 :decimal(8, 2)    default(1.0), not null
 #  open_price             :decimal(8, 2)
 #  paper                  :boolean          default(FALSE), not null
 #  profit                 :decimal(8, 2)
 #  profit_percentage      :decimal(12, 8)
 #  status                 :string           default("opened"), not null
-#  taker_percentage       :decimal(6, 5)    default(0.0), not null
 #  true_profit            :decimal(8, 2)
 #  true_profit_percentage :decimal(12, 8)
 #  created_at             :datetime         not null

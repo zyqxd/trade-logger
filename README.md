@@ -23,24 +23,30 @@ PORT=3000
    1. UI
       1. [x] organize type of logs in entry panel
       2. [x] organize type of analyses in log panel
-      3. [ ] visual indicator for cancelled/opened/filled/closed
+      3. [x] visual indicator for cancelled/opened/filled/closed
       4. [ ] paste entry system
       5. [x] refactor and remove some templating code if possible
       6. [ ] more concise form structures (esp has manys)
    2. models
       1. [x] memos on trade entry
       2. remove timeframe analysis
-      3. cop
+      3. Add to trade log analysis
+         1. add moving averages (maybe jsonb)
+         2. add pattern selection
       4. normalize fields
-         1. implement counter cache system
-         2. profits should be counter cache and should persist
-         3. amount should be counter cache and should persist
-         4. fees should be on trade entry setting?
-         5. margin should be on trade entry
-         6. open|close on trade entry should be weighted average
+         1. [x] implement counter cache system
+         2. [x] profits should be counter cache and should persist
+         3. [x] amount should be counter cache and should persist
+         4. [x] fees should be on trade entry setting?
+         5. [x] margin should be on trade entry
+         6. [x] open|close on trade entry should be weighted average
+         7. [ ] auto generate status on trade entry
+         8. [x] add refresh_explicit_counter_cache on trade logs
+         9. [x] clean up trade entry specs
 
 2. tags
 - should paper & stopped flags be tags?
+- should patterns be tags?
 
 3. prompt/warning after something happens
 - certain % gain/loss
@@ -60,6 +66,10 @@ PORT=3000
 5. Another Overall round
    1. UI
    2. Models
+   3. Feature spec on all key admin pages
+      1. show
+      2. new
+      3. edit
    
 6. Analyses could take schema from global setting, so that future changes doesn't lead to db migration
 

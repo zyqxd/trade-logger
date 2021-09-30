@@ -9,14 +9,12 @@
 #  close_price            :decimal(8, 2)
 #  coin                   :string           default("btcusdt"), not null
 #  kind                   :string           default("long"), not null
-#  maker_percentage       :decimal(6, 5)    default(0.0), not null
 #  margin                 :decimal(8, 2)    default(1.0), not null
 #  open_price             :decimal(8, 2)
 #  paper                  :boolean          default(FALSE), not null
 #  profit                 :decimal(8, 2)
 #  profit_percentage      :decimal(12, 8)
 #  status                 :string           default("opened"), not null
-#  taker_percentage       :decimal(6, 5)    default(0.0), not null
 #  true_profit            :decimal(8, 2)
 #  true_profit_percentage :decimal(12, 8)
 #  created_at             :datetime         not null
@@ -54,7 +52,7 @@ describe TradeEntry do
       end
 
       it 'returns profit_percentage correctly' do
-        expect(trade_entry.profit_percentage).to eq 4
+        expect(trade_entry.profit_percentage).to eq 400
       end
 
       it 'returns true_profit correctly' do
@@ -62,7 +60,7 @@ describe TradeEntry do
       end
 
       it 'returns profit_percentage correctly' do
-        expect(trade_entry.true_profit_percentage).to eq 4.00204
+        expect(trade_entry.true_profit_percentage).to eq 400.204
       end
     end
 
@@ -74,7 +72,7 @@ describe TradeEntry do
       end
 
       it 'returns profit_percentage correctly' do
-        expect(trade_entry.profit_percentage).to be_within(0.00001).of(-1.33333)
+        expect(trade_entry.profit_percentage).to be_within(0.001).of(-133.333)
       end
 
       it 'returns true_profit correctly' do
@@ -83,7 +81,7 @@ describe TradeEntry do
 
       it 'returns profit_percentage correctly' do
         expect(trade_entry.true_profit_percentage).to(
-          be_within(0.00001).of(-1.33265),
+          be_within(0.001).of(-133.265),
         )
       end
     end
