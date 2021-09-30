@@ -93,6 +93,10 @@ ActiveAdmin.register TradeLog, as: 'Trade Log' do
 
   member_action :cancel, method: :put do
     # TODO(DZ): We should move cancelled into separate column
-    resource.update(status: resource.cancelled? ? :opened : :cancelled)
+    resource.update!(status: resource.cancelled? ? :opened : :cancelled)
+  end
+
+  member_action :toggle_kind, method: :put do
+    resource.update!(kind: resource.long? ? :short : :long)
   end
 end

@@ -18,16 +18,27 @@ module Admin
       bip_tag resource, field, class: classname, as: :checkbox, **kargs
     end
 
-    def bip_status(resource, field: :status, **kargs)
+    def bip_status(resource, **kargs)
       resource_class = resource.try(:to_model)&.class || resource.class
 
       bip_tag(
         resource,
-        field,
-        class: "status_tag #{resource.public_send(field)}",
+        status,
+        class: "status_tag #{resource.status}",
         as: :select,
         url: [:admin, resource],
-        collection: resource_class.public_send(field.to_s.pluralize),
+        collection: resource_class.statuses,
+        **kargs,
+      )
+    end
+
+    def bip_kind(resource, **kargs)
+      bip_tag(
+        resource,
+        :long?,
+        class: resource.kind.to_s,
+        as: :checkbox,
+        url: [:toggle_kind, :admin, resource],
         **kargs,
       )
     end

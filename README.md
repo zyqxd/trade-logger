@@ -33,8 +33,9 @@ PORT=3000
             1. [ ] trade entry default to open and filled trades
             2. [ ] trade logs default to open trades
          5. [ ] trade logs
-            1. [ ] add post button in trade logs panel
-            2. [ ] sort by type then price in trade logs panel
+            1. [x] add cancelled as separate boolean
+            2. [x] add post button in trade logs panel
+            3. [ ] sort by type then price in trade logs panel
          6. [ ] trade entries
             1. [ ] consolidate all memos
             2. [ ] consolidate all analyses
@@ -64,9 +65,9 @@ PORT=3000
       4. [ ] Add to trade log analysis
          1. [ ] add moving averages (maybe jsonb)
          2. [ ] add pattern selection
-      6. [ ] add counters to trade log analyses
-      7. [ ] migrate analysis `filled` to `closed`
-      8. [ ] trade log
+      5. [ ] add counters to trade log analyses
+      6. [ ] migrate analysis `filled` to `closed`
+      7. [ ] trade log
          1. [ ] has one memo per 
          2. [ ] add counter cache for memos
          3. [ ] add counter cache for analyses

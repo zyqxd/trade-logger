@@ -6,22 +6,42 @@ logs = logs.send(scope)
 table_for logs do
   column :id
   column :status do |log|
-    bip_status log, reload: true
+    log.closed? ? log.status : bip_status(log, reload: true)
   end
   column :kind do |log|
-    bip_status log, field: :kind, reload: true
+    if log.closed?
+      log.long?
+    else
+      bip_kind log, reload: true
+    end
   end
   column :price do |log|
-    bip_tag log, :price, url: [:admin, log], reload: true
+    if log.closed?
+      log.price
+    else
+      bip_tag log, :price, url: [:admin, log], reload: true
+    end
   end
   column :amount do |log|
-    bip_tag log, :amount, url: [:admin, log], reload: true
-  end
-  column :other do |log|
-    bip_boolean log, :cancelled?, url: [:cancel, :admin, log], reload: true
+    if log.closed?
+      log.amount
+    else
+      bip_tag log, :amount, url: [:admin, log], reload: true
+    end
   end
   column :post do |log|
-    bip_boolean log, :post, url: [:admin, log], reload: true
+    if log.closed?
+      status_tag log.post
+    else
+      bip_boolean log, :post, url: [:admin, log], reload: true
+    end
+  end
+  column :cancel do |log|
+    if log.closed?
+      status_tag log.cancelled?
+    else
+      bip_boolean log, :cancelled?, url: [:cancel, :admin, log], reload: true
+    end
   end
   column :actions do |log|
     link_to 'View', admin_trade_log_path(log)

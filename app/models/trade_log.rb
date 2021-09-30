@@ -55,6 +55,7 @@ class TradeLog < ApplicationRecord
   validates :price, numericality: { greater_than_or_equal_to: 0 }
 
   before_save :calculate_and_persist_fee
+  before_save :calculate_and_persist_status
 
   class << self
     def weighted_avg
@@ -68,6 +69,8 @@ class TradeLog < ApplicationRecord
   end
 
   private
+
+  def calculate_and_persist_status; end
 
   BYBIT_TAKER_FEE = 0.00075
   BYBIT_MAKER_FEE = -0.00025
