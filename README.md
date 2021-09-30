@@ -40,10 +40,9 @@ PORT=3000
          4. [x] fees should be on trade entry setting?
          5. [x] margin should be on trade entry
          6. [x] open|close on trade entry should be weighted average
-         7. [ ] auto generate status on trade entry
-         8. [x] add refresh_explicit_counter_cache on trade logs
-         9. [x] clean up trade entry specs
-         10. [x] Fix why profits are negative for shorts
+         7. [x] add refresh_explicit_counter_cache on trade logs
+         8. [x] clean up trade entry specs
+         9.  [x] Fix why profits are negative for shorts
 
 2. tags
 - should paper & stopped flags be tags?
@@ -73,6 +72,7 @@ PORT=3000
       1. Could clean up some `delegate` logic in form objects
       2. Could clean up some audit trail for important columns
       3. Could add guard against changing calculated columns
+      4. Auto generate status on trade entry
    3. Feature spec on all key admin pages
       1. show
       2. new
