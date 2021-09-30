@@ -44,18 +44,16 @@ module Trades
 
       main_model :trade_log, TradeLog
 
-      delegate(
-        :own_and_associated_audits,
-        *TradeEntry.reflect_on_all_associations.map(&:name),
-        to: :trade_log,
-      )
-
       def self.name
         'Trade Log'
       end
 
       def initialize(trade_log = nil)
         @trade_log = trade_log.presence || TradeLog.new
+      end
+
+      def method_missing(m, *args, &block)
+        trade_log.send(m, *args, &block)
       end
     end
   end

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-logs = resource.logs.order(close_time: :desc, updated_at: :desc)
-logs = logs.send(scope)
+order = resource.long? ? :desc : :asc
+logs = resource.logs.order(kind: order, created_at: :asc).send(scope)
 
 table_for logs do
   column :id

@@ -42,15 +42,6 @@ module Trades
 
       main_model :trade_entry, TradeEntry
 
-      delegate(
-        :own_and_associated_audits,
-        *TradeEntry.reflect_on_all_associations.map(&:name),
-        :amount,
-        :created_at,
-        :updated_at,
-        to: :trade_entry,
-      )
-
       def self.name
         'Trade Entry'
       end
@@ -97,6 +88,10 @@ module Trades
         return 'N/A' if trade_entry.true_profit_percentage.blank?
 
         number_to_percentage trade_entry.true_profit_percentage
+      end
+
+      def method_missing(m, *args, &block)
+        trade_entry.send(m, *args, &block)
       end
     end
   end

@@ -35,7 +35,7 @@ PORT=3000
          5. [ ] trade logs
             1. [x] add cancelled as separate boolean
             2. [x] add post button in trade logs panel
-            3. [ ] sort by type then price in trade logs panel
+            3. [x] sort by type then price in trade logs panel
          6. [ ] trade entries
             1. [ ] consolidate all memos
             2. [ ] consolidate all analyses
