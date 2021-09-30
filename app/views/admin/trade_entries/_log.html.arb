@@ -17,6 +17,12 @@ table_for logs do
   column :amount do |log|
     bip_tag log, :amount, url: [:admin, log], reload: true
   end
+  column :other do |log|
+    bip_boolean log, :cancelled?, url: [:cancel, :admin, log], reload: true
+  end
+  column :post do |log|
+    bip_boolean log, :post, url: [:admin, log], reload: true
+  end
   column :actions do |log|
     link_to 'View', admin_trade_log_path(log)
   end
