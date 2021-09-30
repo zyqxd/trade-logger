@@ -40,12 +40,6 @@ class TradeEntry < ApplicationRecord
            foreign_key: :entry_id,
            dependent: :destroy
 
-  has_many :active_logs,
-           -> { active },
-           class_name: 'TradeLog',
-           inverse_of: :entry,
-           foreign_key: :entry_id
-
   has_many :closed_logs,
            -> { closed },
            class_name: 'TradeLog',
