@@ -46,11 +46,6 @@ class TradeEntry < ApplicationRecord
            inverse_of: :entry,
            foreign_key: :entry_id
 
-  has_many :analyses,
-           class_name: 'TimeframeAnalysis',
-           inverse_of: :trade_entry,
-           dependent: :destroy
-
   has_many :memos, as: :memoable, dependent: :destroy
 
   enum status: {

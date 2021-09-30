@@ -23,17 +23,12 @@ PORT=3000
    1. UI
       1. [x] organize type of logs in entry panel
       2. [x] organize type of analyses in log panel
-      3. [x] visual indicator for cancelled/opened/filled/closed
-      4. [ ] paste entry system
-      5. [x] refactor and remove some templating code if possible
-      6. [ ] more concise form structures (esp has manys)
+      3. [x] visual indicator for cancelled/opened/filled/closed      
+      4. [x] refactor and remove some templating code if possible
+      5. [ ] more concise form structures (esp has manys)
    2. models
       1. [x] memos on trade entry
-      2. remove timeframe analysis
-      3. Add to trade log analysis
-         1. add moving averages (maybe jsonb)
-         2. add pattern selection
-      4. normalize fields
+      2. [x] normalize fields
          1. [x] implement counter cache system
          2. [x] profits should be counter cache and should persist
          3. [x] amount should be counter cache and should persist
@@ -43,6 +38,12 @@ PORT=3000
          7. [x] add refresh_explicit_counter_cache on trade logs
          8. [x] clean up trade entry specs
          9.  [x] Fix why profits are negative for shorts
+      3. [x] Drop timeframe analysis
+      4. [ ] Add to trade log analysis
+         1. [ ] add moving averages (maybe jsonb)
+         2. [ ] add pattern selection
+      5. [ ] Add Stop loss point
+      6. [ ] Add RR calculation
 
 2. tags
 - should paper & stopped flags be tags?
@@ -68,11 +69,13 @@ PORT=3000
       1. Fix NaN displayed in form
       2. Fix NaN displayed in index
       3. Redirect to parent object after filling form (if directed from parent)
+      4. paste entry system
    2. Models
       1. Could clean up some `delegate` logic in form objects
       2. Could clean up some audit trail for important columns
       3. Could add guard against changing calculated columns
       4. Auto generate status on trade entry
+      5. remove timeframe analysis
    3. Feature spec on all key admin pages
       1. show
       2. new

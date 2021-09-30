@@ -68,19 +68,19 @@ ActiveAdmin.register TradeLog, as: 'Trade Log' do
       a.input :bbwp_exponential
       a.input :bbwp_trend,
               as: :select,
-              collection: TimeframeAnalysis.bbwp_trends
+              collection: TradeLogAnalysis.bbwp_trends
 
       a.input :rsi
       a.input :rsi_exponential
       a.input :rsi_trend,
               as: :select,
-              collection: TimeframeAnalysis.rsi_trends
+              collection: TradeLogAnalysis.rsi_trends
 
       a.input :stoch_fast
       a.input :stoch_slow
       a.input :stoch_trend,
               as: :select,
-              collection: TimeframeAnalysis.stoch_trends
+              collection: TradeLogAnalysis.stoch_trends
     end
 
     f.has_many :memos do |m|

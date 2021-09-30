@@ -67,24 +67,6 @@ ActiveAdmin.register TradeEntry, as: 'Trade Entry' do
       end
     end
 
-    panel 'Analyses' do
-      div do
-        link_to 'New', new_admin_timeframe_analysis_path
-      end
-
-      table_for(
-        resource.analyses.includes(:timeframe).order(created_at: :desc),
-      ) do
-        column :id
-        column :timeframe
-        column :kind
-        column :trend
-        column :actions do |analysis|
-          link_to 'View', admin_timeframe_analysis_path(analysis)
-        end
-      end
-    end
-
     render 'admin/memos'
 
     render 'admin/audits'
@@ -110,32 +92,6 @@ ActiveAdmin.register TradeEntry, as: 'Trade Entry' do
       l.input :price, as: :number
       l.input :amount, as: :number
       l.input :post, as: :boolean
-    end
-
-    f.has_many :analyses do |a|
-      a.input :timeframe,
-              as: :select,
-              collection: Timeframe.pluck(:code, :id)
-
-      a.input :kind, as: :select, collection: TimeframeAnalysis.kinds
-      a.input :trend, as: :select, collection: TimeframeAnalysis.trends
-
-      a.input :bbwp
-      a.input :bbwp_trend,
-              as: :select,
-              collection: TimeframeAnalysis.bbwp_trends
-
-      a.input :rsi
-      a.input :rsi_exponential
-      a.input :rsi_trend,
-              as: :select,
-              collection: TimeframeAnalysis.rsi_trends
-
-      a.input :stoch_fast
-      a.input :stoch_slow
-      a.input :stoch_trend,
-              as: :select,
-              collection: TimeframeAnalysis.stoch_trends
     end
 
     f.actions
