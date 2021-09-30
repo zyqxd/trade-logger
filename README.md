@@ -43,6 +43,7 @@ PORT=3000
          7. [ ] auto generate status on trade entry
          8. [x] add refresh_explicit_counter_cache on trade logs
          9. [x] clean up trade entry specs
+         10. [x] Fix why profits are negative for shorts
 
 2. tags
 - should paper & stopped flags be tags?
@@ -65,7 +66,13 @@ PORT=3000
 
 5. Another Overall round
    1. UI
+      1. Fix NaN displayed in form
+      2. Fix NaN displayed in index
+      3. Redirect to parent object after filling form (if directed from parent)
    2. Models
+      1. Could clean up some `delegate` logic in form objects
+      2. Could clean up some audit trail for important columns
+      3. Could add guard against changing calculated columns
    3. Feature spec on all key admin pages
       1. show
       2. new
