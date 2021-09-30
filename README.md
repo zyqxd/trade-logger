@@ -26,6 +26,7 @@ PORT=3000
       3. [x] visual indicator for cancelled/opened/filled/closed      
       4. [x] refactor and remove some templating code if possible
       5. [ ] more concise form structures (esp has manys)
+         1. [ ] add confirmation to form submit since its long
    2. models
       1. [x] memos on trade entry
       2. [x] normalize fields
@@ -44,6 +45,7 @@ PORT=3000
          2. [ ] add pattern selection
       5. [ ] Add Stop loss point
       6. [ ] Add RR calculation
+      7. [ ] migrate analysis `filled` to `closed`
 
 2. tags
 - should paper & stopped flags be tags?

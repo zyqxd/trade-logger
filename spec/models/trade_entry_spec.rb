@@ -45,7 +45,7 @@ describe TradeEntry do
     end
 
     context 'with logs for a long winner' do
-      let!(:trade_entry) { create :complete_trade_entry, :long, winner: true }
+      let(:trade_entry) { create :complete_trade_entry, :long, winner: true }
 
       it 'profit is the difference of longs and shorts times amount' do
         expect(trade_entry.profit).to eq 2000
@@ -65,7 +65,7 @@ describe TradeEntry do
     end
 
     context 'with logs for a short loser' do
-      let!(:trade_entry) { create :complete_trade_entry, :short, winner: false }
+      let(:trade_entry) { create :complete_trade_entry, :short, winner: false }
 
       it 'profit is the difference of longs and shorts times amount' do
         expect(trade_entry.profit).to eq(-2000)
@@ -83,6 +83,26 @@ describe TradeEntry do
         expect(trade_entry.true_profit_percentage).to(
           be_within(0.001).of(-133.265),
         )
+      end
+    end
+
+    context 'other' do
+      let(:trade_entry) { create :trade_entry, :long }
+
+      it 'profit only takes in amount that has closed' do
+        create :trade_log, :long, :closed,
+               entry: trade_entry,
+               amount: 1,
+               price: 800
+
+        create :trade_log, :short, :closed,
+               entry: trade_entry,
+               amount: 1,
+               price: 1000
+
+        create :trade_log, :long, entry: trade_entry, amount: 1, price: 800
+
+        expect(trade_entry.profit).to eq(200)
       end
     end
   end
