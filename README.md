@@ -38,23 +38,20 @@ PORT=3000
       8. [x] In place edits
          2. [x] add lock logic into best_in_place_helper
          3. [x] add styles to status_tags for specific method
-      9. [ ] trade entries
-         1. [ ] consolidate all memos
-         2. [ ] consolidate all analyses
-      10. [ ] Forms
-         3. [ ] add tp/open amount limits (25% | 50% | 75% | 100%)
-         4. [ ] make analyses custom template
-         5. [ ] make log custom template
+      9.  [ ] Forms
+         4. [ ] add tp/open amount limits (25% | 50% | 75% | 100%)
+         5. [ ] make analyses custom template
+         6. [ ] make log custom template
       11. [ ] side bar 
-         6. [ ] figure out why you have 2x sidebar
-         7. [ ] clean up stats we show
+         9. [ ] figure out why you have 2x sidebar
+         10. [ ] clean up stats we show
             1. [ ] show opened amount
             2. [ ] show closed amount
             3. [ ] show position size
             4. [ ] show cancelled amount
             5. [ ] show if current position has outstand positions
                1. [ ] maybe something we persist
-         8. [ ] maybe make position fixed on screen
+         11. [ ] maybe make position fixed on screen
    2. models
       1. [x] memos on trade entry
       2. [x] normalize fields
@@ -107,20 +104,23 @@ PORT=3000
 - populate % success while entering trade
 
 5. Another Overall round
-   1. UI
+   1. break this down further
+   2. UI
       1. Fix NaN displayed in form
       2. Fix NaN displayed in index
       3. Redirect to parent object after filling form (if directed from parent)
       4. paste entry system
       5. add counters and show `memos` from tradelog panel actions in trade entries
-   2. Models
-      1. Could clean up some `delegate` logic in form objects
-      2. Could clean up some audit trail for important columns
-      3. Could add guard against changing calculated columns
-      4. Auto generate status on trade entry
-      5. remove timeframe analysis
-      6. consider performance of callbacks
-   3. Feature spec on all key admin pages
+   3. Models
+      1. Could clean up some audit trail for important columns
+      2. Could add guard against changing calculated columns
+      3. Auto generate status on trade entry
+      4. remove timeframe analysis
+      5. consider performance of callbacks
+      6. trade entries
+         1. consolidate all memos into entries
+         2. consolidate all analyses into entries
+   4. Feature spec on all key admin pages
       1. show
       2. new
       3. edit
