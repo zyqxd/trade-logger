@@ -9,9 +9,9 @@ ActiveAdmin.register TradeEntry, as: 'Trade Entry' do
   filter :kind, as: :select, collection: TradeEntry.kinds
 
   scope :opened, default: true
-  scope :filled
   scope :closed
   scope :cancelled
+  scope :paper
 
   index do
     id_column

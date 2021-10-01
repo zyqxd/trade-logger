@@ -65,6 +65,12 @@ class TradeEntry < ApplicationRecord
     short: 'short',
   }
 
+  scope :paper, -> { where(paper: true) }
+  scope :live, -> { where(paper: false) }
+  scope :opened, -> { live.where(status: :opened) }
+  scope :closed, -> { live.where(status: :closed) }
+  scope :cancelled, -> { live.where(status: :cancelled) }
+
   validates :margin, numericality: { greater_than_or_equals_to: 1 }
 
   before_save :calculate_and_persist_profit_values
