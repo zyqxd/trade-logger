@@ -19,6 +19,8 @@ module MiniForm
             def new
               @resource = the_form_class.new
               @resource.attributes = params.permit(*@resource.attribute_names)
+
+              set_redirect
             end
 
             def create
@@ -27,11 +29,18 @@ module MiniForm
                 '/', '_'
               ).to_sym]
 
-              respond_with @resource, location: collection_path
+              if @resource.valid?
+                redirect_to(
+                  get_redirect,
+                  notice: "#{@resource.class.name } #{ @resource.id } Created",
+                )
+              end
             end
 
             def edit
               @resource = the_form_class.new find_resource
+
+              set_redirect
             end
 
             def update
@@ -40,7 +49,22 @@ module MiniForm
                 '/', '_'
               ).to_sym]
 
-              respond_with @resource, location: collection_path
+              if @resource.valid?
+                redirect_to(
+                  get_redirect,
+                  notice: "#{@resource.class.name } #{ @resource.id } Updated",
+                )
+              end
+            end
+
+            private
+
+            def set_redirect
+              cookies[:succes_redirect_url] = request.referer
+            end
+
+            def get_redirect
+              cookies[:succes_redirect_url]
             end
           end
         end
