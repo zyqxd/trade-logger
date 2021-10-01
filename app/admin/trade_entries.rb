@@ -8,7 +8,7 @@ ActiveAdmin.register TradeEntry, as: 'Trade Entry' do
   filter :coin
   filter :kind, as: :select, collection: TradeEntry.kinds
 
-  scope :opened
+  scope :opened, default: true
   scope :filled
   scope :closed
   scope :cancelled

@@ -8,7 +8,7 @@ ActiveAdmin.register TradeLog, as: 'Trade Log' do
   filter :entry_id
   filter :kind, as: :select, collection: TradeLog.kinds
 
-  scope :opened
+  scope :opened, default: true
   scope :closed
   scope :cancelled
 

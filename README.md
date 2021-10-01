@@ -31,9 +31,9 @@ PORT=3000
          3. [x] sort by type then price in trade logs panel
       7. [ ] Quick changes
          1. [x] add confirmation to form submit since its long
-         2. [ ] index pages
-            1. [ ] trade entry default to open and filled trades
-            2. [ ] trade logs default to open trades
+         2. [x] index pages
+            1. [x] trade entry default to open and filled trades
+            2. [x] trade logs default to open trades
          3. [ ] trade entries
             1. [ ] consolidate all memos
             2. [ ] consolidate all analyses
