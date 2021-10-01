@@ -43,21 +43,23 @@ PORT=3000
          2. [ ] make analyses custom template
          3. [ ] make log custom template
          4. [x] Always redirect back
+         5. [ ] Add BIP in index pages
+         6. [ ] Only show analyses that exists
       11. [ ] In place forms
           1.  [ ] add quick link to open add position (longs buy / shorts sell)
           2.  [ ] add quick link to close add position
       12. [ ] Index page
           1.  [ ] fix NaN, show possible results
       13. [ ] side bar 
-         5. [ ] figure out why you have 2x sidebar
-         6.  [ ] clean up stats we show
+         7. [ ] figure out why you have 2x sidebar
+         8.  [ ] clean up stats we show
             1. [ ] show opened amount
             2. [ ] show closed amount
             3. [ ] show position size
             4. [ ] show cancelled amount
             5. [ ] show if current position has outstand positions
                1. [ ] maybe something we persist
-         7.  [ ] maybe make position fixed on screen
+         9.  [ ] maybe make position fixed on screen
    2. models
       1. [x] memos on trade entry
       2. [x] normalize fields
@@ -88,13 +90,17 @@ PORT=3000
       8. [ ] bugs
          1. [ ] N+1 on entry screen issue
 
-2. tags
+Bugs 
+1. [ ] Fix bug with bip_status not reloading (error in value)
+
+
+tags
 - should paper & stopped flags be tags?
 - should patterns be tags?
 - tags can have descriptions for strategies, used for searching later
   - example 1h 4h trading ranges with custom tag
 
-3. prompt/warning after something happens
+prompt/warning after something happens
 - certain % gain/loss
   - consequctive
 - trades with red flags
@@ -102,14 +108,14 @@ PORT=3000
   - before bed time
   - market orders
 
-4. search by timeframe
+search by timeframe
 - persist profit and friends fields
 - advance query system
   - 4h:trend = 1h:trend
   - 1h:bbwp > 50
 - populate % success while entering trade
 
-5. Another Overall round
+Another Overall round
    1. break this down further
    2. UI
       1. Fix NaN displayed in form
@@ -132,9 +138,9 @@ PORT=3000
       2. new
       3. edit
    
-6. Analyses could take schema from global setting, so that future changes doesn't lead to db migration
+Analyses could take schema from global setting, so that future changes doesn't lead to db migration
 
-7. Users
+Users
 - user level settings
   - margin
   - maker taker fees

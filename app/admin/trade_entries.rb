@@ -3,7 +3,7 @@
 ActiveAdmin.register TradeEntry, as: 'Trade Entry' do
   MiniForm::ActiveAdmin::UseForm.call self, Trades::Admin::TradeEntryForm
 
-  menu label: 'Entry', parent: 'Trade'
+  menu label: 'Trade Entry'
 
   filter :coin
   filter :kind, as: :select, collection: TradeEntry.kinds
