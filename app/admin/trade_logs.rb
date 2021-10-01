@@ -88,7 +88,15 @@ ActiveAdmin.register TradeLog, as: 'Trade Log' do
       m.input :description, as: :text, input_html: { rows: 5 }
     end
 
-    f.actions
+    f.actions do
+      f.action :cancel,
+               as: :link,
+               label: 'Cancel',
+               wrapper_html: { class: :cancel },
+               button_html: { 'data-confirm': 'Cancel?' }
+
+      f.action :submit, button_html: { 'data-confirm': 'Submit?' }
+    end
   end
 
   member_action :cancel, method: :put do

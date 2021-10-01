@@ -25,30 +25,36 @@ PORT=3000
       2. [x] organize type of analyses in log panel
       3. [x] visual indicator for cancelled/opened/filled/closed      
       4. [x] refactor and remove some templating code if possible
-      5. [ ] more concise form structures (esp has manys)
-         1. [ ] add confirmation to form submit since its long
-         2. [ ] add tp/open amount limits (25% | 50% | 75% | 100%)
-         3. [ ] auto generate on close on open for logs
-         4. [ ] index pages
+      6. [x] trade logs
+         1. [x] add cancelled as separate boolean
+         2. [x] add post button in trade logs panel
+         3. [x] sort by type then price in trade logs panel
+      7. [ ] Quick changes
+         1. [x] add confirmation to form submit since its long
+         2. [ ] index pages
             1. [ ] trade entry default to open and filled trades
             2. [ ] trade logs default to open trades
-         5. [ ] trade logs
-            1. [x] add cancelled as separate boolean
-            2. [x] add post button in trade logs panel
-            3. [x] sort by type then price in trade logs panel
-         6. [ ] trade entries
+         3. [ ] trade entries
             1. [ ] consolidate all memos
             2. [ ] consolidate all analyses
-         7. [ ] side bar 
-            1. [ ] figure out why you have 2x sidebar
-            2. [ ] clean up stats we show
-               1. [ ] show opened amount
-               2. [ ] show closed amount
-               3. [ ] show position size
-               4. [ ] show cancelled amount
-               5. [ ] show if current position has outstand positions
-                  1. [ ] maybe something we persist
-            3. [ ] maybe make position fixed on screen
+      8. [ ] In place edits
+         1. [ ] auto reload helpers
+         2. [ ] add lock logic into best_in_place_helper
+         3. [ ] add styles to status_tags for specific method
+      9. [ ] Forms
+         1. [ ] add tp/open amount limits (25% | 50% | 75% | 100%)
+         2. [ ] make analyses custom template
+         3. [ ] make log custom template
+      10. [ ] side bar 
+         4. [ ] figure out why you have 2x sidebar
+         5. [ ] clean up stats we show
+            1. [ ] show opened amount
+            2. [ ] show closed amount
+            3. [ ] show position size
+            4. [ ] show cancelled amount
+            5. [ ] show if current position has outstand positions
+               1. [ ] maybe something we persist
+         6. [ ] maybe make position fixed on screen
    2. models
       1. [x] memos on trade entry
       2. [x] normalize fields
@@ -63,10 +69,13 @@ PORT=3000
          9.  [x] Fix why profits are negative for shorts
       3. [x] Drop timeframe analysis
       4. [ ] Add to trade log analysis
-         1. [ ] add moving averages (maybe jsonb)
-         2. [ ] add pattern selection
-      5. [ ] add counters to trade log analyses
-      6. [ ] migrate analysis `filled` to `closed`
+         1. [ ] refactor to key/value analyses
+         2. [ ] add moving averages (maybe jsonb)
+         3. [ ] add pattern selection
+      5. [ ] migrations
+         1. [ ] migrate analysis `filled` to `closed`
+         2. [ ] move cancelled out of status
+      6. [ ] add counter caches to trade log analyses
       7. [ ] trade log
          1. [ ] has one memo per 
          2. [ ] add counter cache for memos
