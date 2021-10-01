@@ -52,8 +52,14 @@ module Trades
         @trade_log = trade_log.presence || TradeLog.new
       end
 
-      def method_missing(m, *args, &block)
-        trade_log.send(m, *args, &block)
+      # TODO(DZ): Might need better solution than this, but don't want to
+      # change delegate everytime
+      def method_missing(name, *args, &block)
+        trade_log.send(name, *args, &block)
+      end
+
+      def respond_to_missing?(name, _include_private)
+        trade_log.respond_to?(name)
       end
     end
   end
