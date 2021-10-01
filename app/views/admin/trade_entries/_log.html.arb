@@ -6,42 +6,22 @@ logs = resource.logs.order(kind: order, created_at: :asc).send(scope)
 table_for logs do
   column :id
   column :status do |log|
-    log.closed? ? log.status : bip_status(log, reload: true)
+    bip_status log, reload: true
   end
   column :kind do |log|
-    if log.closed?
-      log.long?
-    else
-      bip_kind log, reload: true
-    end
+    bip_kind log, reload: true
   end
   column :price do |log|
-    if log.closed?
-      log.price
-    else
-      bip_tag log, :price, url: [:admin, log], reload: true
-    end
+    bip_tag log, :price, url: [:admin, log], reload: true
   end
   column :amount do |log|
-    if log.closed?
-      log.amount
-    else
-      bip_tag log, :amount, url: [:admin, log], reload: true
-    end
+    bip_tag log, :amount, url: [:admin, log], reload: true
   end
   column :post do |log|
-    if log.closed?
-      status_tag log.post
-    else
-      bip_boolean log, :post, url: [:admin, log], reload: true
-    end
+    bip_boolean log, :post, url: [:admin, log], reload: true
   end
   column :cancel do |log|
-    if log.closed?
-      status_tag log.cancelled?
-    else
-      bip_boolean log, :cancelled?, url: [:cancel, :admin, log], reload: true
-    end
+    bip_boolean log, :cancelled?, url: [:cancel, :admin, log], reload: true
   end
   column :actions do |log|
     link_to 'View', admin_trade_log_path(log)

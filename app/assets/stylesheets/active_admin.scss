@@ -22,11 +22,11 @@
   box-shadow: 0 1px 2px 0 black;
   text-transform: uppercase;
   font-weight: 600;
+}
 
-  &.status_tag {
-    color: white;
-    text-decoration: none;
-  }
+.status_tag {
+  color: white;
+  text-decoration: none;
 
   &.opened {
     color: white;

@@ -57,4 +57,26 @@ describe TradeLog do
       expect(trade_log.fee).to eq 1000 * TradeLog::BYBIT_TAKER_FEE
     end
   end
+
+  describe '#locked?' do
+    let(:trade_log) { create :trade_log }
+
+    it 'is false if opened' do
+      trade_log.opened!
+
+      expect(trade_log.locked?).to eq false
+    end
+
+    it 'is true if cancelled' do
+      trade_log.cancelled!
+
+      expect(trade_log.locked?).to eq true
+    end
+
+    it 'is true if closed' do
+      trade_log.closed!
+
+      expect(trade_log.locked?).to eq true
+    end
+  end
 end

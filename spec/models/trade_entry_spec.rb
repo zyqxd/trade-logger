@@ -120,4 +120,26 @@ describe TradeEntry do
       expect(trade_entry.position).to eq 200
     end
   end
+
+  describe '#locked?' do
+    let(:trade_entry) { create :trade_entry }
+
+    it 'is false if opened' do
+      trade_entry.opened!
+
+      expect(trade_entry.locked?).to eq false
+    end
+
+    it 'is true if cancelled' do
+      trade_entry.cancelled!
+
+      expect(trade_entry.locked?).to eq true
+    end
+
+    it 'is true if closed' do
+      trade_entry.closed!
+
+      expect(trade_entry.locked?).to eq true
+    end
+  end
 end

@@ -68,6 +68,10 @@ class TradeLog < ApplicationRecord
     end
   end
 
+  def locked?
+    cancelled? || closed?
+  end
+
   private
 
   def calculate_and_persist_status; end
