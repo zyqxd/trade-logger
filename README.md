@@ -51,6 +51,7 @@ PORT=3000
       12. [x] Index page
           1.  [x] fix NaN
           2.  [ ] show paper prices
+          3.  [ ] show proper formatting of numbers
       13. [ ] side bar 
          10. [ ] figure out why you have 2x sidebar
          11. [ ] clean up stats we show
@@ -157,9 +158,9 @@ Users
 ## Nice to haves
 - [x] login
 - [x] database sync
+- [x] Auto delegate all methods (probably rename model)
 - [ ] emotional score
 - [ ] Markdown
-- [ ] Auto delegate all methods (probably rename model)
 - [ ] ci? https://circleci.com/integrations/heroku
 - [ ] autoloader Zeitwerk causing NameError in heroku deployment
 - [ ] Actual heroku docker deployment 
