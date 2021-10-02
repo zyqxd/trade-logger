@@ -99,6 +99,7 @@ class TradeEntry < ApplicationRecord
   private
 
   def calculate_and_persist_profit_values
+    # NOTE(DZ): We want to only use closed logs. No paper profits
     return nil if close_price.blank? || position.blank?
 
     normalized_profit = (long? ? 1.0 : -1.0) * (close_price - open_price)

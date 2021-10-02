@@ -59,6 +59,8 @@ class TradeLog < ApplicationRecord
 
   class << self
     def weighted_avg
+      return nil unless self.exists?
+
       select(
         Arel::Nodes::Multiplication.new(
           arel_table[:price],

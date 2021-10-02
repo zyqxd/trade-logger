@@ -44,6 +44,30 @@ describe TradeEntry do
       end
     end
 
+    context 'when positions are not closed (without closed logs)' do
+      let(:trade_entry) { create :trade_entry, :long }
+      before do
+        create :trade_log, :opened, :long, entry: trade_entry
+        create :trade_log, :opened, :short, entry: trade_entry
+      end
+
+      it 'returns nil for profit' do
+        expect(trade_entry.profit).to be_nil
+      end
+
+      it 'returns nil for profit_percentage' do
+        expect(trade_entry.profit_percentage).to be_nil
+      end
+
+      it 'returns nil for true_profit' do
+        expect(trade_entry.true_profit).to be_nil
+      end
+
+      it 'returns nil for true_profit_percentage' do
+        expect(trade_entry.true_profit_percentage).to be_nil
+      end
+    end
+
     context 'with logs for a long winner' do
       let(:trade_entry) { create :complete_trade_entry, :long, winner: true }
 
@@ -104,6 +128,36 @@ describe TradeEntry do
 
         expect(trade_entry.profit).to eq(200)
       end
+    end
+  end
+
+  describe '#refresh_aggregate_with_callbacks' do
+    let(:entry) { create :trade_entry, :long }
+
+    it 'saves open_price as nil if no opens were present' do
+      create :trade_log, :short, entry: entry
+
+      expect(entry.open_price).to be_nil
+    end
+
+    it 'saves close_price as weighted average of all long logs' do
+      create :trade_log, :long, price: 100, amount: 0.1, entry: entry
+      create :trade_log, :long, price: 50, amount: 0.2, entry: entry
+
+      expect(entry.open_price).to be_within(0.01).of(66.66)
+    end
+
+    it 'saves close_price as nil if no closes were present' do
+      create :trade_log, :long, entry: entry
+
+      expect(entry.close_price).to be_nil
+    end
+
+    it 'saves close_price as weighted average of all short logs' do
+      create :trade_log, :short, price: 100, amount: 0.1, entry: entry
+      create :trade_log, :short, price: 50, amount: 0.2, entry: entry
+
+      expect(entry.close_price).to be_within(0.01).of(66.66)
     end
   end
 

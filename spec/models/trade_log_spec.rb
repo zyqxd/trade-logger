@@ -28,6 +28,10 @@ require 'rails_helper'
 
 describe TradeLog do
   describe '.weighted_avg' do
+    it 'returns nil if scope was empty' do
+      expect(described_class.weighted_avg).to eq nil
+    end
+
     it 'calculates weighted average' do
       create :trade_log, price: 400, amount: 0.5
       create :trade_log, price: 1000, amount: 0.5

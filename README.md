@@ -80,15 +80,21 @@ PORT=3000
       5. [ ] migrations
          1. [x] migrate analysis `filled` to `closed`
          2. [ ] move cancelled out of status
-      6. [ ] add counter caches to trade log analyses
-      7. [ ] trade log
+      6. [ ] Use `open` and `close` for kinds in trade log
+         1. [ ] change in trade log model
+         2. [ ] change in trade entry mode
+         3. [ ] change in trade log admin
+         4. [ ] change in trade entry admin
+         5. [ ] change in BIP tags
+      7. [ ] add counter caches to trade log analyses
+      8. [ ] trade log
          1. [ ] has one memo per 
          2. [ ] add counter cache for memos
          3. [ ] add counter cache for analyses
          4. [ ] lock price after close
          5. [ ] lock amount after close
-      8. [ ] bugs
-         1. [ ] N+1 on entry screen issue
+      9.  [ ] bugs
+         6. [ ] N+1 on entry screen issue
 
 Bugs 
 1. [x] Fix bug with bip_status not reloading (error in value)
