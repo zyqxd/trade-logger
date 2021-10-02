@@ -50,8 +50,8 @@ PORT=3000
           2.  [x] add quick link to close add position
       12. [x] Index page
           1.  [x] fix NaN
-          2.  [ ] show paper prices
-          3.  [ ] show proper formatting of numbers
+          2.  [x] show paper prices
+          3.  [x] show proper formatting of numbers
       13. [ ] side bar 
          10. [ ] figure out why you have 2x sidebar
          11. [ ] clean up stats we show
