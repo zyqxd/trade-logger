@@ -74,3 +74,16 @@ textarea {
 .sidebar .attributes_table td {
   white-space: pre-wrap;
 }
+
+// NOTE(DZ): Weird bug from ActiveAdmin, eager_load broken for rails 6.1
+// https://github.com/activeadmin/activeadmin/issues/2329
+// Best fix so far is to add Rails.env to classes and fix it with css here
+.production {
+  &#stats_sidebar_section:nth-of-type(2) {
+    display: none;
+  }
+
+  &#plan_sidebar_section:nth-of-type(3) {
+    display: none;
+  }
+}

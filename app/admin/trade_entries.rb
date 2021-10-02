@@ -40,7 +40,7 @@ ActiveAdmin.register TradeEntry, as: 'Trade Entry' do
     actions
   end
 
-  sidebar :plan, only: %i[show edit] do
+  sidebar :plan, class: Rails.env, only: %i[show edit] do
     if resource.plan.blank?
       'No plan!'
     else
@@ -57,7 +57,7 @@ ActiveAdmin.register TradeEntry, as: 'Trade Entry' do
     end
   end
 
-  sidebar :stats, only: %i[show] do
+  sidebar :stats, class: Rails.env, only: %i[show edit] do
     attributes_table_for resource do
       row :status do
         bip_status resource, reload: true
