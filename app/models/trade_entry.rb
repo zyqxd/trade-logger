@@ -87,9 +87,9 @@ class TradeEntry < ApplicationRecord
 
   scope :paper, -> { where(paper: true) }
   scope :live, -> { where(paper: false) }
-  scope :opened, -> { live.where(status: :opened) }
-  scope :closed, -> { live.where(status: :closed) }
-  scope :cancelled, -> { live.where(status: :cancelled) }
+  scope :live_opened, -> { live.where(status: :opened) }
+  scope :live_closed, -> { live.where(status: :closed) }
+  scope :live_cancelled, -> { live.where(status: :cancelled) }
 
   validates :margin, numericality: { greater_than_or_equals_to: 1 }
 

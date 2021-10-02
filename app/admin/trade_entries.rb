@@ -9,9 +9,9 @@ ActiveAdmin.register TradeEntry, as: 'Trade Entry' do
   filter :coin
   filter :kind, as: :select, collection: TradeEntry.kinds
 
-  scope :opened, default: true
-  scope :closed
-  scope :cancelled
+  scope :opened, :live_opened, default: true
+  scope :closed, :live_closed
+  scope :cancelled, :live_cancelled
   scope :paper
 
   index do

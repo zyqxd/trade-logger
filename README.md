@@ -104,7 +104,7 @@ Bugs
 3. [ ] Fix/Optimize excess db calls in model callbacks
 
 Trade Plans
-- [ ] detailed sections with text
+- [x] detailed sections with text
 - [ ] Sidebar plan while creating in form
 - [ ] add as required to
 
