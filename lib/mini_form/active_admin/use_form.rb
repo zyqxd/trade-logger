@@ -28,7 +28,7 @@ module MiniForm
               return unless @resource.valid?
 
               redirect_to(
-                redirect_url,
+                redirect_url.presence || admin_root_path,
                 notice: "#{@resource.class.name} #{@resource.id} Created",
               )
             end
@@ -50,7 +50,7 @@ module MiniForm
               return unless @resource.valid? && request.method == 'POST'
 
               redirect_to(
-                redirect_url,
+                redirect_url.presence || admin_root_path,
                 notice: "#{@resource.class.name} #{@resource.id} Updated",
               )
             end
@@ -62,7 +62,7 @@ module MiniForm
             end
 
             def redirect_url
-              cookies[:succes_redirect_url]
+              cookies.delete(:succes_redirect_url)
             end
           end
         end

@@ -111,6 +111,9 @@ tags
 - tags can have descriptions for strategies, used for searching later
   - example 1h 4h trading ranges with custom tag
 
+Memos 
+- Require memo every update?
+
 prompt/warning after something happens
 - certain % gain/loss
   - consequctive
