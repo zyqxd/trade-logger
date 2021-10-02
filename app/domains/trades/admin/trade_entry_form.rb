@@ -42,6 +42,8 @@ module Trades
 
       main_model :trade_entry, TradeEntry
 
+      delegate_missing_to :trade_entry
+
       def self.name
         'Trade Entry'
       end
@@ -88,16 +90,6 @@ module Trades
         return 'N/A' if trade_entry.true_profit_percentage.blank?
 
         number_to_percentage trade_entry.true_profit_percentage
-      end
-
-      # TODO(DZ): Might need better solution than this, but don't want to
-      # change delegate everytime
-      def method_missing(name, *args, &block)
-        trade_entry.send(name, *args, &block)
-      end
-
-      def respond_to_missing?(name, _include_private)
-        trade_entry.respond_to?(name)
       end
     end
   end

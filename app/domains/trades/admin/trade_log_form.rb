@@ -44,22 +44,14 @@ module Trades
 
       main_model :trade_log, TradeLog
 
+      delegate_missing_to :trade_log
+
       def self.name
         'Trade Log'
       end
 
       def initialize(trade_log = nil)
         @trade_log = trade_log.presence || TradeLog.new
-      end
-
-      # TODO(DZ): Might need better solution than this, but don't want to
-      # change delegate everytime
-      def method_missing(name, *args, &block)
-        trade_log.send(name, *args, &block)
-      end
-
-      def respond_to_missing?(name, _include_private)
-        trade_log.respond_to?(name)
       end
     end
   end
