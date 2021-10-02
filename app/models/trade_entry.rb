@@ -50,7 +50,6 @@ class TradeEntry < ApplicationRecord
 
   enum status: {
     opened: 'opened',
-    filled: 'filled',
     closed: 'closed',
     cancelled: 'cancelled',
   }

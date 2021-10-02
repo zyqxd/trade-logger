@@ -78,7 +78,7 @@ PORT=3000
          2. [ ] add moving averages (maybe jsonb)
          3. [ ] add pattern selection
       5. [ ] migrations
-         1. [ ] migrate analysis `filled` to `closed`
+         1. [x] migrate analysis `filled` to `closed`
          2. [ ] move cancelled out of status
       6. [ ] add counter caches to trade log analyses
       7. [ ] trade log
