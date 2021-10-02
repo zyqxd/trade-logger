@@ -37,7 +37,6 @@ class TradeLogAnalysis < ApplicationRecord
 
   enum kind: {
     open: 'open',
-    fill: 'fill',
     close: 'close',
     cancel: 'cancel',
   }, _prefix: :on
