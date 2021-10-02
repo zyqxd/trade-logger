@@ -14,6 +14,31 @@ ActiveAdmin.register Plan do
     actions
   end
 
+  show do
+    default_main_content
+
+    panel 'Entries' do
+      div class: 'panel_actions' do
+        link_to 'New Trade', new_admin_trade_entry_path(plan_id: resource.id)
+      end
+      table_for resource.trade_entries.order(created_at: :desc) do
+        column :id
+        column :coin
+        column :status do |entry|
+          bip_status entry, reload: true
+        end
+        column :kind do |entry|
+          bip_kind entry, reload: true
+        end
+        column :amount
+        column :profit
+        column :actions do |entry|
+          link_to 'View', admin_trade_entry_path(entry)
+        end
+      end
+    end
+  end
+
   form do |f|
     f.inputs 'Plan' do
       f.input :name, required: true
