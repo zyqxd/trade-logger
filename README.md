@@ -48,8 +48,9 @@ PORT=3000
       11. [x] In place forms
           1.  [x] add quick link to open add position (longs buy / shorts sell)
           2.  [x] add quick link to close add position
-      12. [ ] Index page
-          1.  [ ] fix NaN, show possible results
+      12. [x] Index page
+          1.  [x] fix NaN
+          2.  [ ] show paper prices
       13. [ ] side bar 
          10. [ ] figure out why you have 2x sidebar
          11. [ ] clean up stats we show
@@ -100,7 +101,6 @@ Bugs
 1. [x] Fix bug with bip_status not reloading (error in value)
 2. [ ] Fix calculation issue with profit $ and %
 
-
 tags
 - should paper & stopped flags be tags?
 - should patterns be tags?
@@ -126,11 +126,11 @@ Another Overall round
    1. break this down further
    2. UI
       1. Fix NaN displayed in form
-      2. Fix NaN displayed in index
       3. Redirect to parent object after filling form (if directed from parent)
       4. paste entry system
       5. add counters and show `memos` from tradelog panel actions in trade entries
       6. Allow trade entries create action to redirect to show page
+      7. Actual form validations (show errors instead of 500)
    3. Models
       1. Could clean up some audit trail for important columns
       2. Could add guard against changing calculated columns

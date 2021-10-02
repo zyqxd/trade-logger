@@ -52,7 +52,7 @@ ActiveAdmin.register TradeEntry, as: 'Trade Entry' do
             new_admin_trade_log_path(
               entry_id: resource.id,
               kind: resource.kind,
-            )
+            ),
           )
         end
         span do
@@ -60,7 +60,7 @@ ActiveAdmin.register TradeEntry, as: 'Trade Entry' do
             'Close Position',
             new_admin_trade_log_path(
               entry_id: resource.id,
-              kind: resource.short? ? :long : :short
+              kind: resource.short? ? :long : :short,
             ),
           )
         end

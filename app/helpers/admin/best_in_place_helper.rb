@@ -49,7 +49,7 @@ module Admin
         bip_tag(
           resource,
           :short?,
-          class: "status_tag #{ resource.kind }",
+          class: "status_tag #{resource.kind}",
           as: :checkbox,
           url: [:toggle_kind, :admin, resource],
           collection: %w[long short],

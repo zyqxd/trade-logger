@@ -20,7 +20,7 @@ module MiniForm
               @resource = the_form_class.new
               @resource.attributes = params.permit(*@resource.attribute_names)
 
-              set_redirect
+              set_redirect_url
             end
 
             def create
@@ -29,18 +29,18 @@ module MiniForm
                 '/', '_'
               ).to_sym]
 
-              if @resource.valid?
-                redirect_to(
-                  get_redirect,
-                  notice: "#{@resource.class.name } #{ @resource.id } Created",
-                )
-              end
+              return unless @resource.valid?
+
+              redirect_to(
+                redirect_url,
+                notice: "#{@resource.class.name} #{@resource.id} Created",
+              )
             end
 
             def edit
               @resource = the_form_class.new find_resource
 
-              set_redirect
+              set_redirect_url
             end
 
             def update
@@ -51,21 +51,21 @@ module MiniForm
 
               # NOTE(DZ): POST is used by form submission. We also use PUT in
               # best-in-place editors
-              if @resource.valid? && request.method == 'POST'
-                redirect_to(
-                  get_redirect,
-                  notice: "#{@resource.class.name } #{ @resource.id } Updated",
-                )
-              end
+              return unless @resource.valid? && request.method == 'POST'
+
+              redirect_to(
+                redirect_url,
+                notice: "#{@resource.class.name} #{@resource.id} Updated",
+              )
             end
 
             private
 
-            def set_redirect
+            def set_redirect_url
               cookies[:succes_redirect_url] = request.referer
             end
 
-            def get_redirect
+            def redirect_url
               cookies[:succes_redirect_url]
             end
           end
