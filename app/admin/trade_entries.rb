@@ -19,12 +19,13 @@ ActiveAdmin.register TradeEntry, as: 'Trade Entry' do
     column :status do |resource|
       bip_status resource, reload: true
     end
-    column :kind
+    column :kind do |resource|
+      bip_kind resource, reload: true
+    end
     column :open_price
     column :close_price
     column :profit
     column :profit_percentage
-    column :paper
     actions
   end
 
@@ -103,5 +104,9 @@ ActiveAdmin.register TradeEntry, as: 'Trade Entry' do
 
       f.action :submit, button_html: { 'data-confirm': 'Submit?' }
     end
+  end
+
+  member_action :toggle_kind, method: :put do
+    resource.update!(kind: resource.long? ? :short : :long)
   end
 end
