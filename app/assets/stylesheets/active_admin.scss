@@ -25,9 +25,6 @@
 }
 
 .status_tag {
-  color: white;
-  text-decoration: none;
-
   &.opened {
     color: white;
     background-color: darkslateblue;
@@ -56,5 +53,18 @@
   &.short {
     color: white;
     background-color: darkred;
+  }
+}
+
+.panel_actions {
+  padding: 10px 0;
+  display: flex;
+
+  span {
+    display: block;
+  }
+
+  span + span {
+    margin-left: 7px;
   }
 }

@@ -39,27 +39,27 @@ PORT=3000
          2. [x] add lock logic into best_in_place_helper
          3. [x] add styles to status_tags for specific method
       10. [ ] Forms
-         1. [ ] add tp/open amount limits (25% | 50% | 75% | 100%)
-         2. [ ] make analyses custom template
-         3. [ ] make log custom template
-         4. [x] Always redirect back
-         5. [ ] Add BIP in index pages
-         6. [ ] Only show analyses that exists
-      11. [ ] In place forms
-          1.  [ ] add quick link to open add position (longs buy / shorts sell)
-          2.  [ ] add quick link to close add position
+         4. [ ] make analyses custom template
+         5. [ ] make log custom template
+         6. [x] Always redirect back
+         7. [ ] Add BIP in index pages
+         8. [ ] Only show analyses that exists
+         9. [ ] add tp/open amount limits (25% | 50% | 75% | 100%)
+      11. [x] In place forms
+          1.  [x] add quick link to open add position (longs buy / shorts sell)
+          2.  [x] add quick link to close add position
       12. [ ] Index page
           1.  [ ] fix NaN, show possible results
       13. [ ] side bar 
-         7. [ ] figure out why you have 2x sidebar
-         8.  [ ] clean up stats we show
+         10. [ ] figure out why you have 2x sidebar
+         11. [ ] clean up stats we show
             1. [ ] show opened amount
             2. [ ] show closed amount
             3. [ ] show position size
             4. [ ] show cancelled amount
             5. [ ] show if current position has outstand positions
                1. [ ] maybe something we persist
-         9.  [ ] maybe make position fixed on screen
+         12. [ ] maybe make position fixed on screen
    2. models
       1. [x] memos on trade entry
       2. [x] normalize fields
@@ -92,6 +92,7 @@ PORT=3000
 
 Bugs 
 1. [x] Fix bug with bip_status not reloading (error in value)
+2. [ ] Fix calculation issue with profit $ and %
 
 
 tags

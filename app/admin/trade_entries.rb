@@ -45,8 +45,25 @@ ActiveAdmin.register TradeEntry, as: 'Trade Entry' do
     default_main_content
 
     panel 'Logs' do
-      div do
-        link_to 'New', new_admin_trade_log_path(entry_id: resource.id)
+      div class: 'panel_actions' do
+        span do
+          link_to(
+            'Open Position',
+            new_admin_trade_log_path(
+              entry_id: resource.id,
+              kind: resource.kind,
+            )
+          )
+        end
+        span do
+          link_to(
+            'Close Position',
+            new_admin_trade_log_path(
+              entry_id: resource.id,
+              kind: resource.short? ? :long : :short
+            ),
+          )
+        end
       end
 
       tabs do
