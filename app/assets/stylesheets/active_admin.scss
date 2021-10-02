@@ -70,7 +70,7 @@ textarea {
   font-size: 1.2em !important;
 }
 
-// NOTE(DZ): Render new lines
-td {
+// NOTE(DZ): Render new line character in sidebar
+.sidebar .attributes_table td {
   white-space: pre-wrap;
 }
