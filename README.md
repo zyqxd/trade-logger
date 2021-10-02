@@ -95,8 +95,6 @@ PORT=3000
          3. [ ] add counter cache for analyses
          4. [ ] lock price after close
          5. [ ] lock amount after close
-      9.  [ ] bugs
-         6. [ ] N+1 on entry screen issue
 
 Bugs 
 1. [x] Fix bug with bip_status not reloading (error in value)
