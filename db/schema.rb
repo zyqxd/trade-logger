@@ -84,9 +84,6 @@ ActiveRecord::Schema.define(version: 2021_10_02_200831) do
     t.decimal "profit_percentage", precision: 12, scale: 8
     t.decimal "true_profit", precision: 8, scale: 2
     t.decimal "true_profit_percentage", precision: 12, scale: 8
-    t.decimal "stop_loss", precision: 8, scale: 2
-    t.decimal "risk", precision: 8, scale: 2
-    t.decimal "reward", precision: 8, scale: 2
     t.decimal "paper_open_price", precision: 8, scale: 2
     t.decimal "paper_close_price", precision: 8, scale: 2
     t.decimal "paper_amount", precision: 12, scale: 8

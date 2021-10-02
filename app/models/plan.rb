@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: plans
@@ -23,5 +25,5 @@ class Plan < ApplicationRecord
            dependent: :nullify,
            inverse_of: :plan
 
-  validates :name, presence: :true
+  validates :name, presence: true
 end

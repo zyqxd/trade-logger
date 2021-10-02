@@ -10,6 +10,7 @@ ActiveAdmin.register Plan do
   index do
     id_column
     column :name
+    column :trade_entries_count
     actions
   end
 

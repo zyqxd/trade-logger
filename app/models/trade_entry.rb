@@ -17,10 +17,7 @@
 #  paper_open_price       :decimal(8, 2)
 #  profit                 :decimal(8, 2)
 #  profit_percentage      :decimal(12, 8)
-#  reward                 :decimal(8, 2)
-#  risk                   :decimal(8, 2)
 #  status                 :string           default("opened"), not null
-#  stop_loss              :decimal(8, 2)
 #  true_profit            :decimal(8, 2)
 #  true_profit_percentage :decimal(12, 8)
 #  created_at             :datetime         not null
