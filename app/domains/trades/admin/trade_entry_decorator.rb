@@ -42,6 +42,10 @@ module Trades
         end
       end
 
+      def amount
+        [trade_entry.amount, trade_entry.paper_amount].max
+      end
+
       def paper_open_price
         number_to_accounting trade_entry.paper_open_price
       end

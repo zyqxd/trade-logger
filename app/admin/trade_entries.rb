@@ -28,8 +28,9 @@ ActiveAdmin.register TradeEntry, as: 'Trade Entry' do
     end
     column :open
     column :close
+    column :amount
     column :profit
-    column :profit_percentage
+    column '%', &:profit_percentage
     column :plan do |resource|
       if resource.plan.blank?
         'N/A'

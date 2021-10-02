@@ -53,7 +53,7 @@ PORT=3000
           2.  [x] show paper prices
           3.  [x] show proper formatting of numbers
       13. [ ] side bar 
-         10. [ ] figure out why you have 2x sidebar
+         10. [x] figure out why you have 2x sidebar
          11. [ ] clean up stats we show
             1. [ ] show opened amount
             2. [ ] show closed amount
