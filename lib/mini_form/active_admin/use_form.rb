@@ -49,7 +49,9 @@ module MiniForm
                 '/', '_'
               ).to_sym]
 
-              if @resource.valid?
+              # NOTE(DZ): POST is used by form submission. We also use PUT in
+              # best-in-place editors
+              if @resource.valid? && request.method == 'POST'
                 redirect_to(
                   get_redirect,
                   notice: "#{@resource.class.name } #{ @resource.id } Updated",

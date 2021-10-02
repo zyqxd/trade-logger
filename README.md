@@ -91,7 +91,7 @@ PORT=3000
          1. [ ] N+1 on entry screen issue
 
 Bugs 
-1. [ ] Fix bug with bip_status not reloading (error in value)
+1. [x] Fix bug with bip_status not reloading (error in value)
 
 
 tags
