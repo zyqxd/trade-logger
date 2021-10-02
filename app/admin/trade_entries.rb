@@ -23,8 +23,8 @@ ActiveAdmin.register TradeEntry, as: 'Trade Entry' do
     column :kind do |resource|
       bip_kind resource, reload: true
     end
-    column 'Paper Open', &:paper_open_price
-    column 'Paper Close', &:paper_close_price
+    column 'Open', &:open
+    column 'Close', &:close
     column :profit
     column :profit_percentage
     actions

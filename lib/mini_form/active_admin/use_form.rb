@@ -12,10 +12,6 @@ module MiniForm
           controller do
             define_method(:the_form_class) { form_class }
 
-            def show
-              @resource = the_form_class.new find_resource
-            end
-
             def new
               @resource = the_form_class.new
               @resource.attributes = params.permit(*@resource.attribute_names)

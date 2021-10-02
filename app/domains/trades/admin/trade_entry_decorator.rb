@@ -14,8 +14,28 @@ module Trades
         trade_entry.id
       end
 
+      def self.name
+        'Trade Entry'
+      end
+
       def initialize(trade_entry)
         @trade_entry = trade_entry || TradeEntry.new
+      end
+
+      def open
+        if trade_entry.open_price.present?
+          number_to_accounting trade_entry.open_price
+        else
+          number_to_accounting trade_entry.paper_open_price
+        end
+      end
+
+      def close
+        if trade_entry.close_price.present?
+          number_to_accounting trade_entry.close_price
+        else
+          number_to_accounting trade_entry.paper_close_price
+        end
       end
 
       def paper_open_price
@@ -43,9 +63,7 @@ module Trades
       end
 
       def profit_percentage
-        return 'N/A' if trade_entry.profit_percentage.blank?
-
-        number_to_percentage trade_entry.profit_percentage, precision: 2
+        percentage trade_entry.profit_percentage
       end
 
       def true_profit
@@ -53,12 +71,16 @@ module Trades
       end
 
       def true_profit_percentage
-        return 'N/A' if trade_entry.true_profit_percentage.blank?
-
-        number_to_percentage trade_entry.true_profit_percentage, precision: 2
+        percentage trade_entry.true_profit_percentage
       end
 
       private
+
+      def percentage(number)
+        return 'N/A' if number.blank? || number.nan?
+
+        number_to_percentage number, precision: 2
+      end
 
       def number_to_accounting(number)
         return 'N/A' if number.blank? || number.nan?
