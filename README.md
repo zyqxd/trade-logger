@@ -104,8 +104,9 @@ Bugs
 3. [ ] Fix/Optimize excess db calls in model callbacks
 
 Trade Plans
-- detailed sections with text
-- add as mandatory section for each entry
+- [ ] detailed sections with text
+- [ ] add as mandatory section for each entry
+- [ ] Sidebar plan while creating in form
 
 tags
 - should paper & stopped flags be tags?
