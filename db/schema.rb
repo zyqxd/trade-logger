@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_30_013520) do
+ActiveRecord::Schema.define(version: 2021_10_02_154835) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,12 @@ ActiveRecord::Schema.define(version: 2021_09_30_013520) do
     t.decimal "profit_percentage", precision: 12, scale: 8
     t.decimal "true_profit", precision: 8, scale: 2
     t.decimal "true_profit_percentage", precision: 12, scale: 8
+    t.decimal "stop_loss", precision: 8, scale: 2
+    t.decimal "risk", precision: 8, scale: 2
+    t.decimal "reward", precision: 8, scale: 2
+    t.decimal "paper_open_price", precision: 8, scale: 2
+    t.decimal "paper_close_price", precision: 8, scale: 2
+    t.decimal "paper_amount", precision: 12, scale: 8
   end
 
   create_table "trade_log_analyses", force: :cascade do |t|
@@ -106,7 +112,22 @@ ActiveRecord::Schema.define(version: 2021_09_30_013520) do
     t.index ["entry_id"], name: "index_trade_logs_on_entry_id"
   end
 
+  create_table "trades", force: :cascade do |t|
+    t.bigint "trade_entry_id", null: false
+    t.datetime "open_time"
+    t.datetime "close_time"
+    t.decimal "open_price", precision: 8, scale: 2
+    t.decimal "close_price", precision: 8, scale: 2
+    t.boolean "post_open", default: false, null: false
+    t.boolean "post_close", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.decimal "amount", precision: 12, scale: 8, default: "0.0", null: false
+    t.index ["trade_entry_id"], name: "index_trades_on_trade_entry_id"
+  end
+
   add_foreign_key "trade_log_analyses", "timeframes"
   add_foreign_key "trade_log_analyses", "trade_logs"
   add_foreign_key "trade_logs", "trade_entries", column: "entry_id"
+  add_foreign_key "trades", "trade_entries"
 end

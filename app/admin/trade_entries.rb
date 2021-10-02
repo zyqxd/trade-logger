@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register TradeEntry, as: 'Trade Entry' do
+  decorate_with Trades::Admin::TradeEntryDecorator
   MiniForm::ActiveAdmin::UseForm.call self, Trades::Admin::TradeEntryForm
 
   menu label: 'Trade Entry'
@@ -22,8 +23,8 @@ ActiveAdmin.register TradeEntry, as: 'Trade Entry' do
     column :kind do |resource|
       bip_kind resource, reload: true
     end
-    column :open_price
-    column :close_price
+    column 'Paper Open', &:paper_open_price
+    column 'Paper Close', &:paper_close_price
     column :profit
     column :profit_percentage
     actions

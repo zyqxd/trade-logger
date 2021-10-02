@@ -12,9 +12,15 @@
 #  margin                 :decimal(8, 2)    default(1.0), not null
 #  open_price             :decimal(8, 2)
 #  paper                  :boolean          default(FALSE), not null
+#  paper_amount           :decimal(12, 8)
+#  paper_close_price      :decimal(8, 2)
+#  paper_open_price       :decimal(8, 2)
 #  profit                 :decimal(8, 2)
 #  profit_percentage      :decimal(12, 8)
+#  reward                 :decimal(8, 2)
+#  risk                   :decimal(8, 2)
 #  status                 :string           default("opened"), not null
+#  stop_loss              :decimal(8, 2)
 #  true_profit            :decimal(8, 2)
 #  true_profit_percentage :decimal(12, 8)
 #  created_at             :datetime         not null
@@ -81,13 +87,17 @@ class TradeEntry < ApplicationRecord
   end
 
   def refresh_aggregate_with_callbacks
-    scope = long? ? closed_logs.long : closed_logs.short
-    inverse_scope = long? ? closed_logs.short : closed_logs.long
+    scope = long? ? logs.long : logs.short
+    inverse = long? ? logs.short : logs.long
 
+    # TODO(DZ): There are a lot of db calls here
     update(
-      amount: scope.sum(:amount),
-      open_price: scope.weighted_avg,
-      close_price: inverse_scope.weighted_avg,
+      paper_amount: scope.sum(:amount),
+      paper_open_price: scope.weighted_avg,
+      paper_close_price: inverse.weighted_avg,
+      amount: scope.closed.sum(:amount),
+      open_price: scope.closed.weighted_avg,
+      close_price: inverse.closed.weighted_avg,
       updated_at: Time.current,
     )
   end
@@ -102,6 +112,7 @@ class TradeEntry < ApplicationRecord
     # NOTE(DZ): We want to only use closed logs. No paper profits
     return nil if close_price.blank? || position.blank?
 
+    # TODO(DZ): There are a lot of db calls here
     normalized_profit = (long? ? 1.0 : -1.0) * (close_price - open_price)
     closed_amount = (long? ? closed_logs.short : closed_logs.long).sum(:amount)
     self.profit = normalized_profit * closed_amount

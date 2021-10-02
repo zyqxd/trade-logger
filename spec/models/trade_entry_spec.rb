@@ -12,9 +12,15 @@
 #  margin                 :decimal(8, 2)    default(1.0), not null
 #  open_price             :decimal(8, 2)
 #  paper                  :boolean          default(FALSE), not null
+#  paper_amount           :decimal(12, 8)
+#  paper_close_price      :decimal(8, 2)
+#  paper_open_price       :decimal(8, 2)
 #  profit                 :decimal(8, 2)
 #  profit_percentage      :decimal(12, 8)
+#  reward                 :decimal(8, 2)
+#  risk                   :decimal(8, 2)
 #  status                 :string           default("opened"), not null
+#  stop_loss              :decimal(8, 2)
 #  true_profit            :decimal(8, 2)
 #  true_profit_percentage :decimal(12, 8)
 #  created_at             :datetime         not null
@@ -134,13 +140,26 @@ describe TradeEntry do
   describe '#refresh_aggregate_with_callbacks' do
     let(:entry) { create :trade_entry, :long }
 
+    it 'saves amount as 0 if no opens were present' do
+      create :trade_log, :short, entry: entry
+
+      expect(entry.amount).to eq 0.0
+    end
+
+    it 'saves amount as sum of closed long logs' do
+      create :trade_log, :long, amount: 0.1, entry: entry
+      create :trade_log, :long, amount: 0.2, entry: entry
+
+      expect(entry.amount).to eq 0.3
+    end
+
     it 'saves open_price as nil if no opens were present' do
       create :trade_log, :short, entry: entry
 
       expect(entry.open_price).to be_nil
     end
 
-    it 'saves close_price as weighted average of all long logs' do
+    it 'saves close_price as weighted average of closed long logs' do
       create :trade_log, :long, price: 100, amount: 0.1, entry: entry
       create :trade_log, :long, price: 50, amount: 0.2, entry: entry
 
@@ -153,11 +172,32 @@ describe TradeEntry do
       expect(entry.close_price).to be_nil
     end
 
-    it 'saves close_price as weighted average of all short logs' do
+    it 'saves close_price as weighted average of closed short logs' do
       create :trade_log, :short, price: 100, amount: 0.1, entry: entry
       create :trade_log, :short, price: 50, amount: 0.2, entry: entry
 
       expect(entry.close_price).to be_within(0.01).of(66.66)
+    end
+
+    it 'saves paper amount as sum of all long logs' do
+      create :trade_log, :long, amount: 0.1, entry: entry
+      create :trade_log, :long, :opened, amount: 0.2, entry: entry
+
+      expect(entry.paper_amount).to eq 0.3
+    end
+
+    it 'saves paper_open_price as weighted average of all long logs' do
+      create :trade_log, :long, price: 100, amount: 0.1, entry: entry
+      create :trade_log, :long, :opened, price: 50, amount: 0.2, entry: entry
+
+      expect(entry.paper_open_price).to be_within(0.01).of(66.66)
+    end
+
+    it 'saves paper_close_price as weighted average of all short logs' do
+      create :trade_log, :short, price: 100, amount: 0.1, entry: entry
+      create :trade_log, :short, :opened, price: 50, amount: 0.2, entry: entry
+
+      expect(entry.paper_close_price).to be_within(0.01).of(66.66)
     end
   end
 

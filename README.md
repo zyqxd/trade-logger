@@ -101,6 +101,11 @@ PORT=3000
 Bugs 
 1. [x] Fix bug with bip_status not reloading (error in value)
 2. [ ] Fix calculation issue with profit $ and %
+3. [ ] Fix/Optimize excess db calls in model callbacks
+
+Trade Plans
+- detailed sections with text
+- add as mandatory section for each entry
 
 tags
 - should paper & stopped flags be tags?
@@ -127,11 +132,11 @@ Another Overall round
    1. break this down further
    2. UI
       1. Fix NaN displayed in form
-      3. Redirect to parent object after filling form (if directed from parent)
-      4. paste entry system
-      5. add counters and show `memos` from tradelog panel actions in trade entries
-      6. Allow trade entries create action to redirect to show page
-      7. Actual form validations (show errors instead of 500)
+      2. Redirect to parent object after filling form (if directed from parent)
+      3. paste entry system
+      4. add counters and show `memos` from tradelog panel actions in trade entries
+      5. Allow trade entries create action to redirect to show page
+      6. Actual form validations (show errors instead of 500)
    3. Models
       1. Could clean up some audit trail for important columns
       2. Could add guard against changing calculated columns
@@ -159,6 +164,7 @@ Users
 - [x] login
 - [x] database sync
 - [x] Auto delegate all methods (probably rename model)
+- [ ] Some base class for admin decorators
 - [ ] emotional score
 - [ ] Markdown
 - [ ] ci? https://circleci.com/integrations/heroku
