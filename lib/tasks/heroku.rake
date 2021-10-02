@@ -3,6 +3,7 @@
 namespace :heroku do
   task deploy: :environment do
     system('git push heroku master')
+    system('heroku run rails db:migrate')
   end
 
   task sync: [:environment, 'db:reset'] do
