@@ -25,6 +25,15 @@
 #  true_profit_percentage :decimal(12, 8)
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  plan_id                :bigint
+#
+# Indexes
+#
+#  index_trade_entries_on_plan_id  (plan_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (plan_id => plans.id)
 #
 FactoryBot.define do
   factory :trade_entry do

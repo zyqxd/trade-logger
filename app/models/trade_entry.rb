@@ -25,6 +25,15 @@
 #  true_profit_percentage :decimal(12, 8)
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  plan_id                :bigint
+#
+# Indexes
+#
+#  index_trade_entries_on_plan_id  (plan_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (plan_id => plans.id)
 #
 class TradeEntry < ApplicationRecord
   audited except: %i[
@@ -39,6 +48,12 @@ class TradeEntry < ApplicationRecord
     true_profit_percentage
   ]
   has_associated_audits
+
+  belongs_to :plan,
+             class_name: 'Plan',
+             inverse_of: :trade_entries,
+             counter_cache: true,
+             optional: true
 
   has_many :logs,
            class_name: 'TradeLog',

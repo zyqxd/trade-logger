@@ -105,8 +105,8 @@ Bugs
 
 Trade Plans
 - [ ] detailed sections with text
-- [ ] add as mandatory section for each entry
 - [ ] Sidebar plan while creating in form
+- [ ] add as required to
 
 tags
 - should paper & stopped flags be tags?

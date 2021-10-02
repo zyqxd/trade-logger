@@ -3,7 +3,7 @@
 ActiveAdmin.register TradeLog, as: 'Trade Log' do
   MiniForm::ActiveAdmin::UseForm.call self, Trades::Admin::TradeLogForm
 
-  menu label: 'Trade Log'
+  menu priority: 3
 
   filter :entry_id
   filter :kind, as: :select, collection: TradeLog.kinds

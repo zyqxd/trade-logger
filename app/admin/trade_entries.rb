@@ -4,7 +4,7 @@ ActiveAdmin.register TradeEntry, as: 'Trade Entry' do
   decorate_with Trades::Admin::TradeEntryDecorator
   MiniForm::ActiveAdmin::UseForm.call self, Trades::Admin::TradeEntryForm
 
-  menu label: 'Trade Entry'
+  menu priority: 2
 
   filter :coin
   filter :kind, as: :select, collection: TradeEntry.kinds

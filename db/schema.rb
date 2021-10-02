@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_02_154835) do
+ActiveRecord::Schema.define(version: 2021_10_02_200831) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,20 @@ ActiveRecord::Schema.define(version: 2021_10_02_154835) do
     t.index ["memoable_type", "memoable_id"], name: "index_memos_on_memoable"
   end
 
+  create_table "plans", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "timeframes"
+    t.text "edge"
+    t.text "risk_management"
+    t.text "enter_strategy"
+    t.text "exit_strategy"
+    t.text "requirements"
+    t.text "notes"
+    t.integer "trade_entries_count", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "timeframes", force: :cascade do |t|
     t.string "code", null: false
     t.string "name", null: false
@@ -76,6 +90,8 @@ ActiveRecord::Schema.define(version: 2021_10_02_154835) do
     t.decimal "paper_open_price", precision: 8, scale: 2
     t.decimal "paper_close_price", precision: 8, scale: 2
     t.decimal "paper_amount", precision: 12, scale: 8
+    t.bigint "plan_id"
+    t.index ["plan_id"], name: "index_trade_entries_on_plan_id"
   end
 
   create_table "trade_log_analyses", force: :cascade do |t|
@@ -126,6 +142,7 @@ ActiveRecord::Schema.define(version: 2021_10_02_154835) do
     t.index ["trade_entry_id"], name: "index_trades_on_trade_entry_id"
   end
 
+  add_foreign_key "trade_entries", "plans"
   add_foreign_key "trade_log_analyses", "timeframes"
   add_foreign_key "trade_log_analyses", "trade_logs"
   add_foreign_key "trade_logs", "trade_entries", column: "entry_id"

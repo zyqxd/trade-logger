@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register Memo, as: 'Memo' do
+  menu false
+
   permit_params(*Memo.column_names)
 
   controller do
