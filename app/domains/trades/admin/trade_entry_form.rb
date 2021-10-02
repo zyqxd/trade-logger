@@ -7,6 +7,7 @@ module Trades
         :trade_entry,
         save: true,
         attributes: %i[
+          plan_id
           coin
           kind
           paper

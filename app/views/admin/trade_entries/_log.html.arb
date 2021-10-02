@@ -4,7 +4,6 @@ order = resource.long? ? :desc : :asc
 logs = resource.logs.order(kind: order, created_at: :asc).send(scope)
 
 table_for logs do
-  column :id
   column :status do |log|
     bip_status log, reload: true
   end
@@ -24,6 +23,11 @@ table_for logs do
     bip_boolean log, :cancelled?, url: [:cancel, :admin, log], reload: true
   end
   column :actions do |log|
-    link_to 'View', admin_trade_log_path(log)
+    span do
+      link_to 'View', admin_trade_log_path(log)
+    end
+    span do
+      link_to 'Edit', edit_admin_trade_log_path(log)
+    end
   end
 end

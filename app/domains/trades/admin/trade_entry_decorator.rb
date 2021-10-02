@@ -18,6 +18,10 @@ module Trades
         'Trade Entry'
       end
 
+      def title
+        "Trade Entry ##{trade_entry.id}"
+      end
+
       def initialize(trade_entry)
         @trade_entry = trade_entry || TradeEntry.new
       end

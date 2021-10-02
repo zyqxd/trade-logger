@@ -39,6 +39,9 @@ class TradeEntry < ApplicationRecord
     amount
     open_price
     close_price
+    paper_amount
+    paper_open_price
+    paper_close_price
     profit
     profit_percentage
     true_profit

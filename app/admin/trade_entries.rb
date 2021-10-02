@@ -8,11 +8,14 @@ ActiveAdmin.register TradeEntry, as: 'Trade Entry' do
 
   filter :coin
   filter :kind, as: :select, collection: TradeEntry.kinds
+  filter :plan, as: :select, collection: Plan.all
 
   scope :opened, :live_opened, default: true
   scope :closed, :live_closed
   scope :cancelled, :live_cancelled
   scope :paper
+
+  includes :plan, :logs
 
   index do
     id_column
@@ -27,7 +30,31 @@ ActiveAdmin.register TradeEntry, as: 'Trade Entry' do
     column :close
     column :profit
     column :profit_percentage
+    column :plan do |resource|
+      if resource.plan.blank?
+        'N/A'
+      else
+        link_to resource.plan.name, admin_plan_path(resource.plan)
+      end
+    end
     actions
+  end
+
+  sidebar :plan, only: %i[show edit] do
+    if resource.plan.blank?
+      'No plan!'
+    else
+      attributes_table_for resource.plan do
+        row :plan, &:name
+        row :timeframes
+        row :edge
+        row :risk_management
+        row :enter_strategy
+        row :exit_strategy
+        row :requirements
+        row :notes
+      end
+    end
   end
 
   sidebar :stats, only: %i[show] do
@@ -95,6 +122,15 @@ ActiveAdmin.register TradeEntry, as: 'Trade Entry' do
     f.semantic_errors(*f.object.errors.keys)
 
     f.inputs 'Trade Entry' do
+      f.input :plan_id,
+              as: :search_select,
+              url: proc { admin_plans_path },
+              label: 'Search Plan by Name',
+              fields: %i[name],
+              display_name: 'name',
+              order_by: 'id_asc',
+              minimum_input_length: 2
+
       f.input :status, as: :select, collection: TradeEntry.statuses
       f.input :coin, as: :select, collection: TradeEntry.coins
       f.input :kind, as: :select, collection: TradeEntry.kinds

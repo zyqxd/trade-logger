@@ -105,8 +105,7 @@ Bugs
 
 Trade Plans
 - [x] detailed sections with text
-- [ ] Sidebar plan while creating in form
-- [ ] add as required to
+- [x] Sidebar plan while creating in form
 
 tags
 - should paper & stopped flags be tags?
@@ -166,6 +165,7 @@ Users
 - [x] database sync
 - [x] Auto delegate all methods (probably rename model)
 - [ ] Some base class for admin decorators
+- [ ] https://github.com/aasm/aasm
 - [ ] emotional score
 - [ ] Markdown
 - [ ] ci? https://circleci.com/integrations/heroku
