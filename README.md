@@ -42,7 +42,7 @@ overall part II
          5. [ ] show if current position has outstand positions
             1. [ ] maybe something we persist
       12. [ ] maybe make position fixed on screen
-  1.  [ ] make plan show page display word-wrap
+  1.  [x] make plan show page display word-wrap
 2. models
    1. [ ] Add to trade log analysis
       1. [ ] refactor to key/value analyses (likely full denormalized so we can see what we use more)

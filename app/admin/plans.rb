@@ -15,7 +15,20 @@ ActiveAdmin.register Plan do
   end
 
   show do
-    default_main_content
+    panel 'Plan' do
+      attributes_table_for resource do
+        row :name
+        row :timeframes, class: 'text'
+        row :edge, class: 'text'
+        row :risk_management, class: 'text'
+        row :enter_strategy, class: 'text'
+        row :exit_strategy, class: 'text'
+        row :requirements, class: 'text'
+        row :notes, class: 'text'
+        row :created_at
+        row :updated_at
+      end
+    end
 
     panel 'Entries' do
       div class: 'panel_actions' do

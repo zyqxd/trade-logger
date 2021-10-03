@@ -71,7 +71,8 @@ textarea {
 }
 
 // NOTE(DZ): Render new line character in sidebar
-.sidebar .attributes_table td {
+.sidebar .attributes_table td,
+tr.text td {
   white-space: pre-wrap;
 }
 
