@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-order = resource.long? ? :desc : :asc
+order = resource.long? ? :asc : :desc
 logs = resource.logs.order(kind: order, created_at: :asc).send(scope)
 
 table_for logs do
