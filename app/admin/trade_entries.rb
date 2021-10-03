@@ -43,14 +43,14 @@ ActiveAdmin.register TradeEntry, as: 'Trade Entry' do
 
   sidebar :plan, class: Rails.env, only: %i[show new edit] do
     attributes_table_for resource.plan do
-      row :plan, &:name
-      row :timeframes
-      row :edge
-      row :risk_management
-      row :enter_strategy
-      row :exit_strategy
-      row :requirements
-      row :notes
+      row :plan, class: 'text', &:name
+      row :timeframes, class: 'text'
+      row :edge, class: 'text'
+      row :risk_management, class: 'text'
+      row :enter_strategy, class: 'text'
+      row :exit_strategy, class: 'text'
+      row :requirements, class: 'text'
+      row :notes, class: 'text'
     end
   end
 
@@ -59,6 +59,9 @@ ActiveAdmin.register TradeEntry, as: 'Trade Entry' do
       row :status do
         bip_status resource, reload: true
       end
+      row :position
+      row :open
+      row :close
       row :profit
       row :true_profit
       row :profit_percentage
@@ -67,7 +70,18 @@ ActiveAdmin.register TradeEntry, as: 'Trade Entry' do
   end
 
   show do
-    default_main_content
+    panel 'Trade Entry' do
+      attributes_table_for resource do
+        row :coin
+        row :kind
+        row :plan
+        row :paper
+        row :amount
+        row :margin
+        row :created_at
+        row :updated_at
+      end
+    end
 
     panel 'Logs' do
       div class: 'panel_actions' do

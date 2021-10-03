@@ -63,7 +63,7 @@ module Trades
       end
 
       def position
-        number_to_accounting trade.position
+        number_to_accounting trade_entry.position
       end
 
       def profit

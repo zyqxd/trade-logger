@@ -69,7 +69,7 @@ overall part II
 
 Bugs 
 1. [x] Fix bug with bip_status not reloading (error in value)
-2. [ ] Fix calculation issue with profit $ and %
+2. [x] Fix calculation issue with profit $ and %
 3. [ ] Fix/Optimize excess db calls in model callbacks
 4. [x] Fix bug with nil amount being compared in new trade entries
 
@@ -106,6 +106,7 @@ Another Overall round
       4. add counters and show `memos` from tradelog panel actions in trade entries
       5. Allow trade entries create action to redirect to show page
       6. Actual form validations (show errors instead of 500)
+      7. Make margin global setting for new trades
    3. Models
       1. Could clean up some audit trail for important columns
       2. Could add guard against changing calculated columns

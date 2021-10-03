@@ -71,8 +71,7 @@ textarea {
 }
 
 // NOTE(DZ): Render new line character in sidebar
-.sidebar .attributes_table td,
-tr.text td {
+.attributes_table tr.text td {
   white-space: pre-wrap;
 }
 
@@ -84,7 +83,13 @@ tr.text td {
     display: none;
   }
 
+  &#plan_sidebar_section:nth-of-type(2),
   &#plan_sidebar_section:nth-of-type(3) {
     display: none;
   }
+}
+
+// NOTE(DZ): Fix annoying margin difference between form and show page
+form.formtastic fieldset {
+  margin-top: 1em;
 }
