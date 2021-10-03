@@ -30,19 +30,26 @@ overall part II
       6. [ ] add tp/open amount limits (25% | 50% | 75% | 100%)
    2.  [ ] side bar 
       7.  [x] figure out why you have 2x sidebar
-      8.  [ ] clean up stats we show
+      8.  [ ] make plan fetch new plan info when creating logs and entries
+      9.  [ ] make plan in side bar when filling out log
+      10. [ ] make entry in side bar when filling out log
+          1.  [ ] check prod if 2x
+      11. [ ] clean up stats we show
          1. [ ] show opened amount
          2. [ ] show closed amount
          3. [ ] show position size
          4. [ ] show cancelled amount
          5. [ ] show if current position has outstand positions
             1. [ ] maybe something we persist
-      9.  [ ] maybe make position fixed on screen
+      12. [ ] maybe make position fixed on screen
+  1.  [ ] make plan show page display word-wrap
 2. models
    1. [ ] Add to trade log analysis
-      1. [ ] refactor to key/value analyses
-      2. [ ] add moving averages (maybe jsonb)
-      3. [ ] add pattern selection
+      1. [ ] refactor to key/value analyses (likely full denormalized so we can see what we use more)
+      2. [ ] more visual indicator for forms (toggles ideal)
+      3. [ ] add moving averages (maybe jsonb)
+      4. [ ] add pattern selections? (maybe not)
+      5. [ ] make timeframes + plans association, enforce new analysis form (can constraint uniqueness on timeframe + plan)
    2. [ ] migrations
       1. [x] migrate analysis `filled` to `closed`
       2. [ ] move cancelled out of status
@@ -64,6 +71,7 @@ Bugs
 1. [x] Fix bug with bip_status not reloading (error in value)
 2. [ ] Fix calculation issue with profit $ and %
 3. [ ] Fix/Optimize excess db calls in model callbacks
+4. [x] Fix bug with nil amount being compared in new trade entries
 
 tags
 - should paper & stopped flags be tags?

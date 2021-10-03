@@ -29,7 +29,7 @@ module MiniForm
 
               redirect_to(
                 redirect_url.presence || admin_root_path,
-                notice: "#{@resource.class.name} #{@resource.id} Created",
+                notice: "#{@resource.class.name} #{@resource.to_param} Created",
               )
             end
 
@@ -51,7 +51,7 @@ module MiniForm
 
               redirect_to(
                 redirect_url.presence || admin_root_path,
-                notice: "#{@resource.class.name} #{@resource.id} Updated",
+                notice: "#{@resource.class.name} #{@resource.to_param} Updated",
               )
             end
 
