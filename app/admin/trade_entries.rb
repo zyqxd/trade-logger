@@ -41,20 +41,16 @@ ActiveAdmin.register TradeEntry, as: 'Trade Entry' do
     actions
   end
 
-  sidebar :plan, class: Rails.env, only: %i[show edit] do
-    if resource.plan.blank?
-      'No plan!'
-    else
-      attributes_table_for resource.plan do
-        row :plan, &:name
-        row :timeframes
-        row :edge
-        row :risk_management
-        row :enter_strategy
-        row :exit_strategy
-        row :requirements
-        row :notes
-      end
+  sidebar :plan, class: Rails.env, only: %i[show new edit] do
+    attributes_table_for resource.plan do
+      row :plan, &:name
+      row :timeframes
+      row :edge
+      row :risk_management
+      row :enter_strategy
+      row :exit_strategy
+      row :requirements
+      row :notes
     end
   end
 

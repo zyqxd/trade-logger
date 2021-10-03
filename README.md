@@ -30,7 +30,7 @@ overall part II
       6. [ ] add tp/open amount limits (25% | 50% | 75% | 100%)
    2.  [ ] side bar 
       7.  [x] figure out why you have 2x sidebar
-      8.  [ ] make plan fetch new plan info when creating logs and entries
+      8.  [x] make plan fetch new plan info when creating logs and entries
       9.  [ ] make plan in side bar when filling out log
       10. [ ] make entry in side bar when filling out log
           1.  [ ] check prod if 2x
