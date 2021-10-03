@@ -36,6 +36,7 @@ ActiveAdmin.register Plan do
       end
       table_for resource.trade_entries.order(created_at: :desc) do
         column :id
+        column :created_at
         column :coin
         column :status do |entry|
           bip_status entry, reload: true
@@ -44,7 +45,7 @@ ActiveAdmin.register Plan do
           bip_kind entry, reload: true
         end
         column :amount
-        column :profit
+        column :profit, &:true_profit
         column :actions do |entry|
           link_to 'View', admin_trade_entry_path(entry)
         end

@@ -26,11 +26,12 @@ ActiveAdmin.register TradeEntry, as: 'Trade Entry' do
     column :kind do |resource|
       bip_kind resource, reload: true
     end
+    column :created_at
     column :open
     column :close
     column :amount
-    column :profit
-    column '%', &:profit_percentage
+    column :profit, &:true_profit
+    column '%', &:true_profit_percentage
     column :plan do |resource|
       if resource.plan.blank?
         'N/A'

@@ -82,6 +82,10 @@ module Trades
         percentage trade_entry.true_profit_percentage
       end
 
+      def created_at
+        trade_entry.created_at.strftime('%a %m/%d/%y %H:%M')
+      end
+
       private
 
       def percentage(number)
