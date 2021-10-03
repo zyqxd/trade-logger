@@ -6,6 +6,7 @@ ActiveAdmin.register Plan do
   permit_params(*Plan.column_names)
 
   config.filters = false
+  config.sort_order = 'trade_entries_count_desc'
 
   index do
     id_column
