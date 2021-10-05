@@ -5,6 +5,7 @@
 # Table name: plans
 #
 #  id                  :bigint           not null, primary key
+#  active              :boolean          default(TRUE), not null
 #  edge                :text
 #  enter_strategy      :text
 #  exit_strategy       :text
@@ -25,6 +26,9 @@ class Plan < ApplicationRecord
            class_name: 'TradeEntry',
            dependent: :nullify,
            inverse_of: :plan
+
+  scope :active, -> { where(active: true) }
+  scope :inactive, -> { where(active: false) }
 
   validates :name, presence: true
 end

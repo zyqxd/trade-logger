@@ -4,6 +4,7 @@ module Trades
   module Admin
     class PlanForm < MiniForm::ActiveAdmin::BaseForm
       model :plan, save: true, attributes: %i[
+        active
         edge
         enter_strategy
         exit_strategy

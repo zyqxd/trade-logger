@@ -136,11 +136,10 @@ ActiveAdmin.register TradeEntry, as: 'Trade Entry' do
     f.inputs 'Trade Entry' do
       f.input :plan_id,
               as: :search_select,
-              url: proc { admin_plans_path },
+              url: proc { active_admin_plans_path },
               label: 'Search Plan by Name',
               fields: %i[name],
               display_name: 'name',
-              order_by: 'id_asc',
               minimum_input_length: 2
 
       f.input :status, as: :select, collection: TradeEntry.statuses

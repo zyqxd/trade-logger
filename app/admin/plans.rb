@@ -8,10 +8,16 @@ ActiveAdmin.register Plan do
   config.filters = false
   config.sort_order = 'trade_entries_count_desc'
 
+  scope :active, default: true
+  scope :inactive
+
   index do
     id_column
     column :name
     column :trade_entries_count
+    column :active do |resource|
+      bip_boolean resource, :active, url: [:admin, resource], reload: true
+    end
     actions
   end
 
@@ -33,9 +39,12 @@ ActiveAdmin.register Plan do
     end
 
     panel 'Entries' do
-      div class: 'panel_actions' do
-        link_to 'New Trade', new_admin_trade_entry_path(plan_id: resource.id)
+      if resource.active?
+        div class: 'panel_actions' do
+          link_to 'New Trade', new_admin_trade_entry_path(plan_id: resource.id)
+        end
       end
+
       table_for resource.trade_entries.order(created_at: :desc) do
         column :id
         column :created_at
@@ -98,5 +107,9 @@ ActiveAdmin.register Plan do
     end
 
     f.actions
+  end
+
+  collection_action :active do
+    render json: { plans: Plan.active.ransack(params[:q]).result.as_json }
   end
 end
