@@ -52,9 +52,20 @@ module Trades
       end
 
       def margin
-        return margin if trade_entry.persisted? || trade_entry.plan.blank?
+        if trade_entry.persisted? || trade_entry.plan.blank?
+          trade_entry.margin
+        else
+          trade_entry.plan.margin
+        end
+      end
 
-        trade_entry.plan.margin
+      def status=(status)
+        trade_entry.status = status
+        return if status != 'closed'
+
+        trade_entry.logs.each do |log|
+          log.status = 'closed'
+        end
       end
     end
   end

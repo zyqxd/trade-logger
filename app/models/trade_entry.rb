@@ -59,7 +59,8 @@ class TradeEntry < ApplicationRecord
            class_name: 'TradeLog',
            inverse_of: :entry,
            foreign_key: :entry_id,
-           dependent: :destroy
+           dependent: :destroy,
+           autosave: true
 
   has_many :closed_logs,
            -> { closed },
@@ -77,7 +78,7 @@ class TradeEntry < ApplicationRecord
 
   enum coin: {
     adausdt: 'adausdt',
-    adausdt: 'adausdt',
+    adausd: 'adausd',
     btcusdt: 'btcusdt',
     btcusd: 'btcusd',
     ethusdt: 'ethusdt',
