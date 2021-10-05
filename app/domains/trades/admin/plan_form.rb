@@ -2,8 +2,22 @@
 
 module Trades
   module Admin
-    class PlanForm
-      model :plan, save: true, attributes: *Plan.column_names
+    class PlanForm < MiniForm::ActiveAdmin::BaseForm
+      model :plan, save: true, attributes: %i[
+        edge
+        enter_strategy
+        exit_strategy
+        margin
+        name
+        notes
+        requirements
+        risk_management
+        timeframes
+      ]
+
+      main_model :plan, Plan
+
+      delegate_missing_to :plan
 
       def self.name
         'Plan'

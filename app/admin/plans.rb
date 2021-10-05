@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register Plan do
-  MiniForm::ActiveAdmin::UseForm.call self, Trades::Admin::TradeEntryForm
+  MiniForm::ActiveAdmin::UseForm.call self, Trades::Admin::PlanForm
 
   menu priority: 1
 
