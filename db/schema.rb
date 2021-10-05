@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_03_190048) do
+ActiveRecord::Schema.define(version: 2021_10_05_213041) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "analyses", force: :cascade do |t|
+    t.string "indicator"
+    t.string "name", null: false
+    t.string "options"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "audits", force: :cascade do |t|
     t.integer "auditable_id"
@@ -59,6 +67,7 @@ ActiveRecord::Schema.define(version: 2021_10_03_190048) do
     t.integer "trade_entries_count", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.decimal "margin", precision: 8, scale: 4, default: "1.0", null: false
   end
 
   create_table "timeframes", force: :cascade do |t|
@@ -67,6 +76,22 @@ ActiveRecord::Schema.define(version: 2021_10_03_190048) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["code"], name: "index_timeframes_on_code", unique: true
+  end
+
+  create_table "trade_analyses", force: :cascade do |t|
+    t.bigint "timeframe_id", null: false
+    t.bigint "analysis_id", null: false
+    t.bigint "trade_entry_id", null: false
+    t.bigint "trade_log_id"
+    t.boolean "boolean_value"
+    t.string "string_value"
+    t.decimal "decimal_value", precision: 12, scale: 4
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["analysis_id"], name: "index_trade_analyses_on_analysis_id"
+    t.index ["timeframe_id"], name: "index_trade_analyses_on_timeframe_id"
+    t.index ["trade_entry_id"], name: "index_trade_analyses_on_trade_entry_id"
+    t.index ["trade_log_id"], name: "index_trade_analyses_on_trade_log_id"
   end
 
   create_table "trade_entries", force: :cascade do |t|
@@ -139,6 +164,10 @@ ActiveRecord::Schema.define(version: 2021_10_03_190048) do
     t.index ["trade_entry_id"], name: "index_trades_on_trade_entry_id"
   end
 
+  add_foreign_key "trade_analyses", "analyses"
+  add_foreign_key "trade_analyses", "timeframes"
+  add_foreign_key "trade_analyses", "trade_entries"
+  add_foreign_key "trade_analyses", "trade_logs"
   add_foreign_key "trade_entries", "plans"
   add_foreign_key "trade_log_analyses", "timeframes"
   add_foreign_key "trade_log_analyses", "trade_logs"

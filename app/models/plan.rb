@@ -8,6 +8,7 @@
 #  edge                :text
 #  enter_strategy      :text
 #  exit_strategy       :text
+#  margin              :decimal(8, 4)    default(1.0), not null
 #  name                :string           not null
 #  notes               :text
 #  requirements        :text

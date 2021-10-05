@@ -50,6 +50,12 @@ module Trades
       def initialize(trade_entry = nil)
         @trade_entry = trade_entry.presence || TradeEntry.new
       end
+
+      def margin
+        return margin if trade_entry.persisted? || trade_entry.plan.blank?
+
+        trade_entry.plan.margin
+      end
     end
   end
 end

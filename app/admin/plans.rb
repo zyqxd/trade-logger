@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register Plan do
-  menu priority: 1
+  MiniForm::ActiveAdmin::UseForm.call self, Trades::Admin::TradeEntryForm
 
-  permit_params(*Plan.column_names)
+  menu priority: 1
 
   config.filters = false
   config.sort_order = 'trade_entries_count_desc'
@@ -26,6 +26,7 @@ ActiveAdmin.register Plan do
         row :exit_strategy, class: 'text'
         row :requirements, class: 'text'
         row :notes, class: 'text'
+        row :margin
         row :created_at
         row :updated_at
       end
@@ -92,6 +93,8 @@ ActiveAdmin.register Plan do
               as: :text,
               hint: 'Anything else you want to reference',
               input_html: { rows: 3 }
+
+      f.input :margin, hint: 'Will be default for entries'
     end
 
     f.actions
