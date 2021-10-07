@@ -43,6 +43,8 @@ overall part II
             1. [ ] maybe something we persist
       12. [ ] maybe make position fixed on screen
   1.  [x] make plan show page display word-wrap
+  2.  [ ] Give color coding to coins
+  3.  [ ] Make form inputs toggles (EVERY FORM)
 2. models
    1. [ ] Add to trade log analysis
       1. [ ] refactor to key/value analyses (likely full denormalized so we can see what we use more)
