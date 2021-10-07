@@ -72,6 +72,7 @@ Bugs
 2. [x] Fix calculation issue with profit $ and %
 3. [ ] Fix/Optimize excess db calls in model callbacks
 4. [x] Fix bug with nil amount being compared in new trade entries
+5. [ ] Don't count cancelled logs for amount
 
 tags
 - should paper & stopped flags be tags?
