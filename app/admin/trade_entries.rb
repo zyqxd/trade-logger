@@ -6,7 +6,7 @@ ActiveAdmin.register TradeEntry, as: 'Trade Entry' do
 
   menu priority: 2
 
-  filter :coin
+  filter :coin, as: :select, collection: TradeEntry.coins
   filter :kind, as: :select, collection: TradeEntry.kinds
   filter :plan, as: :select, collection: Plan.all
 
