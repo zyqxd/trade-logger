@@ -12,7 +12,6 @@ ActiveAdmin.register TradeLog, as: 'Trade Log' do
 
   scope :opened, default: true
   scope :closed
-  scope :cancelled
 
   index do
     id_column

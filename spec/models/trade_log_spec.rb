@@ -42,7 +42,7 @@ describe TradeLog do
     it 'calculates weighted average of scope' do
       create :trade_log, :closed, price: 400, amount: 0.5
       create :trade_log, :closed, price: 1000, amount: 0.5
-      create :trade_log, :cancelled, price: 10_000, amount: 10
+      create :trade_log, :opened, price: 10_000, amount: 10
 
       expect(described_class.closed.weighted_avg).to eq 700
     end
@@ -69,12 +69,6 @@ describe TradeLog do
       trade_log.opened!
 
       expect(trade_log.locked?).to eq false
-    end
-
-    it 'is true if cancelled' do
-      trade_log.cancelled!
-
-      expect(trade_log.locked?).to eq true
     end
 
     it 'is true if closed' do

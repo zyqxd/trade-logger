@@ -55,6 +55,18 @@ module MiniForm
               )
             end
 
+            def destroy
+              resource = find_resource
+              result = resource.destroy
+
+              return unless result
+
+              redirect_back(
+                fallback_location: admin_root_path,
+                notice: "#{@resource.class.name} #{@resource.to_param} Removed",
+              )
+            end
+
             private
 
             def set_redirect_url

@@ -19,15 +19,15 @@ table_for logs do
   column :post do |log|
     bip_boolean log, :post, url: [:admin, log], reload: true
   end
-  column :cancel do |log|
-    bip_boolean log, :cancelled?, url: [:cancel, :admin, log], reload: true
-  end
   column :actions do |log|
     span do
       link_to 'View', admin_trade_log_path(log)
     end
     span do
       link_to 'Edit', edit_admin_trade_log_path(log)
+    end
+    span do
+      link_to 'Delete', admin_trade_log_path(log), method: :delete
     end
   end
 end

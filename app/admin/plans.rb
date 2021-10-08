@@ -3,6 +3,8 @@
 ActiveAdmin.register Plan do
   MiniForm::ActiveAdmin::UseForm.call self, Trades::Admin::PlanForm
 
+  actions :all, except: :destroy
+
   menu priority: 1
 
   config.filters = false

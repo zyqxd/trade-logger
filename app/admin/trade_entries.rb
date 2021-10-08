@@ -4,6 +4,8 @@ ActiveAdmin.register TradeEntry, as: 'Trade Entry' do
   decorate_with Trades::Admin::TradeEntryDecorator
   MiniForm::ActiveAdmin::UseForm.call self, Trades::Admin::TradeEntryForm
 
+  actions :all, except: :destroy
+
   menu priority: 2
 
   filter :coin, as: :select, collection: TradeEntry.coins
@@ -117,10 +119,6 @@ ActiveAdmin.register TradeEntry, as: 'Trade Entry' do
 
         tab 'Closed' do
           render 'admin/trade_entries/log', scope: :closed
-        end
-
-        tab 'Cancelled' do
-          render 'admin/trade_entries/log', scope: :cancelled
         end
       end
     end

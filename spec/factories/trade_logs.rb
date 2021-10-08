@@ -49,9 +49,5 @@ FactoryBot.define do
     trait :opened do
       status { :opened }
     end
-
-    trait :cancelled do
-      status { :cancelled }
-    end
   end
 end

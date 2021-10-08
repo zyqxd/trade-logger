@@ -38,13 +38,7 @@ class TradeLog < ApplicationRecord
 
   has_many :memos, as: :memoable, dependent: :destroy
 
-  scope :active, -> { where.not(status: 'cancelled') }
-
-  enum status: {
-    opened: 'opened',
-    closed: 'closed',
-    cancelled: 'cancelled',
-  }
+  enum status: { opened: 'opened', closed: 'closed' }
 
   enum kind: {
     long: 'long',
@@ -71,7 +65,7 @@ class TradeLog < ApplicationRecord
   end
 
   def locked?
-    cancelled? || closed?
+    closed?
   end
 
   private

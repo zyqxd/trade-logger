@@ -21,27 +21,6 @@ PORT=3000
 
 overall part II
 1. UI
-   1.  [ ] Forms
-      1. [ ] make analyses custom template
-      2. [ ] make log custom template
-      3. [x] Always redirect back
-      4. [ ] Add BIP in index pages
-      5. [ ] Only show analyses that exists
-      6. [ ] add tp/open amount limits (25% | 50% | 75% | 100%)
-   2.  [ ] side bar 
-      7.  [x] figure out why you have 2x sidebar
-      8.  [x] make plan fetch new plan info when creating logs and entries
-      9.  [x] make plan in side bar when filling out log
-      10. [ ] make entry in side bar when filling out log
-          1.  [ ] check prod if 2x
-      11. [ ] clean up stats we show
-         1. [ ] show opened amount
-         2. [ ] show closed amount
-         3. [ ] show position size
-         4. [ ] show cancelled amount
-         5. [ ] show if current position has outstand positions
-            1. [ ] maybe something we persist
-      12. [ ] maybe make position fixed on screen
   1.  [x] make plan show page display word-wrap
   2.  [ ] Give color coding to coins
   3.  [x] Make form inputs toggles (EVERY FORM)
@@ -180,18 +159,18 @@ UI
 3. [x] visual indicator for cancelled/opened/filled/closed      
 4. [x] refactor and remove some templating code if possible
 5. [x] trade logs
-   1. [x] add cancelled as separate boolean
-   2. [x] add post button in trade logs panel
-   3. [x] sort by type then price in trade logs panel
+    1. [x] add cancelled as separate boolean
+    2. [x] add post button in trade logs panel
+    3. [x] sort by type then price in trade logs panel
 6. [x] Quick changes
-   1. [x] add confirmation to form submit since its long
-   2. [x] index pages
+    1. [x] add confirmation to form submit since its long
+    2. [x] index pages
       1. [x] trade entry default to open and filled trades
       2. [x] trade logs default to open trades
-   3. [x] Fix method_missing rubocop issue
+    3. [x] Fix method_missing rubocop issue
 7.  [x] In place edits
-   4. [x] add lock logic into best_in_place_helper
-   5. [x] add styles to status_tags for specific method
+    1. [x] add lock logic into best_in_place_helper
+    2. [x] add styles to status_tags for specific method
 8.  [x] In place forms
     1.  [x] add quick link to open add position (longs buy / shorts sell)
     2.  [x] add quick link to close add position
@@ -199,6 +178,14 @@ UI
     1.  [x] fix NaN
     2.  [x] show paper prices
     3.  [x] show proper formatting of numbers
+10. [x] Forms
+    1.  [x] Always redirect back
+    2.  [x] Add BIP in index pages
+11. [x] side bar 
+    1.  [x] figure out why you have 2x sidebar
+    2.  [x] make plan fetch new plan info when creating logs and entries
+    3.  [x] make plan in side bar when filling out log
+    4.  [x] make entry in side bar when filling out log
 
 Models
 1. [x] memos on trade entry
