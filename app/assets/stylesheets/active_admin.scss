@@ -89,7 +89,30 @@ textarea {
   }
 }
 
-// NOTE(DZ): Fix annoying margin difference between form and show page
-form.formtastic fieldset {
-  margin-top: 1em;
+// NOTE(DZ): Formtastic style overwrites
+form.formtastic {
+  fieldset {
+    // NOTE(DZ): Fix annoying margin difference between form and show page
+    margin-top: 1em;
+
+    fieldset.choices {
+      margin-top: 0;
+
+      legend.label {
+        display: block;
+      }
+
+      ol.choices-group {
+        display: flex;
+
+        li + li {
+          margin-left: 0.5em;
+        }
+
+        li {
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
 }

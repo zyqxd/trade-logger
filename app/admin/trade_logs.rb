@@ -47,12 +47,22 @@ ActiveAdmin.register TradeLog, as: 'Trade Log' do
     f.semantic_errors(*f.object.errors.keys)
 
     f.inputs 'Trade Log' do
-      f.input :entry
-      f.input :status, as: :select, collection: TradeLog.statuses
-      f.input :kind, as: :select, collection: TradeLog.kinds
-
+      f.input :entry, hidden: f.object.entry.present?
       f.input :price, as: :number
       f.input :amount, as: :number
+
+      f.input :status,
+              as: :radio,
+              label: false,
+              collection: TradeEntry.statuses,
+              include_blank: false
+
+      f.input :kind,
+              as: :radio,
+              label: false,
+              collection: TradeEntry.kinds,
+              include_blank: false
+
       f.input :post, as: :boolean
     end
 

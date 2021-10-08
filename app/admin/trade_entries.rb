@@ -142,21 +142,39 @@ ActiveAdmin.register TradeEntry, as: 'Trade Entry' do
               display_name: 'name',
               minimum_input_length: 2
 
-      f.input :status, as: :select, collection: TradeEntry.statuses
-      f.input :coin, as: :select, collection: TradeEntry.coins
-      f.input :kind, as: :select, collection: TradeEntry.kinds
       f.input :margin
+
+      f.input :status,
+              as: :radio,
+              label: false,
+              collection: TradeEntry.statuses,
+              include_blank: false
+
+      f.input :coin,
+              as: :radio,
+              label: false,
+              collection: TradeEntry.coins,
+              include_blank: false
+
+      f.input :kind,
+              as: :radio,
+              label: false,
+              collection: TradeEntry.kinds,
+              include_blank: false
+
       f.input :paper, as: :boolean
     end
 
     f.has_many :logs do |l|
-      l.input :kind,
-              as: :select,
-              collection: TradeLog.kinds,
-              selected: l.object.kind.presence || f.object.kind
-
       l.input :price, as: :number
       l.input :amount, as: :number
+
+      l.input :kind,
+              as: :radio,
+              collection: TradeLog.kinds,
+              label: false,
+              selected: l.object.kind.presence || f.object.kind
+
       l.input :post, as: :boolean
     end
 
