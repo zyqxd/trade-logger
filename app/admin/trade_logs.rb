@@ -64,7 +64,7 @@ ActiveAdmin.register TradeLog, as: 'Trade Log' do
     f.semantic_errors(*f.object.errors.keys)
 
     f.inputs 'Trade Log' do
-      f.input :entry, as: :hidden
+      f.input :entry_id, as: :hidden
       f.input :price, as: :number
       f.input :amount, as: :number
 
