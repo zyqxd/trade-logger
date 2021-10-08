@@ -4,7 +4,8 @@ ActiveAdmin.register TradeEntry, as: 'Trade Entry' do
   decorate_with Trades::Admin::TradeEntryDecorator
   MiniForm::ActiveAdmin::UseForm.call self, Trades::Admin::TradeEntryForm
 
-  actions :all, except: :destroy
+  # NOTE(DZ): Not sure why this doesn't work
+  # actions :all, except: :destroy
 
   menu priority: 2
 
