@@ -31,7 +31,7 @@ overall part II
    2.  [ ] side bar 
       7.  [x] figure out why you have 2x sidebar
       8.  [x] make plan fetch new plan info when creating logs and entries
-      9.  [ ] make plan in side bar when filling out log
+      9.  [x] make plan in side bar when filling out log
       10. [ ] make entry in side bar when filling out log
           1.  [ ] check prod if 2x
       11. [ ] clean up stats we show
@@ -44,7 +44,7 @@ overall part II
       12. [ ] maybe make position fixed on screen
   1.  [x] make plan show page display word-wrap
   2.  [ ] Give color coding to coins
-  3.  [ ] Make form inputs toggles (EVERY FORM)
+  3.  [x] Make form inputs toggles (EVERY FORM)
 2. models
    1. [ ] Add to trade log analysis
       1. [ ] refactor to key/value analyses (likely full denormalized so we can see what we use more)

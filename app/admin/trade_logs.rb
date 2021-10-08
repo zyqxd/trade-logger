@@ -3,6 +3,8 @@
 ActiveAdmin.register TradeLog, as: 'Trade Log' do
   MiniForm::ActiveAdmin::UseForm.call self, Trades::Admin::TradeLogForm
 
+  config.clear_action_items!
+
   menu priority: 3
 
   filter :entry_id
@@ -43,11 +45,27 @@ ActiveAdmin.register TradeLog, as: 'Trade Log' do
     render 'admin/memos'
   end
 
+  sidebar :entry, class: Rails.env, only: %i[show new edit] do
+    attributes_table_for resource.entry do
+      row :id do |entry|
+        link_to entry.id, admin_trade_entry_path(entry)
+      end
+      row :plan do |entry|
+        link_to entry.plan.name, admin_plan_path(entry.plan)
+      end
+      row :status
+      row :kind
+      row :open_price
+      row :close_price
+      row :amount
+    end
+  end
+
   form do |f|
     f.semantic_errors(*f.object.errors.keys)
 
     f.inputs 'Trade Log' do
-      f.input :entry, hidden: f.object.entry.present?
+      f.input :entry, as: :hidden
       f.input :price, as: :number
       f.input :amount, as: :number
 
