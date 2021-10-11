@@ -53,8 +53,9 @@ Bugs
 2. [x] Fix calculation issue with profit $ and %
 3. [ ] Fix/Optimize excess db calls in model callbacks
 4. [x] Fix bug with nil amount being compared in new trade entries
-5. [ ] Don't count cancelled logs for amount
+5. [x] Don't count cancelled logs for amount
 6. [ ] undefined method `destroy!` when removing destroy action. Check UseForm#destroy
+7. [ ] Allow forms to render errors on validation instead of throwing
 
 tags
 - should paper & stopped flags be tags?

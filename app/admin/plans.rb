@@ -59,7 +59,7 @@ ActiveAdmin.register Plan do
           bip_kind entry, reload: true
         end
         column :amount
-        column :profit, &:true_profit
+        column :profit_percentage, &:true_profit_percentage
         column :actions do |entry|
           link_to 'View', admin_trade_entry_path(entry)
         end
