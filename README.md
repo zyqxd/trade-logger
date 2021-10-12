@@ -24,6 +24,7 @@ overall part II
   1.  [x] make plan show page display word-wrap
   2.  [ ] Give color coding to coins
   3.  [x] Make form inputs toggles (EVERY FORM)
+  4.  [ ] Add Plans decorator
 2. models
    1. [ ] Add to trade log analysis
       1. [ ] refactor to key/value analyses (likely full denormalized so we can see what we use more)
@@ -48,7 +49,7 @@ overall part II
       4. [ ] lock price after close
       5. [ ] lock amount after close
 
-Bugs 
+Bugs and Fixes
 1. [x] Fix bug with bip_status not reloading (error in value)
 2. [x] Fix calculation issue with profit $ and %
 3. [ ] Fix/Optimize excess db calls in model callbacks
@@ -56,6 +57,7 @@ Bugs
 5. [x] Don't count cancelled logs for amount
 6. [ ] undefined method `destroy!` when removing destroy action. Check UseForm#destroy
 7. [ ] Allow forms to render errors on validation instead of throwing
+8. [ ] Use arel instead of raw query for BI dashboard
 
 tags
 - should paper & stopped flags be tags?

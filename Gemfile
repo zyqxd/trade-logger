@@ -21,6 +21,8 @@ gem 'activeadmin_addons'
 gem 'best_in_place', git: 'https://github.com/mmotherwell/best_in_place'
 # Audit active record models
 gem 'audited', '~> 5.0'
+# Rails template charting
+gem 'chartkick'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

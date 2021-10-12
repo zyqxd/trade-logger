@@ -1,6 +1,8 @@
 //= require active_admin/base
 //= require activeadmin_addons/all
 //= require best_in_place
+//= require chartkick
+//= require Chart.bundle
 
 $(document).ready(function () {
   /* Activating Best In Place */
