@@ -29,6 +29,7 @@ ActiveAdmin.register_page 'Dashboard' do
             SUM(true_profit) as true_profit
           from trade_entries
           where status = 'closed'
+          and paper = false
           group by 1
         )
 
