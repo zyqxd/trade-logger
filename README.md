@@ -222,3 +222,15 @@ heroku stack:set heroku-20
 git push heroku master
 heroku run rake db:migrate
 ```
+
+## Notes
+Things that you can put as alerts when you enter a trade
+
+- on open position
+  - is the market extra trendy (bearish/bullish)? if so, there is higher likely hood of being front ran
+
+- feeling like you can't close a position because it could turn your way? If it's a good position, exit and re-enter. If you still think its a good position to enter, then re-enter
+
+- Got a big win? Lost a lot in a row? Take a day (or two) off 
+
+- Go into every trade with a Positive Mental Attitude. Expect to win, and all losses you incur is based on your current ability

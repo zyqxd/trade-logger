@@ -81,6 +81,7 @@ class TradeEntry < ApplicationRecord
     btcusd: 'btcusd',
     ethusdt: 'ethusdt',
     ethusd: 'ethusd',
+    solustd: 'solusdt',
   }
 
   enum kind: {
