@@ -46,6 +46,15 @@ module Trades
         [trade_entry.amount, trade_entry.paper_amount].max
       end
 
+      def open_amount
+        scope = trade_entry.logs.closed
+        if trade_entry.long?
+          scope.long.sum(:amount) - scope.short.sum(:amount)
+        else
+          scope.short.sum(:amount) - scope.long.sum(:amount)
+        end
+      end
+
       def paper_open_price
         number_to_accounting trade_entry.paper_open_price
       end

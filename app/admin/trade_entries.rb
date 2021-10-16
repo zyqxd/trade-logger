@@ -45,6 +45,22 @@ ActiveAdmin.register TradeEntry, as: 'Trade Entry' do
     actions
   end
 
+  sidebar :stats, class: Rails.env, only: %i[show edit] do
+    attributes_table_for resource do
+      row :status do
+        bip_status resource, reload: true
+      end
+      row :position
+      row :open_amount
+      row :open
+      row :close
+      row :profit
+      row :true_profit
+      row :profit_percentage
+      row :true_profit_percentage
+    end
+  end
+
   sidebar :plan, class: Rails.env, only: %i[show new edit] do
     attributes_table_for resource.plan do
       row :plan, class: 'text', &:name
@@ -55,21 +71,6 @@ ActiveAdmin.register TradeEntry, as: 'Trade Entry' do
       row :exit_strategy, class: 'text'
       row :requirements, class: 'text'
       row :notes, class: 'text'
-    end
-  end
-
-  sidebar :stats, class: Rails.env, only: %i[show edit] do
-    attributes_table_for resource do
-      row :status do
-        bip_status resource, reload: true
-      end
-      row :position
-      row :open
-      row :close
-      row :profit
-      row :true_profit
-      row :profit_percentage
-      row :true_profit_percentage
     end
   end
 
