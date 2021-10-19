@@ -24,7 +24,12 @@ overall part II
   1.  [x] make plan show page display word-wrap
   2.  [ ] Give color coding to coins
   3.  [x] Make form inputs toggles (EVERY FORM)
-  4.  [ ] Add Plans decorator
+  4.  [ ] Plans
+      1.  [ ] Add Plans decorator
+      2.  [ ] Edit name inline
+      3.  [ ] Add paper flag
+      4.  [ ] Make flag copy to entries
+      5.  [ ] Copy plan button to edit page
 2. models
    1. [ ] Add to trade log analysis
       1. [ ] refactor to key/value analyses (likely full denormalized so we can see what we use more)

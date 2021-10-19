@@ -32,7 +32,7 @@ ActiveAdmin.register TradeEntry, as: 'Trade Entry' do
     column :created_at
     column :open
     column :close
-    column :amount
+    column :open_amount
     column :profit, &:true_profit
     column '%', &:true_profit_percentage
     column :plan do |resource|
