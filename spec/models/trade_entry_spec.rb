@@ -5,7 +5,7 @@
 # Table name: trade_entries
 #
 #  id                     :bigint           not null, primary key
-#  amount                 :decimal(12, 8)   default(0.0), not null
+#  amount                 :decimal(16, 10)  default(0.0), not null
 #  close_price            :decimal(14, 6)
 #  coin                   :string           default("btcusdt"), not null
 #  kind                   :string           default("long"), not null

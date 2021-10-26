@@ -5,7 +5,7 @@
 # Table name: trade_logs
 #
 #  id         :bigint           not null, primary key
-#  amount     :decimal(12, 8)   not null
+#  amount     :decimal(16, 10)  not null
 #  close_time :datetime
 #  fee        :decimal(8, 2)    default(0.0), not null
 #  kind       :string           default("long"), not null
