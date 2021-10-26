@@ -136,8 +136,8 @@ class TradeEntry < ApplicationRecord
     normalized_profit = (long? ? 1.0 : -1.0) * (close_price - open_price)
     closed_amount = (long? ? closed_logs.short : closed_logs.long).sum(:amount)
     self.profit = normalized_profit * closed_amount
-    self.profit_percentage = profit * 100.0 / position
+    self.profit_percentage = (profit * 100.0 / position).round(4)
     self.true_profit = profit - closed_logs.sum(:fee)
-    self.true_profit_percentage = true_profit * 100.0 / position
+    self.true_profit_percentage = (true_profit * 100.0 / position).round(4)
   end
 end
