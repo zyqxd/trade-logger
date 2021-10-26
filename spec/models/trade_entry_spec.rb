@@ -6,15 +6,15 @@
 #
 #  id                     :bigint           not null, primary key
 #  amount                 :decimal(12, 8)   default(0.0), not null
-#  close_price            :decimal(8, 2)
+#  close_price            :decimal(14, 6)
 #  coin                   :string           default("btcusdt"), not null
 #  kind                   :string           default("long"), not null
 #  margin                 :decimal(8, 2)    default(1.0), not null
-#  open_price             :decimal(8, 2)
+#  open_price             :decimal(14, 6)
 #  paper                  :boolean          default(FALSE), not null
 #  paper_amount           :decimal(12, 8)   default(0.0)
-#  paper_close_price      :decimal(8, 2)
-#  paper_open_price       :decimal(8, 2)
+#  paper_close_price      :decimal(14, 6)
+#  paper_open_price       :decimal(14, 6)
 #  profit                 :decimal(8, 2)
 #  profit_percentage      :decimal(12, 8)
 #  status                 :string           default("opened"), not null

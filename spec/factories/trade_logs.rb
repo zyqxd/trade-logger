@@ -10,7 +10,7 @@
 #  fee        :decimal(8, 2)    default(0.0), not null
 #  kind       :string           default("long"), not null
 #  post       :boolean          default(FALSE), not null
-#  price      :decimal(12, 2)   not null
+#  price      :decimal(14, 6)   not null
 #  status     :string           default("opened"), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null

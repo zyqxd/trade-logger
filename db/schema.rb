@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_05_232540) do
+ActiveRecord::Schema.define(version: 2021_10_26_225348) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -98,8 +98,8 @@ ActiveRecord::Schema.define(version: 2021_10_05_232540) do
   create_table "trade_entries", force: :cascade do |t|
     t.string "coin", default: "btcusdt", null: false
     t.string "kind", default: "long", null: false
-    t.decimal "open_price", precision: 8, scale: 2
-    t.decimal "close_price", precision: 8, scale: 2
+    t.decimal "open_price", precision: 14, scale: 6
+    t.decimal "close_price", precision: 14, scale: 6
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.decimal "amount", precision: 12, scale: 8, default: "0.0", null: false
@@ -110,8 +110,8 @@ ActiveRecord::Schema.define(version: 2021_10_05_232540) do
     t.decimal "profit_percentage", precision: 12, scale: 8
     t.decimal "true_profit", precision: 8, scale: 2
     t.decimal "true_profit_percentage", precision: 12, scale: 8
-    t.decimal "paper_open_price", precision: 8, scale: 2
-    t.decimal "paper_close_price", precision: 8, scale: 2
+    t.decimal "paper_open_price", precision: 14, scale: 6
+    t.decimal "paper_close_price", precision: 14, scale: 6
     t.decimal "paper_amount", precision: 12, scale: 8, default: "0.0"
     t.bigint "plan_id"
     t.index ["plan_id"], name: "index_trade_entries_on_plan_id"
@@ -142,7 +142,7 @@ ActiveRecord::Schema.define(version: 2021_10_05_232540) do
     t.string "status", default: "opened", null: false
     t.string "kind", default: "long", null: false
     t.boolean "post", default: false, null: false
-    t.decimal "price", precision: 12, scale: 2, null: false
+    t.decimal "price", precision: 14, scale: 6, null: false
     t.decimal "amount", precision: 12, scale: 8, null: false
     t.datetime "close_time"
     t.datetime "created_at", precision: 6, null: false
