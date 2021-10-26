@@ -77,6 +77,7 @@ class TradeEntry < ApplicationRecord
   }
 
   enum coin: {
+    adausdt: 'adausdt',
     btcusdt: 'btcusdt',
     btcusd: 'btcusd',
     ethusdt: 'ethusdt',
